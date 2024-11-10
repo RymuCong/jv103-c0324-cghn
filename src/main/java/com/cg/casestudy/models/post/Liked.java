@@ -12,22 +12,20 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name="comment")
-public class Comment {
+@Table(name="liked")
+public class Liked {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="comment_id")
+    @Column(name="liked_id")
     private Long id;
-
-    @Column(name="content", columnDefinition = "TEXT")
-    private String content;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name="post_id")
     private Post post;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name="about_user_id")
-    private AboutUser commentedBy;
+    @JoinColumn(name="liked_by")
+    private AboutUser likedBy;
+
 }
