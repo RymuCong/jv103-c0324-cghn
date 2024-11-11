@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng kí</title>
+    <link rel="icon" th:href="@{/images/favicon.png}">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/uikit.css}">
+    <style>
+        .eror {
+            color: red;
+        }
+    </style>
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" th:href="@{/css/icons.css}">
+    <script src="https://kit.fontawesome.com/815e388c50.js" crossorigin="anonymous"></script>
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+</head>
+<body class="bg-white">
+<div uk-height-viewport class="uk-flex uk-flex-middle">
+    <div class="uk-width-2-3@m uk-width-1-2@s m-auto rounded uk-overflow-hidden shadow-lg">
+        <div class="uk-child-width-1-2@m uk-grid-collapse bg-gradient-primary" uk-grid>
+            <!-- Cột bên trái với logo và thông tin -->
+            <div class="uk-margin-auto-vertical uk-text-center uk-animation-scale-up p-3 uk-light">
+                <img  th:src="@{/images/codygym-icon.png}" alt="">
+                <h1 class="mb-3 mt-lg-4"> Simplest</h1>
+                <p>Kết nối và chia sẻ với mọi người <br> trong cuộc sống của bạn.</p>
+            </div>
+            <!-- Cột bên phải với form đăng ký -->
+            <div class="uk-card-default px-5 py-8">
+                <div class="mb-4 uk-text-center">
+                    <h2 class="mb-0">Tạo tài khoản mới</h2>
+                    <p class="my-2">Đăng nhập để quản lý tài khoản.</p>
+                </div>
+                <!-- Display  signup error message  -->
+                <div th:if="${param.existedEmailError}" class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p th:text="${param.existedEmailError}"></p>
+                </div>
+                <div th:if="${param.confirmError}" class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p th:text="${param.confirmError}"></p>
+                </div>
+
+                <form th:action="@{/register}" th:object="${newUser}" method="post" class="uk-child-width-1-1 uk-grid-small" uk-grid>
+                    <div>
+                        <div class="uk-form-group">
+                            <label class="uk-form-label">Tên người dùng</label>
+                            <div class="uk-position-relative w-100">
+                                    <span class="uk-form-icon">
+                                        <i class="icon-feather-user"></i>
+                                    </span>
+                                <input class="uk-input" type="text"  th:field="*{username}">
+                            </div>
+                        </div>
+                        <div th:if="${#fields.hasErrors('username')}" class="uk-text-danger">
+                            <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-form-group">
+                            <label class="uk-form-label">Email</label>
+                            <div class="uk-position-relative w-100">
+                                    <span class="uk-form-icon">
+                                        <i class="icon-feather-mail"></i>
+                                    </span>
+                                <input class="uk-input" type="email" placeholder="name@example.com" th:field="*{email}">
+                            </div>
+                        </div>
+                        <div th:if="${#fields.hasErrors('email')}" class="uk-text-danger">
+                            <span th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-2@s">
+                        <div class="uk-form-group">
+                            <label class="uk-form-label">Mật khẩu</label>
+                            <div class="uk-position-relative w-100">
+                                    <span class="uk-form-icon">
+                                        <i class="icon-feather-lock"></i>
+                                    </span>
+                                <input class="uk-input" type="password" placeholder="********" th:field="*{password}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-2@s">
+                        <div class="uk-form-group">
+                            <label class="uk-form-label">Xác nhận mật khẩu</label>
+                            <div class="uk-position-relative w-100">
+                                    <span class="uk-form-icon">
+                                        <i class="icon-feather-lock"></i>
+                                    </span>
+                                <input class="uk-input" type="password" placeholder="********" th:field="*{confirmPassword}">
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="uk-text-danger">
+                        <span th:if="${#fields.hasErrors('password')}" th:each="err : ${#fields.errors('password')}" th:text="${err}"></span>
+                        <br>
+                        <span th:if="${#fields.hasErrors('confirmPassword')}" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></span>
+                    </div>
+                    <div>
+                        <div th:if="${param.confirmPasswordError}" class="uk-text-danger">
+                            <span class="eror" th:text="${param.confirmPasswordError}"></span>
+                        </div>
+                        <div class="mt-4 uk-flex-middle uk-grid-small" uk-grid>
+                            <div class="uk-width-expand@s">
+                                <p>Bạn đã có tài khoản? <a th:href="@{/login}">Đăng nhập</a></p>
+                            </div>
+                            <div class="uk-width-auto@s">
+                                <button type="submit" class="button primary">Bắt đầu</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/uikit.js}"></script>
+<script th:src="@{/js/simplebar.js}"></script>
+</body>
+</html>
