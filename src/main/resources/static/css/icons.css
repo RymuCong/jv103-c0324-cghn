@@ -1684,7 +1684,7 @@
 
   .icon-feather-bookmark:before {
     content: "\e924";
-    color:;
+    /*color: ;*/
   }
 
   .icon-feather-box:before {
