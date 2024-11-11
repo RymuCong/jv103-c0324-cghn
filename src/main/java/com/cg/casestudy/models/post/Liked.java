@@ -1,6 +1,6 @@
 package com.cg.casestudy.models.post;
 
-import com.cg.casestudy.models.user.AboutUser;
+import com.cg.casestudy.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +25,7 @@ public class Liked {
     private Post post;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name="liked_by")
-    private AboutUser likedBy;
+    @JoinColumn(name="liked_by", referencedColumnName = "user_id")
+    private User likedBy;
 
 }
