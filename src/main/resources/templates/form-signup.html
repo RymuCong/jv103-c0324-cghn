@@ -42,13 +42,13 @@
                     <p class="my-2">Đăng nhập để quản lý tài khoản.</p>
                 </div>
                 <!-- Display  signup error message  -->
-                <div th:if="${param.existedEmailError}" class="uk-alert-danger" uk-alert>
+                <div th:if="${existedEmailError}" class="uk-alert-danger" uk-alert>
                     <a class="uk-alert-close" uk-close></a>
-                    <p th:text="${param.existedEmailError}"></p>
+                    <p th:text="${existedEmailError}"></p>
                 </div>
-                <div th:if="${param.confirmError}" class="uk-alert-danger" uk-alert>
+                <div th:if="${confirmError}" class="uk-alert-danger" uk-alert>
                     <a class="uk-alert-close" uk-close></a>
-                    <p th:text="${param.confirmError}"></p>
+                    <p th:text="${confirmError}"></p>
                 </div>
 
                 <form th:action="@{/register}" th:object="${newUser}" method="post" class="uk-child-width-1-1 uk-grid-small" uk-grid>

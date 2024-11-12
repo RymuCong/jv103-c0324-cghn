@@ -12,4 +12,9 @@ public class UserController {
     public String showHomePage() {
         return "home";
     }
+
+    @GetMapping("/profile")
+    public String showProfilePage() {
+        return "profile";
+    }
 }

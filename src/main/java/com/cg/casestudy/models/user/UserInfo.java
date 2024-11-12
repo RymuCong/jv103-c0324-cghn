@@ -47,4 +47,7 @@ public class UserInfo {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "background_id")
     private Image background;
+
+    @OneToOne(mappedBy = "userInfo")
+    private User user;
 }
