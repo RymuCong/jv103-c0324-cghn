@@ -1,8 +1,12 @@
 package com.cg.casestudy.models.user;
 
+import com.cg.casestudy.models.common.Image;
+import com.cg.casestudy.models.post.Post;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,8 +34,18 @@ public class User {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "about_user_id", referencedColumnName = "about_user_id")
-    private AboutUser aboutUser;
+    @JoinColumn(name = "user_info_id")
+    private UserInfo userInfo;
 
+    @OneToMany(mappedBy = "userImage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
 
+    @OneToMany(mappedBy = "userOne", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Relationship> userOneRelationships;
+
+    @OneToMany(mappedBy = "userTwo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Relationship> userTwoRelationship;
+
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts;
 }

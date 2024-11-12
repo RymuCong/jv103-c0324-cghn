@@ -1,6 +1,8 @@
 package com.cg.casestudy.controllers;
 
 import com.cg.casestudy.models.user.User;
+import com.cg.casestudy.models.user.UserInfo;
+import com.cg.casestudy.services.UserInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -18,14 +20,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/register")
 public class RegisterController {
 
-    private UserService userService;
+    private final UserService userService;
+    private final UserInfoService userInfoService;
     //inject PasswordEncoder để mã hóa mật khẩu
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegisterController(UserService userService, PasswordEncoder passwordEncoder) {
+    public RegisterController(UserService userService,
+                                UserInfoService userInfoService,
+                              PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.userInfoService = userInfoService;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     //xóa khoảng trắng 2 đầu  trong tên, email, password
@@ -56,12 +63,21 @@ public class RegisterController {
             model.addAttribute("existedEmailError", "Email đã đăng ký cho tài khoản khác");
             return "form-signup";
         }
+        //tạo mới user
         User user = new User();
         BeanUtils.copyProperties(registerUserDTO, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        //tạo mới userInfo
+        UserInfo userInfo = new UserInfo();
+        userInfo.setName(registerUserDTO.getUsername());
+        userInfoService.save(userInfo);
+
+        user.setUserInfo(userInfo);
         userService.save(user);
 
-        return "redirect:/home";
+
+        return "redirect:/profile";
 
     }
 }

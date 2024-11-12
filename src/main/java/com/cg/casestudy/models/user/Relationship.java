@@ -21,10 +21,10 @@ public class Relationship {
     private Long id;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user1_id", referencedColumnName = "about_user_id")
-    private AboutUser userOne;
+    @JoinColumn(name = "user1_id", referencedColumnName = "user_id")
+    private User userOne;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user2_id", referencedColumnName = "about_user_id")
-    private AboutUser userTwo;
+    @JoinColumn(name = "user2_id", referencedColumnName = "user_id")
+    private User userTwo;
 }

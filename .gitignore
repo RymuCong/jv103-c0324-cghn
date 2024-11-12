@@ -38,3 +38,6 @@ out/
 
 ## Ignore application-local properties
 application-local.properties
+
+## Ignore google-services.json file
+google-services.json

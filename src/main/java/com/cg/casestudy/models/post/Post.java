@@ -1,7 +1,7 @@
 package com.cg.casestudy.models.post;
 
 import com.cg.casestudy.models.common.Image;
-import com.cg.casestudy.models.user.AboutUser;
+import com.cg.casestudy.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +31,8 @@ public class Post {
     private Image image;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name="created_by", referencedColumnName = "about_user_id")
-    private AboutUser createdBy;
+    @JoinColumn(name="created_by", referencedColumnName = "user_id")
+    private User createdBy;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Liked> likes;
