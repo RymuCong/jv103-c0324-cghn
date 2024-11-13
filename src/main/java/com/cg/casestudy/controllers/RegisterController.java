@@ -28,7 +28,8 @@ public class RegisterController {
     @Autowired
     public RegisterController(UserService userService,
                                 UserInfoService userInfoService,
-                              PasswordEncoder passwordEncoder) {
+                              PasswordEncoder passwordEncoder
+    ) {
         this.userService = userService;
         this.userInfoService = userInfoService;
         this.passwordEncoder = passwordEncoder;
@@ -77,7 +78,7 @@ public class RegisterController {
         userService.save(user);
 
 
-        return "redirect:/profile";
+        return "redirect:/user/profile";
 
     }
 }
