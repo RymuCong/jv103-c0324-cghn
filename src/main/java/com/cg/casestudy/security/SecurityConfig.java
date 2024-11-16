@@ -1,17 +1,18 @@
 package com.cg.casestudy.security;
 
+import com.cg.casestudy.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.RequestCacheConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 @Configuration
 public class SecurityConfig  {
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -19,40 +20,36 @@ public class SecurityConfig  {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService userDetailsService){
+    public DaoAuthenticationProvider authenticationProvider(UserService userService){
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userDetailsService);// set custom user details service
+        auth.setUserDetailsService(userService);// set custom user details service
         auth.setPasswordEncoder(passwordEncoder()); // set password encoder
         return auth;
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationSuccessHandler customAuthenticationSuccessHandler) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/fonts/**" ,"/register").permitAll()
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/fonts/**" ,"/register", "/logout").permitAll()
+                        .requestMatchers("/user/**", "/home").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .usernameParameter("email")
-                        .loginProcessingUrl("/perform_login")
-                        .defaultSuccessUrl("/home")
-                        .failureUrl("/login?error=true")
+                        .loginProcessingUrl("/authenticateUser")
+                        .successHandler(customAuthenticationSuccessHandler)
+                        .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
                 )
                 .exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/access-denied")
                 );
-//                .requestCache(RequestCacheConfigurer::disable
-//                );
 
         return http.build();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
 }

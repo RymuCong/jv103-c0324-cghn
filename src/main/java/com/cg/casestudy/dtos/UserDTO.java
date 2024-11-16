@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RegisterUserDTO {
+public class UserDTO {
 
     @NotNull(message = "*Tên đăng nhập là bắt buộc")
     @Size(min=5, message = "*Tên đăng nhập phải có ít nhất 5 ký tự")

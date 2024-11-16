@@ -31,7 +31,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public String uploadImageToFireBase(MultipartFile file) {
-        String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        String fileName = "casestudym4/"+UUID.randomUUID() + "-" + file.getOriginalFilename();
         try {
             storageClient.bucket().create(fileName, file.getInputStream(), file.getContentType());
             return storageClient.bucket().get(fileName).getMediaLink();

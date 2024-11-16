@@ -8,26 +8,25 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class UserInfoDTO {
 
-    @NotEmpty(message = "Trường có dấu * là bắt buộc")
     private String name;
 
     private Boolean gender;
 
-    @NotEmpty(message = "Trường có dấu * là bắt buộc")
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
-    @Max(value=200, message = "Độ dài tối đa là 200 ký tự")
     private String education;
 
-    @Max(value=200, message = "Độ dài tối đa là 200 ký tự")
     private String location;
 
     private String description;

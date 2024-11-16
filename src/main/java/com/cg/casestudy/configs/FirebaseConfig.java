@@ -33,8 +33,8 @@ public class FirebaseConfig {
     }
 
     @Bean
-    public StorageClient storageClient() {
-        return StorageClient.getInstance();
+    public StorageClient storageClient(FirebaseApp firebaseApp) {
+        return StorageClient.getInstance(firebaseApp);
     }
 
 }
