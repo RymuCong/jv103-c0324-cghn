@@ -1,6 +1,6 @@
 package com.cg.casestudy.models.post;
 
-import com.cg.casestudy.models.user.AboutUser;
+import com.cg.casestudy.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +28,6 @@ public class Comment {
     private Post post;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
-    @JoinColumn(name="about_user_id")
-    private AboutUser commentedBy;
+    @JoinColumn(name="commented_by", referencedColumnName = "user_id")
+    private User commentedBy;
 }

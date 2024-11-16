@@ -33,22 +33,21 @@
             <div class="uk-margin-auto-vertical uk-text-center uk-animation-scale-up p-3 uk-light">
                 <img  th:src="@{/images/codygym-icon.png}" alt="">
                 <h1 class="mb-3 mt-lg-4"> Simplest</h1>
-                <p>Kết nối và chia sẻ với mọi người <br> trong cuộc sống của bạn.</p>
+                <p>Kết nối và chia sẻ với mọi người <br> về cuộc sống của bạn.</p>
             </div>
             <!-- Cột bên phải với form đăng ký -->
             <div class="uk-card-default px-5 py-8">
                 <div class="mb-4 uk-text-center">
-                    <h2 class="mb-0">Tạo tài khoản mới</h2>
-                    <p class="my-2">Đăng nhập để quản lý tài khoản.</p>
+                    <h2 class="mb-0">Đăng ký tài khoản</h2>
                 </div>
                 <!-- Display  signup error message  -->
-                <div th:if="${param.existedEmailError}" class="uk-alert-danger" uk-alert>
+                <div th:if="${existedEmailError}" class="uk-alert-danger" uk-alert>
                     <a class="uk-alert-close" uk-close></a>
-                    <p th:text="${param.existedEmailError}"></p>
+                    <p th:text="${existedEmailError}"></p>
                 </div>
-                <div th:if="${param.confirmError}" class="uk-alert-danger" uk-alert>
+                <div th:if="${confirmError}" class="uk-alert-danger" uk-alert>
                     <a class="uk-alert-close" uk-close></a>
-                    <p th:text="${param.confirmError}"></p>
+                    <p th:text="${confirmError}"></p>
                 </div>
 
                 <form th:action="@{/register}" th:object="${newUser}" method="post" class="uk-child-width-1-1 uk-grid-small" uk-grid>

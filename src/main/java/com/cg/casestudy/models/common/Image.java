@@ -1,6 +1,6 @@
 package com.cg.casestudy.models.common;
 
-import com.cg.casestudy.models.user.AboutUser;
+import com.cg.casestudy.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +25,7 @@ public class Image {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "about_user_id")
-    private AboutUser userImage;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User userImage;
 
 }
