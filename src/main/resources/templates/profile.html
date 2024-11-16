@@ -1,0 +1,94 @@
+<!-- File: src/main/resources/templates/profile.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
+<!--    <script th:src="@{/js/script.js}"></script>-->
+</head>
+<body>
+<!-- Profile content here -->
+<div class="profile-content">
+    <h1>User Profile</h1>
+    <div>
+        <label>Name:</label>
+        <span th:text="${userInfo.name}"></span>
+    </div>
+    <div>
+        <label>Gender:</label>
+        <span th:text="${userInfo.gender} ? 'Male' : 'Female'"></span>
+    </div>
+    <div>
+        <label>Date of Birth:</label>
+        <span th:text="${userInfo.dob}"></span>
+    </div>
+    <div>
+        <label>Education:</label>
+        <span th:text="${userInfo.education}"></span>
+    </div>
+    <div>
+        <label>Location:</label>
+        <span th:text="${userInfo.location}"></span>
+    </div>
+    <div>
+        <label>Description:</label>
+        <span th:text="${userInfo.description}"></span>
+    </div>
+    <div>
+        <label>Avatar:</label>
+        <img th:src="${userInfo.avatar.url}" alt="Avatar" />
+    </div>
+    <div>
+        <label>Background:</label>
+        <img th:src="${userInfo.background.url}" alt="Background" />
+    </div>
+</div>
+<!-- Edit User Info Modal -->
+<div id="editUserInfoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form th:action="@{/user/edit}" th:object="${userInfo}" method="post" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+            <br>
+            <label for="gender">Gender:</label>
+            <input type="checkbox" id="gender" th:field="*{gender}">
+            <br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" th:field="*{dob}" required>
+            <br>
+            <label for="education">Education:</label>
+            <input type="text" id="education" th:field="*{education}">
+            <br>
+            <label for="location">Location:</label>
+            <input type="text" id="location" th:field="*{location}">
+            <br>
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+            <br>
+            <label for="avatar">Avatar:</label>
+            <input type="file" id="avatar" name="avatarFile">
+            <br>
+            <label for="background">Background:</label>
+            <input type="file" id="background" name="backgroundFile">
+            <br>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+
+<button onclick="openModal()">Edit User Info</button>
+
+<script>
+    function openModal() {
+        document.getElementById('editUserInfoModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('editUserInfoModal').style.display = 'none';
+    }
+</script>
+</body>
+</html>

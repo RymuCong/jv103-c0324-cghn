@@ -13,8 +13,9 @@ public class UserController {
         return "home";
     }
 
-    @GetMapping("/profile")
-    public String showProfilePage() {
-        return "profile";
+    @GetMapping("/admin/home")
+    public String showAdminHomePage() {
+        return "adminPage";
     }
+
 }
