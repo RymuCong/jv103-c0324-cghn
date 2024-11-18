@@ -6,14 +6,27 @@ document.getElementById('searchInput').addEventListener('keydown', function(even
     }
 });
 
-//Xu ly su kien khi click vao nut upload anh
-document.getElementById('uploadImage').addEventListener('click', function(event) {
-    event.preventDefault();
-    document.getElementById('uploadInput').click();
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the modal elements
+    var editBackgroundModal = UIkit.modal('#editBackgroundModal');
+    var editAvatarModal = UIkit.modal('#editAvatarModal');
+    var editUserInfoModal = UIkit.modal('#editUserInfoModal');
 
-//Xu ly hien thi edit form
-document.getElementById('editButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    UIkit.modal('#editModal').show();
+    // Get the buttons that open the modals
+    var editBackgroundBtn = document.querySelector('.profile-cover a');
+    var editAvatarBtn = document.querySelector('.profile-image a');
+    var editUserInfoBtn = document.querySelector('.nav-profile .button.primary');
+
+    // Add event listeners to the buttons
+    editBackgroundBtn.addEventListener('click', function() {
+        editBackgroundModal.show();
+    });
+
+    editAvatarBtn.addEventListener('click', function() {
+        editAvatarModal.show();
+    });
+
+    editUserInfoBtn.addEventListener('click', function() {
+        editUserInfoModal.show();
+    });
 });

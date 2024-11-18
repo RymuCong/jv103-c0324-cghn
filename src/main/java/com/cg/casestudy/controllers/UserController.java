@@ -18,4 +18,13 @@ public class UserController {
         return "adminPage";
     }
 
+    @GetMapping("/user/images")
+    public String showImages() {
+        return "your-images";
+    }
+
+    @GetMapping("/user/friends")
+    public String showFriends() {
+        return "your-friends";
+    }
 }

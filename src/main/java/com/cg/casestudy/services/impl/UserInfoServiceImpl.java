@@ -33,11 +33,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     public String uploadImageToFireBase(MultipartFile file) {
         String fileName = "casestudym4/"+UUID.randomUUID() + "-" + file.getOriginalFilename();
         try {
-            storageClient.bucket().create(fileName, file.getInputStream(), file.getContentType());
-            return storageClient.bucket().get(fileName).getMediaLink();
+            var blob = storageClient.bucket().create(fileName, file.getInputStream(), file.getContentType());
+            blob.createAcl(com.google.cloud.storage.Acl.of(com.google.cloud.storage.Acl.User.ofAllUsers(), com.google.cloud.storage.Acl.Role.READER));
+            return blob.getMediaLink();
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+
 }

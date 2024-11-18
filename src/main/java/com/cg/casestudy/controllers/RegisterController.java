@@ -31,9 +31,9 @@ public class RegisterController {
 
     @Autowired
     public RegisterController(UserService userService,
-                                UserInfoService userInfoService,
+                              UserInfoService userInfoService,
                               PasswordEncoder passwordEncoder,
-                                RoleService roleService
+                              RoleService roleService
     ) {
         this.userService = userService;
         this.userInfoService = userInfoService;

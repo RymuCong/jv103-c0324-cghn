@@ -48,6 +48,15 @@ public class UserInfo {
     @JoinColumn(name = "background_id")
     private Image background;
 
-    @OneToOne(mappedBy = "userInfo")
+    @OneToOne(mappedBy = "userInfo", cascade = CascadeType.ALL)
     private User user;
+
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", avatar=" + (avatar != null ? avatar.getUrl() : "null") +
+                ", background=" + (background != null ? background.getUrl() : "null") +
+                '}';
+    }
 }

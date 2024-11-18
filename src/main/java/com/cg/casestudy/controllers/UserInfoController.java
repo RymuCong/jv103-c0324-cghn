@@ -7,8 +7,6 @@ import com.cg.casestudy.models.user.UserInfo;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,6 @@ import java.util.Date;
 @RequestMapping("/user")
 public class UserInfoController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
 
     private final UserInfoService userInfoService;
     private final UserService userService;
@@ -38,13 +35,72 @@ public class UserInfoController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new org.springframework.beans.propertyeditors.CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("/profile")
-    public String showProfile(){
+    public String showProfile(Model model){
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("userInfo", currentUser.getUserInfo());
+        model.addAttribute("user", currentUser);
         return "profile";
     }
+
+    @PostMapping("/update_info")
+    public String updateProfile(@Valid @ModelAttribute("userInfo") UserInfoDTO userInfoDTO,
+                                BindingResult bindingResult, Model model){
+        User currentUser = userService.getCurrentUser();
+        if(bindingResult.hasErrors()){
+            //error
+            model.addAttribute("user", currentUser);
+            model.addAttribute("userInfo", currentUser.getUserInfo());
+            return "profile";
+        }
+        UserInfo userInfo = currentUser.getUserInfo();
+        BeanUtils.copyProperties(userInfoDTO, userInfo);
+        userInfoService.save(userInfo);
+        return "redirect:/user/profile";
+
+    }
+
+    @PostMapping("/update_background")
+    public String updateBackground(@RequestParam("background") MultipartFile backgroundImage, Model model){
+        User currentUser = userService.getCurrentUser();
+        if(!backgroundImage.isEmpty()){
+            try{
+                String url = userInfoService.uploadImageToFireBase(backgroundImage);
+                //Tao anh moi voi url vua upload
+                Image newBackground = Image.builder().url(url).build();
+                //Cap nhat anh nen moi cho user hien tai
+                currentUser.getUserInfo().setBackground(newBackground);
+                userService.save(currentUser);
+            } catch (Exception e){
+                model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
+                return "profile";
+            }
+        }
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/update_avatar")
+    public String updateAvatar(@RequestParam("avatar") MultipartFile avatarImage, Model model){
+        User currentUser = userService.getCurrentUser();
+        if(!avatarImage.isEmpty()){
+            try {
+                String url = userInfoService.uploadImageToFireBase(avatarImage);
+                //Tao anh moi voi url vua upload
+                Image newAvatar = Image.builder().url(url).build();
+                //Cap nhat anh dai dien moi cho user hien tai
+                currentUser.getUserInfo().setAvatar(newAvatar);
+                userService.save(currentUser);
+            } catch (Exception e) {
+                model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
+                return "profile";
+            }
+        }
+        return "redirect:/user/profile";
+    }
+
 }

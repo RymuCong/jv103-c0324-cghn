@@ -58,5 +58,12 @@ public class User {
     )
     private List<Role> roles;
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", userInfo=" + (userInfo != null ? userInfo.getId() : "null") +
+                '}';
+    }
 }

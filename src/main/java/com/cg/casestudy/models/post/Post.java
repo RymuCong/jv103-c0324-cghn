@@ -2,12 +2,14 @@ package com.cg.casestudy.models.post;
 
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
+import com.cg.casestudy.utils.DateTimeUtils;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -34,9 +36,35 @@ public class Post {
     @JoinColumn(name="created_by", referencedColumnName = "user_id")
     private User createdBy;
 
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Liked> likes;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
+
+    public String getTimeSinceCreation() {
+        return DateTimeUtils.getTimeSinceCreation(createdAt);
+    }
+
+    public boolean isLikedByUser(User user) {
+        return likes.stream().anyMatch(like -> like.getLikedBy().equals(user));
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", content='" + title + '\'' +
+                ", createdBy=" + (createdBy != null ? createdBy.getId() : "null") +
+                '}';
+    }
 }
