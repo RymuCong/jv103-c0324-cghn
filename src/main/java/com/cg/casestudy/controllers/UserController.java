@@ -10,7 +10,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String showHomePage() {
-        return "home";
+        return "feeds";
     }
 
     @GetMapping("/admin/home")
