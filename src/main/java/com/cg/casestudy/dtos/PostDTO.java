@@ -1,11 +1,13 @@
 package com.cg.casestudy.dtos;
 
+import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,8 +19,8 @@ public class PostDTO {
     private User createdBy;
     private LocalDateTime createdAt;
     private String image;
+    private List<Comment> latestComments;
     private int likes = 0;
-    private int comments = 0;
 
     // get time difference from current time and createdAt
     public String getTimeDifference() {

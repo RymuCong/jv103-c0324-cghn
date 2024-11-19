@@ -19,6 +19,7 @@
     <!-- icons
     ================================================== -->
     <link rel="stylesheet" th:href="@{/css/icons.css}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/815e388c50.js" crossorigin="anonymous"></script>
 
     <!-- Google font
@@ -39,7 +40,7 @@
            <div class="sidebar-header">
                <!-- Logo-->
                <div id="logo">
-                   <a href="feeds.html"> <img th:src="@{/images/logo-light.png}" alt=""></a>
+                   <a th:href="@{/newsfeed}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
                </div>
                <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
            </div>
@@ -169,10 +170,10 @@
                    <div id="foot">
        
                        <ul>
-                           <li> <a href="page-term.html"> About Us </a></li>
-                           <li> <a href="page-setting.html"> Setting </a></li>
-                           <li> <a href="page-privacy.html"> Privacy Policy </a></li>
-                           <li> <a href="page-term.html"> Terms - Conditions </a></li>
+                           <li> <a href=""> About Us </a></li>
+                           <li> <a href=""> Setting </a></li>
+                           <li> <a href=""> Privacy Policy </a></li>
+                           <li> <a href=""> Terms - Conditions </a></li>
                        </ul>
        
        
@@ -205,8 +206,8 @@
 
                     <!-- Logo-->
                     <div id="logo">
-                       <a href="feeds.html"> <img th:src="@{/images/logo.png}" alt=""></a>
-                       <a href="feeds.html"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
+                       <a th:href="@{/newsfeed}"> <img th:src="@{/images/logo.png}" alt=""></a>
+                       <a th:href="@{/newsfeed}"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
                                alt=""></a>
                    </div>
 
@@ -247,7 +248,7 @@
                                        </a>
                                    </li>
                                    <li class="menu-divider"></li>
-                                   <li class="list-footer"> <a href="your-history.html"> Searches History </a>
+                                   <li class="list-footer"> <a href=""> Searches History </a>
                                    </li>
                                </ul>
 
@@ -313,19 +314,19 @@
                        </div>
 
 
-                       <!-- Message  notificiation dropdown -->
+                       <!-- Message  notification dropdown -->
                        <a href="#" class="opts_icon" uk-tooltip="title: Messages ; pos: bottom ;offset:7">
                            <img th:src="@{/images/icons/chat.svg}" alt=""> <span>4</span>
                        </a>
 
-                       <!-- Message  notificiation dropdown -->
+                       <!-- Message  notification dropdown -->
                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
                            class="dropdown-notifications display-hidden">
 
                            <!-- notification contents -->
                            <div class="dropdown-notifications-content" data-simplebar>
 
-                               <!-- notivication header -->
+                               <!-- notification header -->
                                <div class="dropdown-notifications-headline">
                                    <h4>Messages</h4>
                                    <a href="#">
@@ -334,7 +335,7 @@
                                    </a>
                                </div>
 
-                               <!-- notiviation list -->
+                               <!-- notification list -->
                                <ul>
                                    <li>
                                        <a href="#">
@@ -439,20 +440,20 @@
                        </div>
 
 
-                       <!-- notificiation icon  -->
+                       <!-- notification icon  -->
                        <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
                            <img th:src="@{/images/icons/bell.svg}" alt=""> <span>3</span>
                        </a>
 
 
-                       <!-- notificiation dropdown -->
+                       <!-- notification dropdown -->
                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
                            class="dropdown-notifications display-hidden">
 
                            <!-- notification contents -->
                            <div class="dropdown-notifications-content" data-simplebar>
 
-                               <!-- notivication header -->
+                               <!-- notification header -->
                                <div class="dropdown-notifications-headline">
                                    <h4>Notifications </h4>
                                    <a href="#">
@@ -461,7 +462,7 @@
                                    </a>
                                </div>
 
-                               <!-- notiviation list -->
+                               <!-- notification list -->
                                <ul>
                                    <li>
                                        <a href="#">
@@ -564,7 +565,7 @@
 
                            <!-- User Name / Avatar -->
                            <!-- User Name / Avatar -->
-                           <a href="timeline.html">
+                           <a href="">
 
                                <div class="dropdown-user-details">
 
@@ -584,7 +585,7 @@
                                <li><a href="#"> <i class="fas fa-rocket"></i> Boost Pages </a> </li>
                                <li><a href="#"> <i class="fas fa-bullhorn"></i> Advertising </a></li>
                                <li><a href="#"> <i class="fas fa-user-edit"></i> General Settings</a></li>
-                               <li><a href="#"> <i class="fas fa-user-cog"></i> Admi Area</a></li>
+                               <li><a href="#"> <i class="fas fa-user-cog"></i> Admin Area</a></li>
                                <li>
                                    <a href="#" id="night-mode" class="btn-night-mode">
                                        <i class="fas fa-moon"></i> Night mode
@@ -593,14 +594,13 @@
                                        </span>
                                    </a>
                                </li>
-                               </li>
-                               <li><a href="form-login.html"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
+                               <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
                                </li>
                            </ul>
 
                            <hr class="m-0">
                            <ul class="dropdown-user-menu">
-                               <li><a href="page-setting.html" class="bg-secondery"> <i class="uil-bolt"></i>
+                               <li><a href="" class="bg-secondery"> <i class="uil-bolt"></i>
                                        <div> Upgrade To Premium <span> Pro features give you complete control </span>
                                        </div>
                                    </a>
@@ -925,22 +925,33 @@
                             <div class="post-description">
                                 <p th:text="${post.title}"></p>
                                 <div class="fullsizeimg">
-                                    <img th:src="@{/images/post/img-1.jpg}" alt="">
+                                    <img th:src="${post.image}" alt="">
                                 </div>
 
                                 <div class="post-state-details">
                                     <div>
-                                        <img th:src="@{/images/icons/reactions_like.png}" alt="">
-                                        <img th:src="@{/images/icons/reactions_love.png}" alt="">
+                                        <img th:src="@{/images/reactions/reactions_like.png}" alt="">
+                                        <img th:src="@{/images/reactions/reactions_love.png}" alt="">
                                         <p th:text="${post.likes}"></p>
                                     </div>
-                                    <p th:text="${post.comments + ' bình luận'}"></p>
+                                    <p th:text="${post.latestComments.size() + ' bình luận'}"></p>
                                 </div>
-
                             </div>
 
                             <div class="post-state">
-                                <div class="post-state-btns"> <i class="uil-thumbs-up"></i><span> Liked </span>
+                                <div class="post-state-btns"><div class="argon-reaction">
+                        <span class="like-btn">
+                            <a href="#" class="post-card-buttons" id="reactions"><i data-post-id="${post.id}" class='bx bxs-like mr-2'></i></a>
+                            <ul class="reactions-box dropdown-shadow">
+                                <li onclick="interaction(this)" data-reaction-id="1" data-post-id="${post.id}" class="reaction reaction-like" data-reaction="Like"> </li>
+                                <li onclick="interaction(this)" data-reaction-id="2" data-post-id="${post.id}" class="reaction reaction-love" data-reaction="Love"> </li>
+                                <li onclick="interaction(this)" data-reaction-id="3" data-post-id="${post.id}" class="reaction reaction-haha" data-reaction="HaHa"> </li>
+                                <li onclick="interaction(this)" data-reaction-id="4" data-post-id="${post.id}" class="reaction reaction-wow" data-reaction="Wow"> </li>
+                                <li onclick="interaction(this)" data-reaction-id="5" data-post-id="${post.id}" class="reaction reaction-sad" data-reaction="Sad"> </li>
+                                <li onclick="interaction(this)" data-reaction-id="6" data-post-id="${post.id}" class="reaction reaction-angry" data-reaction="Angry"> </li>
+                            </ul>
+                        </span>
+                                </div><span> Liked </span>
                                 </div>
                                 <div class="post-state-btns"> <i class="uil-heart"></i><span> Comments</span>
                                 </div>
@@ -953,68 +964,26 @@
 
                             <!-- post comments -->
                             <div class="post-comments">
-                                <a href="#" class="view-more-comment"> View 8 more Comments</a>
-                                <div class="post-comments-single">
+                                <a href="#" class="view-more-comment"> View more Comments</a>
+                                <div  th:each="comment : ${post.latestComments}" class="post-comments-single" >
                                     <div class="post-comment-avatar">
                                         <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
                                     </div>
                                     <div class="post-comment-text">
                                         <div class="post-comment-text-inner">
-                                            <h6> Alex Dolgove</h6>
-                                            <p> Ut wisi enim ad minim laoreet dolore magna aliquam erat </p>
+                                            <h6 th:text="${comment.commentedBy.username}"></h6>
+                                            <p th:text="${comment.content}"></p>
                                         </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 1d</span>
-                                        </div>
+<!--                                        <div class="uk-text-small">-->
+<!--                                            <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love-->
+<!--                                            </a>-->
+<!--                                            <a href="#" class=" mr-1"> Replay </a>-->
+<!--                                            <span> 1d</span>-->
+<!--                                        </div>-->
                                     </div>
                                     <a href="#" class="post-comment-opt"></a>
                                 </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6>Stella Johnson</h6>
-                                            <p> Ut wisi enim ad minim laoreet dolore <strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-primary mr-1"> <i class="uil-thumbs-up"></i>
-                                                Like
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 2d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6> Jonathan Madano </h6>
-                                            <p> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                                aliquam
-                                                erat
-                                                volutpat.<strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 3d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-
-
-                                <a href="#" class="view-more-comment"> Veiw 8 more Comments</a>
+                                <a href="#" class="view-more-comment"> View more Comments</a>
 
                                 <div class="post-add-comment">
                                     <div class="post-add-comment-avature">
@@ -1121,47 +1090,6 @@
                                     </div>
                                     <a href="#" class="post-comment-opt"></a>
                                 </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6>Stella Johnson</h6>
-                                            <p> Ut wisi enim ad minim laoreet dolore <strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-primary mr-1"> <i class="uil-thumbs-up"></i>
-                                                Like
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 3d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6> Jonathan Madano </h6>
-                                            <p> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                                aliquam
-                                                erat
-                                                volutpat.<strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 3d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-
 
                                 <a href="#" class="view-more-comment"> Veiw 8 more Comments</a>
 
@@ -1328,9 +1256,8 @@
                             <div class="post-description">
 
                                 <div class="fullsizevid">
-                                    <div class="embed-video">
-                                        <iframe src="https://www.youtube.com/embed/pQN-pnXPaVg" frameborder="0"
-                                            uk-video="automute: true" allowfullscreen uk-responsive></iframe>
+                                    <div class="embed-video uk-responsive">
+                                        <iframe src="https://www.youtube.com/embed/pQN-pnXPaVg" uk-video="automute: true" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
@@ -1668,8 +1595,7 @@
                                 class="icon-feather-search"></i> </a>
                         <a href="#" uk-tooltip="title: settings ;offset:7"> <i class="icon-feather-settings"></i> </a>
                         <a href="#"> <i class="uil-ellipsis-v"></i> </a>
-                        <a href="#" class="uk-hidden@s"> <button class="uk-offcanvas-close uk-close" type="button"
-                                uk-close> </button> </a>
+                        <a href="#" class="uk-hidden@s"> <button class="uk-offcanvas-close uk-close" type="button"></button></a>
                     </div>
 
                     <h2> Chats </h2>
@@ -2259,7 +2185,8 @@
     ================================================== -->
     <script th:src="@{/js/uikit.js}"></script>
     <script th:src="@{/js/simplebar.js}"></script>
-    
+
+    <script th:src="@{/js/interaction.js}"></script>
 
 </body>
 
