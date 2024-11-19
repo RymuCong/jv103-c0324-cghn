@@ -932,9 +932,9 @@
                                     <div>
                                         <img th:src="@{/images/reactions/reactions_like.png}" alt="">
                                         <img th:src="@{/images/reactions/reactions_love.png}" alt="">
-                                        <p th:text="${post.likes}"></p>
+                                        <p th:text="${post.likes.size()}"></p>
                                     </div>
-                                    <p th:text="${post.latestComments.size() + ' bình luận'}"></p>
+                                    <p th:text="${post.comments.size() + ' bình luận'}"></p>
                                 </div>
                             </div>
 
@@ -965,7 +965,7 @@
                             <!-- post comments -->
                             <div class="post-comments">
                                 <a href="#" class="view-more-comment"> View more Comments</a>
-                                <div  th:each="comment : ${post.latestComments}" class="post-comments-single" >
+                                <div th:each="comment, iterStat : ${post.comments}" class="post-comments-single" th:if="${iterStat.index < 3}">
                                     <div class="post-comment-avatar">
                                         <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
                                     </div>

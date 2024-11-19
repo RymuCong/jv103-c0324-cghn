@@ -22,8 +22,6 @@ public class CommonMapper {
         PostDTO postDTO = new PostDTO();
         BeanUtils.copyProperties(post, postDTO);
         postDTO.setImage(post.getImage() != null ? post.getImage().getUrl() : null);
-//        postDTO.setLikes(post.getLikes().size());
-//        postDTO.setComments(post.getComments().size());
         return postDTO;
     }
 }

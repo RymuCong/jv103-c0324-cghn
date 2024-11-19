@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment,Long> {
 
-    List<Comment> findTop3ByPostId(Long postId);
+    List<Comment> findByPostId(Long postId);
 
 }

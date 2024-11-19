@@ -31,12 +31,11 @@ public class PostServiceImpl implements PostService {
         List<PostDTO> postDTOs = new ArrayList<>();
 
 
-
         for (Post post : posts) {
             PostDTO postDTO = CommonMapper.mapPostToPostDTO(post);
-            List<Comment> comments = commentRepository.findTop3ByPostId(post.getId());
+            List<Comment> comments = commentRepository.findByPostId(post.getId());
             postDTO.setImage(post.getImage().getUrl());
-            postDTO.setLatestComments(comments);
+            postDTO.setComments(comments);
             postDTOs.add(postDTO);
         }
 
