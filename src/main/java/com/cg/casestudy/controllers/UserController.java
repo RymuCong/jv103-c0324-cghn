@@ -8,14 +8,17 @@ import com.cg.casestudy.models.user.UserInfo;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
-import com.cg.casestudy.services.impl.PostServiceImpl;
 import com.cg.casestudy.services.impl.RoleService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,13 +67,13 @@ public class UserController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping
+    @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("newUser", new UserDTO());
         return "form-signup";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String processRegister(@Valid @ModelAttribute("newUser") UserDTO userDTO, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             return "form-signup";
@@ -136,5 +139,13 @@ public class UserController {
     @GetMapping("/user/friends")
     public String showFriends() {
         return "your-friends";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+        return "redirect:/login";
     }
 }
