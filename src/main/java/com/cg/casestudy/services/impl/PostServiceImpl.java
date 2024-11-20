@@ -1,9 +1,8 @@
 package com.cg.casestudy.services.impl;
 
 import com.cg.casestudy.dtos.PostDTO;
-import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
-import com.cg.casestudy.repositories.CommentRepository;
+import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.repositories.PostRepository;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.utils.CommonMapper;
@@ -17,25 +16,18 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
 
-    private final CommentRepository commentRepository;
-
     @Autowired
-    public PostServiceImpl(PostRepository postRepository, CommentRepository commentRepository) {
+    public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.commentRepository = commentRepository;
     }
 
     @Override
     public List<PostDTO> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAllOrderByCreatedAtDesc();
         List<PostDTO> postDTOs = new ArrayList<>();
-
 
         for (Post post : posts) {
             PostDTO postDTO = CommonMapper.mapPostToPostDTO(post);
-            List<Comment> comments = commentRepository.findByPostId(post.getId());
-            postDTO.setImage(post.getImage().getUrl());
-            postDTO.setComments(comments);
             postDTOs.add(postDTO);
         }
 
@@ -48,5 +40,18 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = new ArrayList<>();
         posts.add(postRepository.findById(postId).orElse(null));
         return posts;
+    }
+
+    @Override
+    public List<PostDTO> getPostsByUser(User createdBy) {
+        List<Post> posts = postRepository.findByCreatedBy(createdBy);
+        List<PostDTO> postDTOs = new ArrayList<>();
+
+        for (Post post : posts) {
+            PostDTO postDTO = CommonMapper.mapPostToPostDTO(post);
+            postDTOs.add(postDTO);
+        }
+
+        return postDTOs;
     }
 }

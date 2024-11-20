@@ -1,6 +1,5 @@
 package com.cg.casestudy.dtos;
 
-import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Liked;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.utils.DateTimeUtils;
@@ -20,8 +19,17 @@ public class PostDTO {
     private User createdBy;
     private LocalDateTime createdAt;
     private String image;
-    private List<Comment> comments;
+    private List<CommentDTO> comments;
     private List<Liked> likes;
+
+    public boolean isLikedByUser(User currentUser){
+        for (Liked liked : likes) {
+            if (liked.getLikedBy().getId().equals(currentUser.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // get time difference from current time and createdAt
     public String getTimeDifference() {

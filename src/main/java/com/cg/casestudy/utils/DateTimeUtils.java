@@ -14,19 +14,19 @@ public class DateTimeUtils {
         long diffInYears = java.time.Duration.between(createdAt, currentDateTime).toDays() / 365;
 
         if (diffInNano < 0) {
-            return "Just now";
+            return "Vừa xong";
         } else if (diffInSeconds < 60) {
-            return diffInSeconds + " seconds ago";
+            return diffInSeconds + " giây trước";
         } else if (diffInMinutes < 60) {
-            return diffInMinutes + " minutes ago";
+            return diffInMinutes + " phút trước";
         } else if (diffInHours < 24) {
-            return diffInHours + " hours ago";
+            return diffInHours + " giờ trước";
         } else if (diffInDays < 30) {
-            return diffInDays + " days ago";
+            return diffInDays + " ngày trước";
         } else if (diffInMonths < 12) {
-            return diffInMonths + " months ago";
+            return diffInMonths + " tháng trước";
         } else {
-            return diffInYears + " years ago";
+            return diffInYears + " năm trước";
         }
     }
 }
