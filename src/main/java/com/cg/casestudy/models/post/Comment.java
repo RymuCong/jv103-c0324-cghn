@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -30,4 +32,7 @@ public class Comment {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name="commented_by", referencedColumnName = "user_id")
     private User commentedBy;
+
+    @Column(name="commented_at")
+    private LocalDateTime createdAt;
 }

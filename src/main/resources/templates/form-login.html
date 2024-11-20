@@ -43,7 +43,7 @@
                 <form th:action="@{/authenticateUser}" method="post">
 
                     <!-- Display error message  -->
-                    <div th:if="${param.emailError}" class="uk-alert-danger" uk-alert>
+                    <div th:if="${param.error}" class="uk-alert-danger" uk-alert>
                         <a class="uk-alert-close" uk-close></a>
                         <p>Email hoặc mật khẩu không đúng</p>
                     </div>

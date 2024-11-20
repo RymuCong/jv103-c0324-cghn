@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserDTO {
 
+    private Long id;
+
     @NotNull(message = "*Tên đăng nhập là bắt buộc")
     @Size(min=5, message = "*Tên đăng nhập phải có ít nhất 5 ký tự")
     private String username;

@@ -1,8 +1,11 @@
 package com.cg.casestudy.services.impl;
 
+import com.cg.casestudy.dtos.UserInfoDTO;
+import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
 import com.cg.casestudy.repositories.UserInfoRepository;
 import com.cg.casestudy.services.UserInfoService;
+import com.cg.casestudy.utils.CommonMapper;
 import com.google.firebase.cloud.StorageClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 
     @Override
+    public UserInfoDTO getUserInfoByUser(User user) {
+        UserInfo userInfo = userInfoRepository.findUserInfoByUser(user);
+        return CommonMapper.mapUserInfoToUserInfoDTO(userInfo);
+    }
+
+    @Override
     public void save(UserInfo userInfo) {
         userInfoRepository.save(userInfo);
     }
@@ -33,11 +42,25 @@ public class UserInfoServiceImpl implements UserInfoService {
     public String uploadImageToFireBase(MultipartFile file) {
         String fileName = "casestudym4/"+UUID.randomUUID() + "-" + file.getOriginalFilename();
         try {
-            storageClient.bucket().create(fileName, file.getInputStream(), file.getContentType());
-            return storageClient.bucket().get(fileName).getMediaLink();
+            var blob = storageClient.bucket().create(fileName, file.getInputStream(), file.getContentType());
+            blob.createAcl(com.google.cloud.storage.Acl.of(com.google.cloud.storage.Acl.User.ofAllUsers(), com.google.cloud.storage.Acl.Role.READER));
+            return blob.getMediaLink();
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+
+    @Override
+    public Boolean deleteImageFromFireBase(String fileUrl) {
+        try {
+            // Extract the file name from the URL
+            String fileName = fileUrl.substring(fileUrl.indexOf("casestudym4/"));
+            return storageClient.bucket().get(fileName).delete();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 }
