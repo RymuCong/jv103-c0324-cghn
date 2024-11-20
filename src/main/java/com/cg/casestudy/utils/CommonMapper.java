@@ -41,8 +41,13 @@ public class CommonMapper {
         CommentDTO commentDTO = new CommentDTO();
         BeanUtils.copyProperties(comment, commentDTO);
         UserInfo userInfo = comment.getCommentedBy().getUserInfo();
-        commentDTO.setCommentedByAvatar(userInfo.getAvatar().getUrl() != null ? userInfo.getAvatar().getUrl() : "");
-        commentDTO.setCommentedByName(userInfo.getName());
+        if (userInfo != null) {
+            commentDTO.setCommentedByAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : "");
+            commentDTO.setCommentedByName(userInfo.getName());
+        } else {
+            commentDTO.setCommentedByAvatar("");
+            commentDTO.setCommentedByName("Unknown");
+        }
         return commentDTO;
     }
 }

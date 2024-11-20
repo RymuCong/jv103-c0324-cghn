@@ -1,8 +1,10 @@
 package com.cg.casestudy.controllers;
 
 
+import com.cg.casestudy.dtos.PostDTO;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
+import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
 import com.cg.casestudy.services.PostService;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -120,9 +124,11 @@ public class UserController {
     @GetMapping("/home")
     public String showHomePage(Model model) {
         User currentUser = userService.getCurrentUser();
+        List<PostDTO> posts = postService.getAllPosts();
+        model.addAttribute("posts", Objects.requireNonNullElse(posts, Collections.emptyList()));
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
-        model.addAttribute("posts", postService.getAllPosts());
+
         return "feeds";
     }
 
