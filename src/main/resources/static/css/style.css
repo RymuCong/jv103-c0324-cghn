@@ -11186,6 +11186,7 @@ ul.story-side-list li a .story-user-innr p span.story-time-ago {
     color: #1d2129;
     font-size: 15px;
     background-color: transparent;
+    list-style: none;
 }
 
 .sl_right_user_info li.list-group-item svg {
