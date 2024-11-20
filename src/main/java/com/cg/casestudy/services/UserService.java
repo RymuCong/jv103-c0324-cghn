@@ -7,6 +7,8 @@ public interface UserService extends UserDetailsService {
 
     User findByEmail(String email);
 
+    User getCurrentUser();
+
     User save(User user);
 
 }

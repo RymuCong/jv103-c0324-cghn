@@ -1,10 +1,8 @@
 package com.cg.casestudy.dtos;
 
 
-import com.cg.casestudy.models.common.Image;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import com.cg.casestudy.validation.Age;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,22 +15,32 @@ import java.util.Date;
 @Data
 public class UserInfoDTO {
 
+    private Long id;
+
+//    @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$",
+//            message = "*Tên không chứa chữ số và các kí tự đặc biệt")
+    @Size(max= 100, message = "*Độ dài tối đa 100 kí tự")
+    @Size(min= 5, message = "*Độ dài tối thiểu 5 kí tự")
     private String name;
 
     private Boolean gender;
 
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Age(message = "*Người dùng phải từ 17 tuổi trở lên")
     private Date dob;
 
+    @Size(max=100, message = "*Độ dài tối đa 100 kí tự")
     private String education;
 
+    @Size(max=100, message = "*Độ dài tối đa 100 kí tự")
     private String location;
 
+    @Size(max= 500, message = "*Độ dài tối đa 500 kí tự")
     private String description;
 
-    private Image avatar;
+    private String avatar;
 
-    private Image background;
+    private String background;
+
 
 }

@@ -40,14 +40,23 @@ public class UserInfo {
     @Column(name="description", columnDefinition = "TEXT")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "avatar_id")
     private Image avatar;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "background_id")
     private Image background;
 
-    @OneToOne(mappedBy = "userInfo")
+    @OneToOne(mappedBy = "userInfo", cascade = CascadeType.ALL)
     private User user;
+
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", avatar=" + (avatar != null ? avatar.getUrl() : "null") +
+                ", background=" + (background != null ? background.getUrl() : "null") +
+                '}';
+    }
 }
