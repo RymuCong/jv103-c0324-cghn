@@ -11,9 +11,4 @@ public interface UserInfoService {
 
     void save(UserInfo userInfo);
 
-    String uploadImageToFireBase(MultipartFile file);
-
-    Boolean deleteImageFromFireBase(String url);
-
-
 }
