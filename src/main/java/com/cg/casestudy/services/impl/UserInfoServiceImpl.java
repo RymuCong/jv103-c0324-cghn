@@ -8,6 +8,7 @@ import com.cg.casestudy.services.FirebaseService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.utils.CommonMapper;
 import com.google.firebase.cloud.StorageClient;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +33,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         return CommonMapper.mapUserInfoToUserInfoDTO(userInfo);
     }
 
+    @Transactional
     @Override
     public void save(UserInfo userInfo) {
         userInfoRepository.save(userInfo);
