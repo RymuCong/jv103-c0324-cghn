@@ -4,12 +4,12 @@ package com.cg.casestudy.controllers;
 import com.cg.casestudy.dtos.PostDTO;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
+import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
-import com.cg.casestudy.services.impl.PostServiceImpl;
 import com.cg.casestudy.services.impl.RoleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -71,13 +71,13 @@ public class UserController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping
+    @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("newUser", new UserDTO());
         return "form-signup";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String processRegister(@Valid @ModelAttribute("newUser") UserDTO userDTO, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             return "form-signup";
@@ -128,6 +128,7 @@ public class UserController {
         model.addAttribute("posts", Objects.requireNonNullElse(posts, Collections.emptyList()));
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
+
         return "feeds";
     }
 
