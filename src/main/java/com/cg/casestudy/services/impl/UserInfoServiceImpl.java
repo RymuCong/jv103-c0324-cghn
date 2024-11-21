@@ -55,12 +55,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     public Boolean deleteImageFromFireBase(String fileUrl) {
         try {
             // Extract the file name from the URL
-            String fileName = fileUrl.substring(fileUrl.indexOf("casestudym4/"));
+            String fileName = fileUrl.split("/o/")[1].split("\\?")[0].replace("%2F", "/");
             return storageClient.bucket().get(fileName).delete();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
+
 
 }

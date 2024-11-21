@@ -31,7 +31,14 @@ public class CommonMapper {
 
     static public UserInfoDTO mapUserInfoToUserInfoDTO(UserInfo userInfo) {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
-        BeanUtils.copyProperties(userInfo, userInfoDTO);
+//        BeanUtils.copyProperties(userInfo, userInfoDTO);
+        userInfoDTO.setId(userInfo.getId());
+        userInfoDTO.setName(userInfo.getName());
+        userInfoDTO.setGender(userInfo.getGender());
+        userInfoDTO.setDob(userInfo.getDob());
+        userInfoDTO.setEducation(userInfo.getEducation());
+        userInfoDTO.setLocation(userInfo.getLocation());
+        userInfoDTO.setDescription(userInfo.getDescription());
         userInfoDTO.setAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : null);
         userInfoDTO.setBackground(userInfo.getBackground() != null ? userInfo.getBackground().getUrl() : null);
         return userInfoDTO;
@@ -41,8 +48,13 @@ public class CommonMapper {
         CommentDTO commentDTO = new CommentDTO();
         BeanUtils.copyProperties(comment, commentDTO);
         UserInfo userInfo = comment.getCommentedBy().getUserInfo();
-        commentDTO.setCommentedByAvatar(userInfo.getAvatar().getUrl() != null ? userInfo.getAvatar().getUrl() : "");
-        commentDTO.setCommentedByName(userInfo.getName());
+        if (userInfo != null) {
+            commentDTO.setCommentedByAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : "");
+            commentDTO.setCommentedByName(userInfo.getName());
+        } else {
+            commentDTO.setCommentedByAvatar("");
+            commentDTO.setCommentedByName("Unknown");
+        }
         return commentDTO;
     }
 }

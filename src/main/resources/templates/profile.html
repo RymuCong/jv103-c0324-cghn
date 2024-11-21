@@ -19,10 +19,6 @@
             height: 100px; /* Set a fixed height */
             object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
         }
-        .sidebar-user-data-row {
-            display: flex;
-            justify-content: space-between;
-        }
 
         .modal-image img {
             width: 100px; /* Set a fixed width */
@@ -492,7 +488,7 @@
                                 <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
                                 <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a th:href="@{/admin/home}" th:if=""> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
+                                    <a th:href="@{/admin/home}" > <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
                                 <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                                 </li>
                             </ul>
@@ -1005,7 +1001,7 @@
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Chỉnh sửa thông tin</h2>
         <button class="uk-modal-close-default" type="button" uk-close></button>
-        <form th:action="@{/user/update_info}" method="post" th:object="${userInfo}" enctype="multipart/form-data">
+        <form th:action="@{/user/update_info}" method="post" th:object="${updateUserInfo}" enctype="multipart/form-data">
             <div>
                 <input type="hidden" th:field="*{id}" th:value="${userInfo.id}">
             </div>
@@ -1014,7 +1010,7 @@
                 <label>
                     <input class="uk-input" type="text" th:field="*{name}" placeholder="Tên" th:value="${userInfo.name}">
                 </label>
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="uk-text-danger"></div>
+
             </div>
             <div class="uk-margin">
                 <b>Giới tính</b>
@@ -1026,6 +1022,7 @@
             <div class="uk-margin">
                 <b>Ngày sinh</b>
                 <input class="uk-input" type="text" th:field="*{dob}" th:value="${#dates.format(userInfo.dob, 'dd/MM/yyyy')}">
+<!--                <input class="uk-input" type="date" th:field="*{dob}">-->
                 <div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="uk-text-danger"></div>
             </div>
             <div class="uk-margin">

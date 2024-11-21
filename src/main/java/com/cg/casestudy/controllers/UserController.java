@@ -1,6 +1,7 @@
 package com.cg.casestudy.controllers;
 
 
+import com.cg.casestudy.dtos.PostDTO;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
@@ -10,12 +11,16 @@ import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import com.cg.casestudy.services.impl.PostServiceImpl;
 import com.cg.casestudy.services.impl.RoleService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +28,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -117,9 +124,10 @@ public class UserController {
     @GetMapping("/home")
     public String showHomePage(Model model) {
         User currentUser = userService.getCurrentUser();
+        List<PostDTO> posts = postService.getAllPosts();
+        model.addAttribute("posts", Objects.requireNonNullElse(posts, Collections.emptyList()));
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
-        model.addAttribute("posts", postService.getAllPosts());
         return "feeds";
     }
 
@@ -136,5 +144,13 @@ public class UserController {
     @GetMapping("/user/friends")
     public String showFriends() {
         return "your-friends";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+        return "redirect:/login";
     }
 }

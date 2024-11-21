@@ -15,4 +15,5 @@ public interface UserInfoService {
 
     Boolean deleteImageFromFireBase(String url);
 
+
 }

@@ -53,24 +53,25 @@ public class UserInfoController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
         model.addAttribute("posts", postService.getPostsByUser(currentUser));
+        model.addAttribute("updateUserInfo", new UserInfoDTO());
         return "profile";
     }
 
     @PostMapping("/update_info")
-    public String updateProfile(@Valid @ModelAttribute("userInfo") UserInfoDTO userInfoDTO,
-                                BindingResult bindingResult, Model model,
-                                RedirectAttributes redirectAttributes
-    ){
+    public String updateProfile(@Valid @ModelAttribute UserInfoDTO updateUserInfo,
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes){
+        System.err.println(updateUserInfo.getDob());
         User currentUser = userService.getCurrentUser();
         //Chưa xử lí hiển thị lỗi cho người dùng
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userInfo", bindingResult);
-            redirectAttributes.addFlashAttribute("userInfo", userInfoDTO);
+            redirectAttributes.addFlashAttribute("userInfo", updateUserInfo);
             redirectAttributes.addFlashAttribute("openEditUserInfoModal", true);
             return "redirect:/user/profile";
         }
         UserInfo userInfo = currentUser.getUserInfo();
-        BeanUtils.copyProperties(userInfoDTO, userInfo);
+        BeanUtils.copyProperties(updateUserInfo, userInfo);
         userInfoService.save(userInfo);
         return "redirect:/user/profile";
 
@@ -84,12 +85,19 @@ public class UserInfoController {
                 UserInfo userInfo = currentUser.getUserInfo();
                 Image oldBackground = userInfo.getBackground();
                 if(oldBackground != null){
+                    userInfo.setBackground(null); // Set background to null to avoid foreign key constraint
+                    userService.save(currentUser); // Save user to update the foreign key
                     userInfoService.deleteImageFromFireBase(oldBackground.getUrl());
                     imageService.delete(oldBackground);
+                    currentUser.getImages().remove(oldBackground);
                 }
+                // Upload new background to firebase and save the url to database
                 String urlImage = userInfoService.uploadImageToFireBase(backgroundImage);
                 Image newBackground = Image.builder().url(urlImage).build();
+                newBackground.setUserImage(currentUser);
+                // Set new background to user
                 currentUser.getUserInfo().setBackground(newBackground);
+                currentUser.getImages().add(newBackground);
                 userService.save(currentUser);
             } catch (Exception e){
                 model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
@@ -107,12 +115,19 @@ public class UserInfoController {
                 UserInfo userInfo = currentUser.getUserInfo();
                 Image oldAvatar = userInfo.getAvatar();
                 if(oldAvatar != null){
+                    userInfo.setAvatar(null); // Set avatar to null to avoid foreign key constraint
+                    userService.save(currentUser); // Save user to update the foreign key
                     userInfoService.deleteImageFromFireBase(oldAvatar.getUrl());
                     imageService.delete(oldAvatar);
+                    currentUser.getImages().remove(oldAvatar);
                 }
+                // Upload new avatar to firebase and save the url to database
                 String url = userInfoService.uploadImageToFireBase(avatarImage);
                 Image newAvatar = Image.builder().url(url).build();
+                newAvatar.setUserImage(currentUser);
+                // Set new avatar to user
                 currentUser.getUserInfo().setAvatar(newAvatar);
+                currentUser.getImages().add(newAvatar);
                 userService.save(currentUser);
             } catch (Exception e) {
                 model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
@@ -121,5 +136,4 @@ public class UserInfoController {
         }
         return "redirect:/user/profile";
     }
-
 }

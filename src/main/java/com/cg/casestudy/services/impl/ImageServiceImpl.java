@@ -5,6 +5,7 @@ import com.cg.casestudy.repositories.ImageRepository;
 import com.cg.casestudy.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -22,7 +23,21 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    @Transactional
     public void delete(Image oldImage) {
+        if (oldImage == null) {
+            throw new IllegalArgumentException("Image to delete cannot be null");
+        }
+
+        Image imageFromDb = imageRepository.findById(oldImage.getId()).orElse(null);
+        if (imageFromDb == null) {
+            throw new IllegalArgumentException("Image to delete does not exist in the database");
+        }
+
+        if (oldImage.getUserImage() != null) {
+            oldImage.setUserImage(null);
+        }
+
         imageRepository.delete(oldImage);
     }
 }

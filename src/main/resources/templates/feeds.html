@@ -490,7 +490,7 @@
                             <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
                             <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
                             <li sec:authorize="hasRole('ROLE_ADMIN')">
-                                <a th:href="@{/admin/home}" th:if=""> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
+                                <a th:href="@{/admin/home}"> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
                             <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                             </li>
                         </ul>
@@ -829,9 +829,9 @@
                                 <span th:text="${post.comments.size()}"></span>&nbspBình luận
                             </div>
                             <div class="post-state-btns"> <i class="uil-share-alt"></i>
-                                <span> 20 </span>&nbspChia sẻ
+                                <span> 0 </span>&nbspChia sẻ
                             </div>
-                            <div class="post-state-btns"> <i class="uil-bookmark"></i> 13 <span> Saved </span>
+                            <div class="post-state-btns"> <i class="uil-bookmark"></i> 0 <span> Saved </span>
                             </div>
                         </div>
 
@@ -875,49 +875,46 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-                    <div class="load-more">
-                        <button class="btn button">Xem thêm bài viết</button>
-                    </div>
-
             </div>
+                <div class="load-more">
+                    <button class="btn button">Xem thêm bài viết</button>
+                </div>
 
             </div>
             <div class="uk-width-expand">
 
-                <div class="sl_sidebar_sugs_title border-0"> Trending !
+                <div class="sl_sidebar_sugs_title border-0"> Xu hướng!
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #hello</span>
+                        <span class="htag_top"> #FontBath</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #test</span>
+                        <span class="htag_top"> #NganHaDao</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #template</span>
+                        <span class="htag_top"> #ThànhCông</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #social</span>
+                        <span class="htag_top"> #HuyQuang</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #simplest</span>
+                        <span class="htag_top"> #Phôngbạt</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #new</span>
+                        <span class="htag_top"> #2024</span>
                     </a>
                 </div>
 
