@@ -4,10 +4,7 @@ import com.cg.casestudy.dtos.UserInfoDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
-import com.cg.casestudy.services.ImageService;
-import com.cg.casestudy.services.PostService;
-import com.cg.casestudy.services.UserInfoService;
-import com.cg.casestudy.services.UserService;
+import com.cg.casestudy.services.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +27,16 @@ public class UserInfoController {
     private final UserService userService;
     private final PostService postService;
     private final ImageService imageService;
+    private final FirebaseService firebaseService;
 
     @Autowired
     public UserInfoController(UserInfoService userInfoService, UserService userService,
-                              PostService postService, ImageService imageService) {
+                              PostService postService, ImageService imageService, FirebaseService firebaseService) {
         this.userInfoService = userInfoService;
         this.userService = userService;
         this.postService = postService;
         this.imageService = imageService;
+        this.firebaseService = firebaseService;
     }
 
     @InitBinder
@@ -84,10 +83,10 @@ public class UserInfoController {
                 UserInfo userInfo = currentUser.getUserInfo();
                 Image oldBackground = userInfo.getBackground();
                 if(oldBackground != null){
-                    userInfoService.deleteImageFromFireBase(oldBackground.getUrl());
+                    firebaseService.deleteImageFromFireBase(oldBackground.getUrl());
                     imageService.delete(oldBackground);
                 }
-                String urlImage = userInfoService.uploadImageToFireBase(backgroundImage);
+                String urlImage = firebaseService.uploadImageToFireBase(backgroundImage);
                 Image newBackground = Image.builder().url(urlImage).build();
                 currentUser.getUserInfo().setBackground(newBackground);
                 userService.save(currentUser);
@@ -107,10 +106,10 @@ public class UserInfoController {
                 UserInfo userInfo = currentUser.getUserInfo();
                 Image oldAvatar = userInfo.getAvatar();
                 if(oldAvatar != null){
-                    userInfoService.deleteImageFromFireBase(oldAvatar.getUrl());
+                    firebaseService.deleteImageFromFireBase(oldAvatar.getUrl());
                     imageService.delete(oldAvatar);
                 }
-                String url = userInfoService.uploadImageToFireBase(avatarImage);
+                String url = firebaseService.uploadImageToFireBase(avatarImage);
                 Image newAvatar = Image.builder().url(url).build();
                 currentUser.getUserInfo().setAvatar(newAvatar);
                 userService.save(currentUser);

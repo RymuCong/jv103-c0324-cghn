@@ -666,7 +666,7 @@
                         <div class="post-new-overyly" uk-toggle="target: body ; cls: post-focus"></div>
 
                         <div class="post-new uk-animation-slide-top-small">
-                            <form>
+                            <form th:action="@{/post}" th:object="${newPost}" method="post" enctype="multipart/form-data">
                                 <div class="post-new-header">
 
                                     <h4> Tạo bài viết mới</h4>
@@ -683,20 +683,19 @@
                                         <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="avatar">
                                     </div>
                                     <div class="post-new-media-input">
-                                        <input type="text" class="uk-input"
+                                        <input th:field="${newPost.title}" type="text" class="uk-input"
                                                placeholder="Bạn đang nghĩ gì ?">
                                     </div>
                                 </div>
                                 <div class="post-new-tab-nav">
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24">
-                                            <path fill="#4db3f6"
-                                                  d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z">
-                                            </path>
+                                    <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path fill="#4db3f6" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"></path>
                                         </svg>
                                         <span> Tải ảnh</span>
                                     </a>
+<!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
+                                    <input type="file" id="fileInput" style="display: none;" name="file"/>
 
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

@@ -2,6 +2,7 @@ package com.cg.casestudy.controllers;
 
 
 import com.cg.casestudy.dtos.PostDTO;
+import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
@@ -128,6 +129,7 @@ public class UserController {
         model.addAttribute("posts", Objects.requireNonNullElse(posts, Collections.emptyList()));
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
+        model.addAttribute("newPost", new PostRequest());
 
         return "feeds";
     }
