@@ -45,7 +45,14 @@ public class CommonMapper {
 
     static public UserInfoDTO mapUserInfoToUserInfoDTO(UserInfo userInfo) {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
-        BeanUtils.copyProperties(userInfo, userInfoDTO);
+//        BeanUtils.copyProperties(userInfo, userInfoDTO);
+        userInfoDTO.setId(userInfo.getId());
+        userInfoDTO.setName(userInfo.getName());
+        userInfoDTO.setGender(userInfo.getGender());
+        userInfoDTO.setDob(userInfo.getDob());
+        userInfoDTO.setEducation(userInfo.getEducation());
+        userInfoDTO.setLocation(userInfo.getLocation());
+        userInfoDTO.setDescription(userInfo.getDescription());
         userInfoDTO.setAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : null);
         userInfoDTO.setBackground(userInfo.getBackground() != null ? userInfo.getBackground().getUrl() : null);
         return userInfoDTO;

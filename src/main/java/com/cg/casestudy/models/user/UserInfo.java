@@ -51,12 +51,4 @@ public class UserInfo {
     @OneToOne(mappedBy = "userInfo", cascade = CascadeType.ALL)
     private User user;
 
-    public String toString() {
-        return "UserInfo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", avatar=" + (avatar != null ? avatar.getUrl() : "null") +
-                ", background=" + (background != null ? background.getUrl() : "null") +
-                '}';
-    }
 }
