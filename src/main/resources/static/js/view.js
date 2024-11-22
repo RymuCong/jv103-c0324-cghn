@@ -30,3 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
         editUserInfoModal.show();
     });
 });
+
+function previewImage(event, previewId = 'imagePreview') {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById(previewId);
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+}

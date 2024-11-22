@@ -69,10 +69,11 @@ public class PostServiceImpl implements PostService {
         if (file != null) {
             Image savedImage = new Image();
             savedImage.setUrl(firebaseService.uploadImageToFireBase(file));
+            newPost.setImage(savedImage);
+            savedImage.setUserImage(newPost.getCreatedBy());
         }
         else
             newPost.setImage(null);
-
         postRepository.save(newPost);
     }
 }
