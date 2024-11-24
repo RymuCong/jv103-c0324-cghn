@@ -40,6 +40,9 @@
     <!-- Google font
     ================================================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -835,9 +838,8 @@
                         </div>
 
                     </div>
-
                     <!-- post comments -->
-                    <div class="post-comments" >
+                    <div class="post-comments">
                         <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
                             <div class="post-comment-avatar">
                                 <img th:src="${comment.commentedByAvatar}" alt="">
@@ -852,33 +854,34 @@
                                 </div>
                             </div>
                             <!--Chỗ sửa, xóa bình luận-->
-                            <a href="#" class="post-comment-opt">
-
-                            </a>
+                            <a href="#" class="post-comment-opt"></a>
                         </div>
-
-
-                        <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
+                        <div th:id="'post-' + ${post.id}" class="post-comments">
+                            <!-- Comments will be inserted here -->
+                        </div>
+                        <a href="#" class="view-more-comment">Xem tất cả bình luận</a>
 
                         <div class="post-add-comment">
                             <div class="post-add-comment-avature">
                                 <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
                             </div>
-                            <!--Xu lí ajax-->
                             <div class="post-add-comment-text-area">
-                                <input type="text" placeholder="Bình luận về bài viết...">
+                                <input type="text" th:id="'content-' + ${post.id}" placeholder="Bình luận về bài viết...">
                                 <div class="icons">
                                     <span class="uil-link-alt"></span>
                                     <span class="uil-grin"></span>
                                     <span class="uil-image"></span>
                                 </div>
+                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>
                             </div>
                         </div>
-
+<!--                        <div th:id="'comment-list-' + ${post.id}" class="post-comments">-->
+<!--                            &lt;!&ndash; Existing comments will be here &ndash;&gt;-->
+<!--                        </div>-->
                     </div>
-            </div>
+                    </div>
 
-            <div class="load-more">
+                    <div class="load-more">
                 <button class="btn button">Xem thêm bài viết</button>
             </div>
 
@@ -1722,6 +1725,9 @@
 ================================================== -->
 <script th:src="@{/js/uikit.js}"></script>
 <script th:src="@{/js/simplebar.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/comment.js}"></script>
 
 
 </body>
