@@ -69,6 +69,7 @@ public class CommonMapper {
             commentDTO.setCommentedByAvatar("");
             commentDTO.setCommentedByName("Unknown");
         }
+        commentDTO.setPostId(comment.getPost().getId());
         return commentDTO;
     }
 }
