@@ -2,12 +2,15 @@ package com.cg.casestudy.utils;
 
 import com.cg.casestudy.dtos.CommentDTO;
 import com.cg.casestudy.dtos.PostDTO;
+import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.dtos.UserInfoDTO;
 import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.UserInfo;
 import org.springframework.beans.BeanUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,17 @@ public class CommonMapper {
         return postDTO;
     }
 
+    // map PostRequest to Post
+    static public Post mapPostRequestToPost(PostRequest postRequest) {
+        Post post = new Post();
+        post.setTitle(postRequest.getTitle());
+        post.setCreatedBy(postRequest.getCreatedBy());
+        post.setCreatedAt(LocalDateTime.now());
+        post.setLikes(new ArrayList<>());
+        post.setComments(new ArrayList<>());
+        return post;
+    }
+
     static public UserInfoDTO mapUserInfoToUserInfoDTO(UserInfo userInfo) {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         BeanUtils.copyProperties(userInfo, userInfoDTO);
@@ -48,6 +62,7 @@ public class CommonMapper {
             commentDTO.setCommentedByAvatar("");
             commentDTO.setCommentedByName("Unknown");
         }
+        commentDTO.setPostId(comment.getPost().getId());
         return commentDTO;
     }
 }

@@ -2,6 +2,7 @@ package com.cg.casestudy.controllers;
 
 
 import com.cg.casestudy.dtos.PostDTO;
+import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
@@ -11,6 +12,7 @@ import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import com.cg.casestudy.services.impl.RoleService;
+import com.cg.casestudy.utils.AppConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -41,12 +43,6 @@ public class UserController {
     //inject PasswordEncoder để mã hóa mật khẩu
     private final PasswordEncoder passwordEncoder;
 
-
-    @Value("${userinfo.default.avatarUrl}")
-    private String defaultAvatarUrl;
-
-    @Value("${userinfo.default.backgroundUrl}")
-    private String defaultBackgroundUrl;
 
     @Autowired
     public UserController(UserService userService,
@@ -100,8 +96,8 @@ public class UserController {
         UserInfo userInfo = new UserInfo();
         userInfo.setName(userDTO.getUsername());
         userInfo.setGender(true);
-        userInfo.setAvatar(Image.builder().url(defaultAvatarUrl).build());
-        userInfo.setBackground(Image.builder().url(defaultBackgroundUrl).build());
+        userInfo.setAvatar(Image.builder().url(AppConstants.defaultAvatar).build());
+        userInfo.setBackground(Image.builder().url(AppConstants.defaultBackground).build());
         userInfoService.save(userInfo);
 
         user.setUserInfo(userInfo);
@@ -128,6 +124,7 @@ public class UserController {
         model.addAttribute("posts", Objects.requireNonNullElse(posts, Collections.emptyList()));
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
+        model.addAttribute("newPost", new PostRequest());
 
         return "feeds";
     }
