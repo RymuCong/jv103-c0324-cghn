@@ -1,5 +1,6 @@
 package com.cg.casestudy.controllers;
 
+import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.dtos.UserInfoDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
@@ -52,12 +53,13 @@ public class UserInfoController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
         model.addAttribute("posts", postService.getPostsByUser(currentUser));
+        model.addAttribute("newPost", new PostRequest());
         return "profile";
     }
 
     @PostMapping("/update_info")
     public String updateProfile(@Valid @ModelAttribute("userInfo") UserInfoDTO userInfoDTO,
-                                BindingResult bindingResult, Model model,
+                                BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes
     ){
         User currentUser = userService.getCurrentUser();
