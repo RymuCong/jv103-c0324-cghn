@@ -59,7 +59,7 @@ public class UserInfoController {
 
     @PostMapping("/update_info")
     public String updateProfile(@Valid @ModelAttribute("userInfo") UserInfoDTO userInfoDTO,
-                                BindingResult bindingResult, Model model,
+                                BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes
     ){
         User currentUser = userService.getCurrentUser();

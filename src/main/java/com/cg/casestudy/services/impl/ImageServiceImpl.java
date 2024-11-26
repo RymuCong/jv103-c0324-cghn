@@ -31,8 +31,14 @@ public class ImageServiceImpl implements ImageService {
     public void delete(Image image) {
         imageRepository.delete(image);
 
-    @Override
-    public void delete(Image oldImage) {
-        imageRepository.delete(oldImage);
+
+    @Transactional
+    public void save(Image image) {
+        imageRepository.save(image);
+    }
+
+    @Transactional
+    public void delete(Image image) {
+        imageRepository.delete(image);
     }
 }

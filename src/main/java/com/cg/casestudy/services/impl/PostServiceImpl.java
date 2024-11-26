@@ -13,9 +13,6 @@ import com.cg.casestudy.services.FirebaseService;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.utils.CommonMapper;
 import jakarta.transaction.Transactional;
-import com.cg.casestudy.services.FirebaseService;
-import com.cg.casestudy.services.PostService;
-import com.cg.casestudy.utils.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -116,8 +113,4 @@ public class PostServiceImpl implements PostService {
         return CommonMapper.mapPostToPostDTO(post);
     }
 
-    @Transactional
-    public Post findByIdWithLikes(Long postId) {
-        return postRepository.findByIdWithLikes(postId).orElse(null);
-    }
 }

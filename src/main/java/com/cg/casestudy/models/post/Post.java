@@ -47,6 +47,7 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
+
     @Override
     public String toString() {
         return "Post{" +

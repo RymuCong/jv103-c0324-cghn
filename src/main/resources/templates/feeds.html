@@ -20,16 +20,6 @@
             object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
         }
 
-        .sidebar-user-data-row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .modal-image img {
-            width: 100px; /* Set a fixed width */
-            height: 100px; /* Set a fixed height */
-            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
-        }
     </style>
 
     <!-- icons
@@ -693,7 +683,6 @@
                                 <div class="fullsizeimg">
                                     <img id="imagePreview" style="display: none;" alt="Preview Image">
                                 </div>
-
                                 <div class="post-new-tab-nav">
                                     <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -702,8 +691,6 @@
                                         <span> Tải ảnh</span>
                                     </a>
                                     <input type="file" id="fileInput" style="display: none;" name="file" onchange="previewImage(event)"/>
-<!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
-                                    <input type="file" id="fileInput" style="display: none;" name="file"/>
 
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -839,7 +826,7 @@
                                 </a>
                                 <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
                             </div>
-                            <div class="post-state-btns"> <i class="uil-heart"></i>
+                            <div class="post-state-btns"> <i class="uil-comment"></i>
                                 <span th:id="'comment-count-' + ${post.id}" th:text="${post.comments.size()}"></span>&nbspBình luận
                             </div>
                             <div class="post-state-btns"> <i class="uil-share-alt"></i>
