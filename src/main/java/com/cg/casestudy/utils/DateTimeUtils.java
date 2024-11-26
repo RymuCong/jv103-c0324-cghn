@@ -1,24 +1,32 @@
 package com.cg.casestudy.utils;
 
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.time.LocalDateTime;
 
 public class DateTimeUtils {
-    public static String getTimeSinceCreation(Date createdAt) {
-        long duration = new Date().getTime() - createdAt.getTime();
-        long days = TimeUnit.MILLISECONDS.toDays(duration);
-        long hours = TimeUnit.MILLISECONDS.toHours(duration) % 24;
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration) % 60;
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration) % 60;
+    static public String getTimeDifference(LocalDateTime createdAt) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        long diffInNano = java.time.Duration.between(createdAt, currentDateTime).toNanos();
+        long diffInSeconds = java.time.Duration.between(createdAt, currentDateTime).getSeconds();
+        long diffInMinutes = java.time.Duration.between(createdAt, currentDateTime).toMinutes();
+        long diffInHours = java.time.Duration.between(createdAt, currentDateTime).toHours();
+        long diffInDays = java.time.Duration.between(createdAt, currentDateTime).toDays();
+        long diffInMonths = java.time.Duration.between(createdAt, currentDateTime).toDays() / 30;
+        long diffInYears = java.time.Duration.between(createdAt, currentDateTime).toDays() / 365;
 
-        if (days > 0) {
-            return days + " days ago";
-        } else if (hours > 0) {
-            return hours + " hours ago";
-        } else if (minutes > 0) {
-            return minutes + " minutes ago";
+        if (diffInNano < 0) {
+            return "Vừa xong";
+        } else if (diffInSeconds < 60) {
+            return diffInSeconds + " giây trước";
+        } else if (diffInMinutes < 60) {
+            return diffInMinutes + " phút trước";
+        } else if (diffInHours < 24) {
+            return diffInHours + " giờ trước";
+        } else if (diffInDays < 30) {
+            return diffInDays + " ngày trước";
+        } else if (diffInMonths < 12) {
+            return diffInMonths + " tháng trước";
         } else {
-            return seconds + " seconds ago";
+            return diffInYears + " năm trước";
         }
     }
 }

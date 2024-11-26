@@ -1,6 +1,7 @@
 package com.cg.casestudy.dtos;
 
 
+import com.cg.casestudy.validation.Age;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +25,8 @@ public class UserInfoDTO {
 
     private Boolean gender;
 
-    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Age(message = "*Người dùng phải từ 17 tuổi trở lên")
     private Date dob;
 
     @Size(max=100, message = "*Độ dài tối đa 100 kí tự")
@@ -36,6 +37,10 @@ public class UserInfoDTO {
 
     @Size(max= 500, message = "*Độ dài tối đa 500 kí tự")
     private String description;
+
+    private String avatar;
+
+    private String background;
 
 
 }

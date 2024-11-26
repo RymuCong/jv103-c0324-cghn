@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -36,14 +37,9 @@ public class Post {
     @JoinColumn(name="created_by", referencedColumnName = "user_id")
     private User createdBy;
 
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(name="created_at", columnDefinition = "TIMESTAMP")
+    private LocalDateTime createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = new Date();
-    }
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Liked> likes;
@@ -51,13 +47,6 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    public String getTimeSinceCreation() {
-        return DateTimeUtils.getTimeSinceCreation(createdAt);
-    }
-
-    public boolean isLikedByUser(User user) {
-        return likes.stream().anyMatch(like -> like.getLikedBy().equals(user));
-    }
 
     @Override
     public String toString() {

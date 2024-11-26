@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity5" >
 
 <head>
     <meta charset="utf-8">
@@ -18,16 +19,7 @@
             height: 100px; /* Set a fixed height */
             object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
         }
-        .sidebar-user-data-row {
-            display: flex;
-            justify-content: space-between;
-        }
 
-        .modal-image img {
-            width: 100px; /* Set a fixed width */
-            height: 100px; /* Set a fixed height */
-            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
-        }
     </style>
 
     <!-- icons
@@ -54,7 +46,7 @@
         <!-- sidebar header -->
         <div class="sidebar-header">
             <!-- Logo-->
-            <div id="logo1">
+            <div id="logo">
                 <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
             </div>
             <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
@@ -143,7 +135,7 @@
                                 </svg> Thương mại </a>
                         </li>
                         <li>
-                            <a th:href="@{/home}">
+                            <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path fill="#4caf50"
                                           d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z">
@@ -164,7 +156,6 @@
                         <li> <a th:href="@{/home}"> Chính sách bảo mật </a></li>
                         <li> <a th:href="@{/home}"> Điều khoản - Điều kiện </a></li>
                     </ul>
-
 
                     <div class="foot-content">
                         <p>© 2024 <strong>FontBath</strong>. Mọi quyền lợi được bảo lưu. </p>
@@ -197,7 +188,7 @@
                     <div id="logo">
                         <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
                         <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
-                                                    alt=""></a>
+                                                   alt=""></a>
                     </div>
 
                     <!-- form search-->
@@ -207,7 +198,7 @@
                                 <i class="s_icon uil-search-alt"></i>
                                 <label for="searchInput">
                                     <input value="" type="text" class="form-control"
-                                           placeholder="Search for Friends" autocomplete="off" id="searchInput">
+                                       placeholder="Search for Friends" autocomplete="off" id="searchInput">
                                 </label>
                             </div>
                         </form>
@@ -459,7 +450,7 @@
 
 
                         <!-- Chèn avatar -->
-                        <a class="opts_account" href="#"> <img th:src="${userInfo.getAvatar()?.getUrl()}" alt=""></a>
+                        <a class="opts_account" href="#"> <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh"></a>
 
                         <!-- Biểu tượng avatar : xem profile, đăng xuất, chuyển sang trang admin(nếu là admin)-->
                         <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
@@ -467,21 +458,21 @@
 
                             <!-- User Name / Avatar -->
                             <!-- User Name / Avatar -->
-                            <a th:href="@{/home}">
+                            <a th:href="@{/user/profile}">
 
                                 <div class="dropdown-user-details">
 
                                     <div class="dropdown-user-cover">
                                         <!-- chèn ảnh bìa -->
-                                        <img th:src="${userInfo.getBackground()?.getUrl()}" alt="Ảnh bìa">
+                                        <img th:src="${userInfo.background != null ? userInfo.background : ''}" alt="Ảnh bìa">
                                     </div>
                                     <div class="dropdown-user-avatar">
                                         <!-- chèn ảnh đại diện -->
-                                        <img th:src="${userInfo.getAvatar()?.getUrl()}" alt="Ảnh đại diện">
+                                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh đại diện">
                                     </div>
-                                    <!-- Tên người dùng -->
+                                        <!-- Tên người dùng -->
                                     <div class="dropdown-user-name">
-                                        <span th:text="${userInfo.getName()}"></span>
+                                        <span th:text="${userInfo.name}"></span>
                                     </div>
                                 </div>
 
@@ -491,7 +482,8 @@
                                 <li><a th:href="@{/home}"> <i class="fas fa-rocket"></i> Tải lại trang chủ </a> </li>
                                 <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
                                 <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
-                                <li><a th:href="@{/admin/home}"> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
+                                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{/admin/home}" > <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
                                 <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                                 </li>
                             </ul>
@@ -523,21 +515,21 @@
                 <div class="profile-cover">
 
                     <!-- chèn ảnh bìa -->
-                    <img th:src="${userInfo.getBackground()?.getUrl()}" alt="">
+                    <img th:src="${userInfo.background != null ? userInfo.background : ''}" alt="">
                     <a href="#editBackgroundModal"> <i class="uil-camera"></i> Chỉnh ảnh bìa </a>
                 </div>
 
                 <div class="profile-details">
                     <div class="profile-image">
                         <!-- chèn ảnh đại diện -->
-                        <img th:src="${userInfo.getAvatar()?.getUrl()}" alt="Ảnh đại diện">
+                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh đại diện">
                         <a href="#editAvatarModal"></a>
                     </div>
                     <div class="profile-details-info">
                         <!-- chèn name -->
-                        <h1 th:text="${userInfo.getName()}"></h1>
+                        <h1 th:text="${userInfo.name}"></h1>
                         <!-- Chèn description -->
-                        <p th:text="${userInfo.getDescription()}"></p>
+                        <p th:text="${userInfo.description}"></p>
                     </div>
 
                 </div>
@@ -583,7 +575,7 @@
                                 <div class="post-new-media">
                                     <div class="post-new-media-user">
                                         <!-- chèn ảnh đại diện -->
-                                        <img th:src="${userInfo.getAvatar()?.getUrl()}" alt="Avatar">
+                                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Avatar">
                                     </div>
                                     <div class="post-new-media-input">
                                         <label>
@@ -622,7 +614,7 @@
                                 <div class="post-new-overyly" uk-toggle="target: body ; cls: post-focus"></div>
 
                                 <div class="post-new uk-animation-slide-top-small">
-                                    <form>
+                                    <form th:action="@{/post}" th:object="${newPost}" method="post" enctype="multipart/form-data">
                                         <div class="post-new-header">
 
                                             <h4> Tạo bài viết mới</h4>
@@ -636,23 +628,25 @@
                                         <div class="post-new-media">
                                             <div class="post-new-media-user">
                                                 <!-- chèn ảnh đại diện -->
-                                                <img th:src="${userInfo.getAvatar()?.getUrl()}" alt="avatar">
+                                                <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="avatar">
                                             </div>
                                             <div class="post-new-media-input">
-                                                <input type="text" class="uk-input"
+                                                <input th:field="${newPost.title}" type="text" class="uk-input"
                                                        placeholder="Bạn đang nghĩ gì ?">
                                             </div>
                                         </div>
+                                        <div class="fullsizeimg">
+                                            <img id="imagePreview" style="display: none;" alt="Preview Image">
+                                        </div>
                                         <div class="post-new-tab-nav">
-                                            <a href="#">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24">
-                                                    <path fill="#4db3f6"
-                                                          d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z">
-                                                    </path>
+                                            <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                    <path fill="#4db3f6" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"></path>
                                                 </svg>
                                                 <span> Tải ảnh</span>
                                             </a>
+                                            <!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
+                                            <input type="file" id="fileInput" style="display: none;" name="file" onchange="previewImage(event)"/>
 
                                             <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -739,21 +733,20 @@
                                         </div>
                                     </form>
 
-
                                 </div>
 
                             </div>
 
                         </div>
 
-                        <div class="post" th:each="post, iterStat : ${user.posts}">
+                        <div class="post" th:each="post, iterStat : ${posts}">
                             <div class="post-heading">
                                 <div class="post-avature">
-                                    <img th:src="${post.createdBy.userInfo.avatar.url}" alt="Ảnh">
+                                    <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
                                 </div>
                                 <div class="post-title">
-                                    <h4 th:text="${post.createdBy.userInfo.name}"> </h4>
-                                    <p><span th:text="${post.getTimeSinceCreation()}"></span> <i class="uil-users-alt"></i> </p>
+                                    <h4 th:text="${userInfo.name}"> </h4>
+                                    <p><span th:text="${post.getTimeDifference()}"></span> <i class="uil-users-alt"></i> </p>
                                 </div>
                                 <div class="post-btn-action">
                                     <span class="icon-more uil-ellipsis-h"></span>
@@ -772,14 +765,17 @@
                             <div class="post-description">
                                 <p th:text="${post.title}" th:if="${post.title}"></p>
                                 <div class="fullsizeimg" th:if="${post.image}">
-                                    <img th:src="${post.image.url}" alt="">
+                                    <img th:src="${post.image}" alt="Hình ảnh">
                                 </div>
                             </div>
 
                             <div class="post-state">
                                 <div class="post-state-btns">
-                                    <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(user) ? 'text-primary' : ''}"></i>
-                                    <span th:text="${post.likes.size()}"></span>&nbspThích
+                                    <a class="like-button" th:attr="data-post-id=${post.id} ,data-is-liked=${post.isLikedByUser(currentUser)}">
+                                        <i class="uil-thumbs-up"
+                                           th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
+                                    </a>
+                                    <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
                                 </div>
                                 <div class="post-state-btns"> <i class="uil-heart"></i>
                                     <span th:text="${post.comments.size()}"></span>&nbspBình luận
@@ -792,70 +788,33 @@
                             </div>
 
                             <!-- post comments xử lí hiển thị bằng ajax-->
-                            <div class="post-comments">
-                                <a href="#" class="view-more-comment"> Xem toàn bộ</a>
-                                <div class="post-comments-single">
+                            <div class="post-comments" >
+                                <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
                                     <div class="post-comment-avatar">
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                                        <img th:src="${comment.commentedByAvatar}" alt="">
                                     </div>
                                     <div class="post-comment-text">
                                         <div class="post-comment-text-inner">
-                                            <h6> Alex Dolgove</h6>
-                                            <p> Ut wisi enim ad minim laoreet dolore magna aliquam erat </p>
+                                            <h6 th:text="${comment.commentedByName}"></h6>
+                                            <p th:text="${comment.content}"></p>
                                         </div>
                                         <div class="uk-text-small">
-                                            <span> 1d</span>
+                                            <span th:text="${comment.getTimeDifference()}"></span>
                                         </div>
                                     </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6>Stella Johnson</h6>
-                                            <p> Ut wisi enim ad minim laoreet dolore <strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-primary mr-1"> <i class="uil-thumbs-up"></i>
-                                                Like
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 2d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
-                                <div class="post-comments-single">
-                                    <div class="post-comment-avatar">
-                                        <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                    </div>
-                                    <div class="post-comment-text">
-                                        <div class="post-comment-text-inner">
-                                            <h6> Jonathan Madano </h6>
-                                            <p> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                                aliquam
-                                                erat
-                                                volutpat.<strong> David !</strong> </p>
-                                        </div>
-                                        <div class="uk-text-small">
-                                            <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love
-                                            </a>
-                                            <a href="#" class=" mr-1"> Replay </a>
-                                            <span> 3d</span>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="post-comment-opt"></a>
-                                </div>
+                                    <!--Chỗ sửa, xóa bình luận-->
+                                    <a href="#" class="post-comment-opt">
 
-
-                                <a href="#" class="view-more-comment"> Veiw 8 more Comments</a>
+                                    </a>
+                                </div>
+                                <div th:id="'post-' + ${post.id}" class="post-comments">
+                                    <!-- Comments will be inserted here -->
+                                </div>
+                                <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
 
                                 <div class="post-add-comment">
                                     <div class="post-add-comment-avature">
-                                        <img th:src="${userInfo.avatar.url}" alt="">
+                                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
                                     </div>
                                     <!--Xu lí ajax-->
                                     <div class="post-add-comment-text-area">
@@ -864,9 +823,11 @@
                                             <span class="uil-link-alt"></span>
                                             <span class="uil-grin"></span>
                                             <span class="uil-image"></span>
+                                            <a th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">
+                                                <span class="uil-comment-alt-upload"></span>
+                                            </a>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -910,16 +871,7 @@
                                         </path>
                                     </svg>
                                     <!--Xu li so luong bai dang -->
-                                    <span id="user_post_count" th:text="${user.posts.size()}"></span> bài đăng </li>
-
-                                <li class="list-group-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z">
-                                        </path>
-                                    </svg>
-                                    <a href="#" target="_blank">https://mydomain.com</a>
-                                </li>
+                                    <span id="user_post_count" th:text="${posts.size()}"></span> bài đăng </li>
 
                                 <li class="list-group-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -930,7 +882,7 @@
                                     <!--th:if dẻ hien thi gioi tinh -->
                                     <span th:if="${userInfo.getGender()}" >Nam</span>
                                     <span th:if="${!userInfo.getGender()}">Nữ</span>
-                                </li>
+                                    </li>
 
                                 <li class="list-group-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -939,22 +891,22 @@
                                         </path>
                                     </svg>
                                     Độc thân </li>
-                                <hr class="my-2">
-                                <li class="list-group-item">
+                                <li class="list-group-item" th:if="${userInfo.education}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"></path>
                                     </svg>
-                                    <span>Học tại trường <b th:text="${userInfo.getEducation()}"></b></span>
+                                    <span >Đang học tại <b th:text="${userInfo.getEducation()}"></b></span>
                                 </li>
 
-                                <li class="list-group-item">
+                                <li class="list-group-item" th:if="${userInfo.location}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z">
                                         </path>
                                     </svg>
-                                    Sinh sống ở <b th:text="${userInfo.getLocation()}"></b> </li>
+                                    <span>Sinh sống ở <b th:text="${userInfo.getLocation()}"></b></span>
+                                </li>
 
                             </ul>
                         </div>
@@ -969,28 +921,23 @@
                                                 </path>
                                             </svg></span>
                                     <!--Xu li so luong album -->
-                                    <a href="#">Ảnh của tôi </a>&nbsp;<div style="font-weight: 600"><span th:text="${user.getImages().size()}"></span></div>
+                                    <a href="#">Ảnh của tôi </a>&nbsp;<div style="font-weight: 600"><span th:text="${currentUser.getImages().size()}"></span></div>
                                 </div>
                                 <div class="sl_user-widget-wrap-right"> <a th:href="@{/user/images}" class="see-all"> Xem tất cả</a></div>
                             </div>
 
-                            <ul class="sidebar-user-data-container">
-                                <li th:each="image, iterStat : ${user.getImages()}" th:if="${iterStat.index < 6}">
-                                    <div class="sidebar-user-data" th:if="${iterStat.index % 3 == 0}">
-                                        <div class="sidebar-user-data-row">
-                                            <div class="sidebar-listed-user-avatar">
-                                                <img th:src="${image.url}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar-user-data" th:if="${iterStat.index % 3 != 0}">
-                                        <div class="sidebar-listed-user-avatar">
-                                            <img th:src="${image.url}" alt="">
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
+<!--                            <ul class="sidebar-user-data-container">-->
+<!--                                <div class="row" th:each="i : ${#numbers.sequence(0, 1)}">-->
+<!--                                    <div class="col-4" th:each="image, stat : ${currentUser.getImages()}"-->
+<!--                                         th:if="${stat.index >= i*3 and stat.index < (i+1)*3}">-->
+<!--                                        <div class="sidebar-user-data">-->
+<!--                                                <div class="sidebar-listed-user-avatar">-->
+<!--                                                    <img th:src="${image.url}" alt="Ảnh">-->
+<!--                                                </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </ul>-->
 
                         </div>
 
@@ -1004,14 +951,14 @@
                                                 </path>
                                             </svg></span>
                                     <!--Xu li so luong bạn bè -->
-                                    <a href="#">Bạn bè</a>&nbsp;<div style="font-weight: 600"><span th:text="${user.getUserOneRelationships().size()}"></span></div>
+                                    <a href="#">Bạn bè</a>&nbsp;<div style="font-weight: 600"><span th:text="${currentUser.userOneRelationships.size()}"></span></div>
                                 </div>
                                 <div class="sl_user-widget-wrap-right"> <a th:href="@{/user/friends}" class="see-all"> Xem tất cả</a></div>
                             </div>
 
 
                             <ul class="sidebar-user-data-container">
-                                <li class="sidebar-user-data" th:each="friend, iterStat : ${user.userOneRelationships}" th:if="${iterStat.index < 6}">
+                                <li class="sidebar-user-data" th:each="friend, iterStat : ${currentUser.userOneRelationships}" th:if="${iterStat.index < 6}">
                                     <div class="sidebar-listed-user-avatar">
                                         <a href="#">
                                             <img th:src="${friend.userTwo.userInfo.avatar.url}">
@@ -1053,7 +1000,7 @@
 
 </div>
 <!-- Form chỉnh sửa userInfo -->
-<div id="editUserInfoModal" class="uk-modal" uk-modal>
+<div id="editUserInfoModal" class="uk-modal" uk-modal th:classappend="${openEditUserInfoModal} ? 'uk-open' : ''" th:style="${openEditUserInfoModal} ? 'display: block;' : 'display: none;'">
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Chỉnh sửa thông tin</h2>
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -1063,7 +1010,10 @@
             </div>
             <div class="uk-margin">
                 <b>Họ và tên</b>
-                <input class="uk-input" type="text" th:field="*{name}" placeholder="Tên" th:value="${userInfo.name}">
+                <label>
+                    <input class="uk-input" type="text" th:field="*{name}" placeholder="Tên" th:value="${userInfo.name}">
+                </label>
+
             </div>
             <div class="uk-margin">
                 <b>Giới tính</b>
@@ -1075,23 +1025,30 @@
             <div class="uk-margin">
                 <b>Ngày sinh</b>
                 <input class="uk-input" type="text" th:field="*{dob}" th:value="${#dates.format(userInfo.dob, 'dd/MM/yyyy')}">
+<!--                <input class="uk-input" type="date" th:field="*{dob}">-->
+                <div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="uk-text-danger"></div>
             </div>
             <div class="uk-margin">
                 <b>Học vấn</b>
                 <input class="uk-input" type="text" th:field="*{education}" placeholder="Học vấn" th:value="${userInfo.education}">
+                <div th:if="${#fields.hasErrors('education')}" th:errors="*{education}" class="uk-text-danger"></div>
             </div>
             <div class="uk-margin">
                 <b>Nơi sinh sống</b>
                 <input class="uk-input" type="text" th:field="*{location}" placeholder="Địa chỉ" th:value="${userInfo.location}">
+                <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="uk-text-danger"></div>
             </div>
             <div class="uk-margin">
                 <b>Giới thiệu</b>
                 <textarea class="uk-textarea" th:field="*{description}" placeholder="Mô tả" th:text="${userInfo.description}"></textarea>
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="uk-text-danger"></div>
             </div>
             <button type="submit" class="uk-button uk-button-primary">Lưu</button>
         </form>
     </div>
 </div>
+
+
 
 <!-- Form chinh anh bia -->
 <div id="editBackgroundModal" class="uk-modal" uk-modal>
@@ -1106,16 +1063,16 @@
             <div class="uk-margin">
                 <label for="backgroundUpload"><b>Ảnh bìa</b></label>
                 <div class="modal-image">
-                    <img th:src="${userInfo.getBackground()?.getUrl()}" alt="Background">
+                    <img id="backgroundPreview" style="display: none;" alt="Background">
                 </div>
-                <input class="uk-input" type="file" id="backgroundUpload" name="background">
+                <input class="uk-input" type="file" id="backgroundUpload" name="background" onchange="previewImage(event, 'backgroundPreview')">
             </div>
             <button type="submit" class="uk-button uk-button-primary">Cập nhật</button>
         </form>
     </div>
 </div>
 
-<!--  Form chinh anh dai dien -->
+<!-- Form chinh anh dai dien -->
 <div id="editAvatarModal" class="uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Chỉnh sửa ảnh đại diện</h2>
@@ -1128,16 +1085,23 @@
             <div class="uk-margin">
                 <label for="avatarUpload"><b>Ảnh đại diện</b></label>
                 <div class="modal-image">
-                    <img th:src="${userInfo.getAvatar()?.getUrl()}" alt="Avatar">
+                    <img id="avatarPreview" style="display: none;" alt="Avatar">
                 </div>
-                <input class="uk-input" type="file" id="avatarUpload" name="avatar">
+                <input class="uk-input" type="file" id="avatarUpload" name="avatar" onchange="previewImage(event, 'avatarPreview')">
             </div>
             <button type="submit" class="uk-button uk-button-primary">Cập nhật</button>
         </form>
     </div>
 </div>
-<script th:src="@{/js/view.js}"></script>
+
+
 <script th:src="@{/js/uikit.js}"></script>
 <script th:src="@{/js/simplebar.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/like.js}"></script>
+<script th:src="@{/js/view.js}"></script>
+
 </body>
 </html>
