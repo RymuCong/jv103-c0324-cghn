@@ -63,6 +63,8 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", userInfo=" + (userInfo != null ? userInfo.getId() : "null") +
                 '}';
     }

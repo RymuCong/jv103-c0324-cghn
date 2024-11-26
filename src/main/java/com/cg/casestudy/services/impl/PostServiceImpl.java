@@ -5,7 +5,6 @@ import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.User;
-import com.cg.casestudy.repositories.ImageRepository;
 import com.cg.casestudy.repositories.PostRepository;
 import com.cg.casestudy.services.FirebaseService;
 import com.cg.casestudy.services.PostService;
@@ -24,13 +23,10 @@ public class PostServiceImpl implements PostService {
 
     private final FirebaseService firebaseService;
 
-    private final ImageRepository imageRepository;
-
     @Autowired
-    public PostServiceImpl(PostRepository postRepository, FirebaseService firebaseService, ImageRepository imageRepository) {
+    public PostServiceImpl(PostRepository postRepository, FirebaseService firebaseService) {
         this.postRepository = postRepository;
         this.firebaseService = firebaseService;
-        this.imageRepository = imageRepository;
     }
 
     @Override
@@ -73,12 +69,11 @@ public class PostServiceImpl implements PostService {
         if (file != null) {
             Image savedImage = new Image();
             savedImage.setUrl(firebaseService.uploadImageToFireBase(file));
-            savedImage.setUserImage(newPost.getCreatedBy());
             newPost.setImage(savedImage);
+            savedImage.setUserImage(newPost.getCreatedBy());
         }
         else
             newPost.setImage(null);
-
         postRepository.save(newPost);
     }
 }

@@ -5,6 +5,7 @@ import com.cg.casestudy.repositories.ImageRepository;
 import com.cg.casestudy.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -21,8 +22,9 @@ public class ImageServiceImpl implements ImageService {
         return imageRepository.findImageByUrl(url);
     }
 
-    @Override
-    public void delete(Image oldImage) {
-        imageRepository.delete(oldImage);
+
+    @Transactional
+    public void save(Image image) {
+        imageRepository.save(image);
     }
 }

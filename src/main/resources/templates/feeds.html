@@ -20,16 +20,6 @@
             object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
         }
 
-        .sidebar-user-data-row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .modal-image img {
-            width: 100px; /* Set a fixed width */
-            height: 100px; /* Set a fixed height */
-            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
-        }
     </style>
 
     <!-- icons
@@ -40,9 +30,6 @@
     <!-- Google font
     ================================================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -690,6 +677,9 @@
                                                placeholder="Bạn đang nghĩ gì ?">
                                     </div>
                                 </div>
+                                <div class="fullsizeimg">
+                                    <img id="imagePreview" style="display: none;" alt="Preview Image">
+                                </div>
                                 <div class="post-new-tab-nav">
                                     <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -698,7 +688,7 @@
                                         <span> Tải ảnh</span>
                                     </a>
 <!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
-                                    <input type="file" id="fileInput" style="display: none;" name="file"/>
+                                    <input type="file" id="fileInput" style="display: none;" name="file" onchange="previewImage(event)"/>
 
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -838,8 +828,9 @@
                         </div>
 
                     </div>
+
                     <!-- post comments -->
-                    <div class="post-comments">
+                    <div class="post-comments" >
                         <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
                             <div class="post-comment-avatar">
                                 <img th:src="${comment.commentedByAvatar}" alt="">
@@ -854,34 +845,33 @@
                                 </div>
                             </div>
                             <!--Chỗ sửa, xóa bình luận-->
-                            <a href="#" class="post-comment-opt"></a>
+                            <a href="#" class="post-comment-opt">
+
+                            </a>
                         </div>
-                        <div th:id="'post-' + ${post.id}" class="post-comments">
-                            <!-- Comments will be inserted here -->
-                        </div>
-                        <a href="#" class="view-more-comment">Xem tất cả bình luận</a>
+
+
+                        <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
 
                         <div class="post-add-comment">
                             <div class="post-add-comment-avature">
                                 <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
                             </div>
+                            <!--Xu lí ajax-->
                             <div class="post-add-comment-text-area">
-                                <input type="text" th:id="'content-' + ${post.id}" placeholder="Bình luận về bài viết...">
+                                <input type="text" placeholder="Bình luận về bài viết...">
                                 <div class="icons">
                                     <span class="uil-link-alt"></span>
                                     <span class="uil-grin"></span>
                                     <span class="uil-image"></span>
                                 </div>
-                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>
                             </div>
                         </div>
-<!--                        <div th:id="'comment-list-' + ${post.id}" class="post-comments">-->
-<!--                            &lt;!&ndash; Existing comments will be here &ndash;&gt;-->
-<!--                        </div>-->
-                    </div>
-                    </div>
 
-                    <div class="load-more">
+                    </div>
+            </div>
+
+            <div class="load-more">
                 <button class="btn button">Xem thêm bài viết</button>
             </div>
 
@@ -1725,10 +1715,20 @@
 ================================================== -->
 <script th:src="@{/js/uikit.js}"></script>
 <script th:src="@{/js/simplebar.js}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script th:src="@{/js/comment.js}"></script>
-
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('imagePreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 
 </body>
 

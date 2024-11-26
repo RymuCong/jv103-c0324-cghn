@@ -11,4 +11,9 @@ public interface UserInfoService {
 
     void save(UserInfo userInfo);
 
+    void updateBackground(MultipartFile newImage, User currentUser) throws Exception;
+
+    void updateAvatar(MultipartFile newImage, User currentUser) throws Exception;
+
+
 }
