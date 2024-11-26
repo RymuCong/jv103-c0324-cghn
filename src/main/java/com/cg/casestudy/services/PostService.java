@@ -17,4 +17,6 @@ public interface PostService {
     List<PostDTO> getPostsByUser(User createdBy);
 
     void save(PostRequest post, MultipartFile file);
+
+    PostDTO likePost(Long postId, Long userId);
 }

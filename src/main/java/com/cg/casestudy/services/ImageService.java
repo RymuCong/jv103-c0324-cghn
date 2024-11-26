@@ -8,4 +8,6 @@ public interface ImageService {
 
     void save(Image image);
 
+    void delete(Image image);
+
 }

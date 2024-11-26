@@ -48,10 +48,6 @@ public class Post {
     private List<Comment> comments;
 
 
-    public boolean isLikedByUser(User user) {
-        return likes.stream().anyMatch(like -> like.getLikedBy().equals(user));
-    }
-
     @Override
     public String toString() {
         return "Post{" +

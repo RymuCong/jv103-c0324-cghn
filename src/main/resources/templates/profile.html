@@ -771,8 +771,11 @@
 
                             <div class="post-state">
                                 <div class="post-state-btns">
-                                    <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
-                                    <span th:text="${post.likes.size()}"></span>&nbspThích
+                                    <a class="like-button" th:attr="data-post-id=${post.id} ,data-is-liked=${post.isLikedByUser(currentUser)}">
+                                        <i class="uil-thumbs-up"
+                                           th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
+                                    </a>
+                                    <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
                                 </div>
                                 <div class="post-state-btns"> <i class="uil-heart"></i>
                                     <span th:text="${post.comments.size()}"></span>&nbspBình luận
@@ -804,8 +807,9 @@
 
                                     </a>
                                 </div>
-
-
+                                <div th:id="'post-' + ${post.id}" class="post-comments">
+                                    <!-- Comments will be inserted here -->
+                                </div>
                                 <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
 
                                 <div class="post-add-comment">
@@ -819,6 +823,9 @@
                                             <span class="uil-link-alt"></span>
                                             <span class="uil-grin"></span>
                                             <span class="uil-image"></span>
+                                            <a th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">
+                                                <span class="uil-comment-alt-upload"></span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1088,8 +1095,13 @@
 </div>
 
 
-<script th:src="@{/js/view.js}"></script>
 <script th:src="@{/js/uikit.js}"></script>
 <script th:src="@{/js/simplebar.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/like.js}"></script>
+<script th:src="@{/js/view.js}"></script>
+
 </body>
 </html>

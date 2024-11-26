@@ -27,13 +27,17 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
     private final UserService userService;
     private final PostService postService;
+    private final ImageService imageService;
+    private final FirebaseService firebaseService;
 
     @Autowired
     public UserInfoController(UserInfoService userInfoService, UserService userService,
-                              PostService postService) {
+                              PostService postService, ImageService imageService, FirebaseService firebaseService) {
         this.userInfoService = userInfoService;
         this.userService = userService;
         this.postService = postService;
+        this.imageService = imageService;
+        this.firebaseService = firebaseService;
     }
 
     @InitBinder
@@ -76,11 +80,29 @@ public class UserInfoController {
     @PostMapping("/update_background")
     public String updateBackground(@RequestParam("background") MultipartFile backgroundImage, Model model){
         User currentUser = userService.getCurrentUser();
-        try {
-            userInfoService.updateBackground(backgroundImage, currentUser);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
-            return "profile";
+        if(!backgroundImage.isEmpty()){
+            try{
+                UserInfo userInfo = currentUser.getUserInfo();
+                Image oldBackground = userInfo.getBackground();
+                if(oldBackground != null){
+                    userInfo.setBackground(null); // Set background to null to avoid foreign key constraint
+//                    userService.save(currentUser); // Save user to update the foreign key
+                    firebaseService.deleteImageFromFireBase(oldBackground.getUrl());
+                    imageService.delete(oldBackground);
+                    currentUser.getImages().remove(oldBackground);
+                }
+                // Upload new background to firebase and save the url to database
+                String urlImage = firebaseService.uploadImageToFireBase(backgroundImage);
+                Image newBackground = Image.builder().url(urlImage).build();
+                newBackground.setUserImage(currentUser);
+                // Set new background to user
+                currentUser.getUserInfo().setBackground(newBackground);
+                currentUser.getImages().add(newBackground);
+                userService.save(currentUser);
+            } catch (Exception e){
+                model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
+                return "profile";
+            }
         }
         return "redirect:/user/profile";
     }
@@ -88,11 +110,29 @@ public class UserInfoController {
     @PostMapping("/update_avatar")
     public String updateAvatar(@RequestParam("avatar") MultipartFile avatarImage, Model model){
         User currentUser = userService.getCurrentUser();
-        try {
-            userInfoService.updateAvatar(avatarImage, currentUser);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
-            return "profile";
+        if(!avatarImage.isEmpty()){
+            try {
+                UserInfo userInfo = currentUser.getUserInfo();
+                Image oldAvatar = userInfo.getAvatar();
+                if(oldAvatar != null){
+                    userInfo.setAvatar(null); // Set avatar to null to avoid foreign key constraint
+                    userService.save(currentUser); // Save user to update the foreign key
+                    firebaseService.deleteImageFromFireBase(oldAvatar.getUrl());
+                    imageService.delete(oldAvatar);
+                    currentUser.getImages().remove(oldAvatar);
+                }
+                // Upload new avatar to firebase and save the url to database
+                String url = firebaseService.uploadImageToFireBase(avatarImage);
+                Image newAvatar = Image.builder().url(url).build();
+                newAvatar.setUserImage(currentUser);
+                // Set new avatar to user
+                currentUser.getUserInfo().setAvatar(newAvatar);
+                currentUser.getImages().add(newAvatar);
+                userService.save(currentUser);
+            } catch (Exception e) {
+                model.addAttribute("errorMessage", "Lỗi tải ảnh lên");
+                return "profile";
+            }
         }
         return "redirect:/user/profile";
     }
