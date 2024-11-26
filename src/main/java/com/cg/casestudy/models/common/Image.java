@@ -28,4 +28,10 @@ public class Image {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User userImage;
 
+    @Column(name = "is_deleted", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean isDeleted;
+
+    public void markAsDeleted() {
+        this.isDeleted = true;
+    }
 }

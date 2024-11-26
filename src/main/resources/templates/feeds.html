@@ -690,6 +690,10 @@
                                                placeholder="Bạn đang nghĩ gì ?">
                                     </div>
                                 </div>
+                                <div class="fullsizeimg">
+                                    <img id="imagePreview" style="display: none;" alt="Preview Image">
+                                </div>
+
                                 <div class="post-new-tab-nav">
                                     <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -697,6 +701,7 @@
                                         </svg>
                                         <span> Tải ảnh</span>
                                     </a>
+                                    <input type="file" id="fileInput" style="display: none;" name="file" onchange="previewImage(event)"/>
 <!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
                                     <input type="file" id="fileInput" style="display: none;" name="file"/>
 
@@ -823,12 +828,19 @@
                         </div>
 
                         <div class="post-state">
+<!--                            <div class="post-state-btns">-->
+<!--                                <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>-->
+<!--                                <span th:text="${post.likes.size()}"></span>&nbspThích-->
+<!--                            </div>-->
                             <div class="post-state-btns">
-                                <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
-                                <span th:text="${post.likes.size()}"></span>&nbspThích
+                                <a class="like-button" th:attr="data-post-id=${post.id} ,data-is-liked=${post.isLikedByUser(currentUser)}">
+                                    <i class="uil-thumbs-up"
+                                       th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
+                                </a>
+                                <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
                             </div>
                             <div class="post-state-btns"> <i class="uil-heart"></i>
-                                <span th:text="${post.comments.size()}"></span>&nbspBình luận
+                                <span th:id="'comment-count-' + ${post.id}" th:text="${post.comments.size()}"></span>&nbspBình luận
                             </div>
                             <div class="post-state-btns"> <i class="uil-share-alt"></i>
                                 <span> 0 </span>&nbspChia sẻ
@@ -840,7 +852,7 @@
                     </div>
                     <!-- post comments -->
                     <div class="post-comments">
-                        <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
+                        <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}" >
                             <div class="post-comment-avatar">
                                 <img th:src="${comment.commentedByAvatar}" alt="">
                             </div>
@@ -859,7 +871,7 @@
                         <div th:id="'post-' + ${post.id}" class="post-comments">
                             <!-- Comments will be inserted here -->
                         </div>
-                        <a href="#" class="view-more-comment">Xem tất cả bình luận</a>
+                        <a class="view-more-comment">Xem tất cả bình luận</a>
 
                         <div class="post-add-comment">
                             <div class="post-add-comment-avature">
@@ -871,8 +883,11 @@
                                     <span class="uil-link-alt"></span>
                                     <span class="uil-grin"></span>
                                     <span class="uil-image"></span>
+                                    <a th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">
+                                        <span class="uil-comment-alt-upload"></span>
+                                    </a>
                                 </div>
-                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>
+<!--                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>-->
                             </div>
                         </div>
 <!--                        <div th:id="'comment-list-' + ${post.id}" class="post-comments">-->
@@ -1728,6 +1743,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/like.js}"></script>
+<script th:src="@{/js/view.js}"></script>
 
 
 </body>

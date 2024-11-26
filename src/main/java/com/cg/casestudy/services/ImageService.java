@@ -6,6 +6,8 @@ public interface ImageService {
 
     Image findImageByUrl(String url);
 
-    void delete(Image oldImage);
+    void save(Image image);
+
+    void delete(Image image);
 
 }
