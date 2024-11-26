@@ -10,6 +10,9 @@ import com.cg.casestudy.services.ImageService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import com.cg.casestudy.utils.CommonMapper;
+import com.cg.casestudy.services.UserInfoService;
+import com.cg.casestudy.utils.CommonMapper;
+import com.google.firebase.cloud.StorageClient;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,10 +41,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Transactional
     @Override
-    public void save(UserInfo userInfo) {
-        userInfoRepository.save(userInfo);
+    public UserInfoDTO getUserInfoByUser(User user) {
+        UserInfo userInfo = userInfoRepository.findUserInfoByUser(user);
+        return CommonMapper.mapUserInfoToUserInfoDTO(userInfo);
     }
 
+    @Transactional
     @Override
     @Transactional
     public void updateBackground(MultipartFile newImage, User currentUser) {

@@ -14,6 +14,4 @@ public interface UserInfoService {
     void updateBackground(MultipartFile newImage, User currentUser) throws Exception;
 
     void updateAvatar(MultipartFile newImage, User currentUser) throws Exception;
-
-
 }

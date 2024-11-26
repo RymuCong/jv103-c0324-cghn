@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
 import java.util.Objects;
 
-
 @Controller
 public class PostController {
 
@@ -44,6 +43,7 @@ public class PostController {
         User currentUser = userService.findByEmail(userDetails.getUsername());
 
         newPost.setCreatedBy(currentUser);
+
         if(Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
             file = null;
         }

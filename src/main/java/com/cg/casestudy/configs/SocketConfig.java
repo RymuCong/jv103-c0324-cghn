@@ -39,6 +39,7 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) { // StompEndpointRegistry: doi tuong dang ky
         registry.addEndpoint("/ws").withSockJS(); // import duong dan tren http. giong controll
         registry.addEndpoint("/ws/like").withSockJS();
+
     }
 
     public void configureClientInboundChannel(ChannelRegistration registration) {
