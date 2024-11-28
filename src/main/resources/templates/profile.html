@@ -335,7 +335,7 @@
 
                         <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
                         <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
-                            <img th:src="@{/images/icons/bell.svg}" alt=""> <span>5</span>
+                            <img th:src="@{/images/icons/bell.svg}" alt=""> <span>0</span>
                         </a>
 
 
@@ -357,95 +357,21 @@
 
                                 <!-- notiviation list -->
                                 <ul>
-                                    <li>
-                                        <a href="#">
+                                    <li th:each="notification : ${notifications}">
+                                        <div>
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="${notification?.senderAvatar}" alt="">
                                            </span>
-                                            <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
                                             <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                            <span class="notification-icon bg-gradient-danger">
-                                               <i class="icon-feather-star"></i></span>
-                                            <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                            <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                            <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                            <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
-                                            <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                            <span class="notification-icon bg-gradient-warning">
-                                               <i class="icon-feather-star"></i></span>
-                                            <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                            <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                            <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                        </a>
+                                               <strong th:text="${notification.senderName}"></strong>
+                                               <span class="text-primary" th:text="${notification.message}"></span>
+                                               <br><span class="text-primary">của bạn</span>
+                                                <br><span class="time-ago" th:text="${notification.getTimeDifference()}"></span>
+                                        </span>
+                                        </div>
                                     </li>
                                 </ul>
-
                             </div>
-
-
                         </div>
 
 
@@ -1102,6 +1028,7 @@
 <script th:src="@{/js/comment.js}"></script>
 <script th:src="@{/js/like.js}"></script>
 <script th:src="@{/js/view.js}"></script>
+<script th:src="@{/js/notification.js}"></script>
 
 </body>
 </html>

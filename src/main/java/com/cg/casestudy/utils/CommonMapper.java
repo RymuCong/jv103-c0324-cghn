@@ -1,6 +1,8 @@
 package com.cg.casestudy.utils;
 
 import com.cg.casestudy.dtos.*;
+import com.cg.casestudy.models.common.Notification;
+import com.cg.casestudy.dtos.*;
 import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.UserInfo;
@@ -76,5 +78,20 @@ public class CommonMapper {
         searchUserResponse.setAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : null);
         searchUserResponse.setBackground(userInfo.getBackground() != null ? userInfo.getBackground().getUrl() : null);
         return searchUserResponse;
+    }
+
+    static public NotificationResponse mapNotificationToNotificationResponse(Notification notification) {
+        NotificationResponse notificationResponse = new NotificationResponse();
+        BeanUtils.copyProperties(notification, notificationResponse);
+        UserInfo userInfo = notification.getUserSend().getUserInfo();
+        if(userInfo == null){
+            notificationResponse.setSenderName("Unknown");
+            notificationResponse.setSenderAvatar(AppConstants.defaultAvatar);
+        }
+        else{
+            notificationResponse.setSenderName(userInfo.getName());
+            notificationResponse.setSenderAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : AppConstants.defaultAvatar);
+        }
+        return notificationResponse;
     }
 }

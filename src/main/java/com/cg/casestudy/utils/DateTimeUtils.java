@@ -13,7 +13,7 @@ public class DateTimeUtils {
         long diffInMonths = java.time.Duration.between(createdAt, currentDateTime).toDays() / 30;
         long diffInYears = java.time.Duration.between(createdAt, currentDateTime).toDays() / 365;
 
-        if (diffInNano < 0) {
+        if (diffInNano > 0 && diffInSeconds <= 0) {
             return "Vừa xong";
         } else if (diffInSeconds < 60) {
             return diffInSeconds + " giây trước";

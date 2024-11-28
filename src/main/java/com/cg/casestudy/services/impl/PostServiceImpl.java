@@ -51,10 +51,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getPostById(Long postId) {
-        List<Post> posts = new ArrayList<>();
-        posts.add(postRepository.findById(postId).orElse(null));
-        return posts;
+    public PostDTO findById(Long postId) {
+        Post post = postRepository.findById(postId).orElse(null);
+        if(post != null) {
+            return CommonMapper.mapPostToPostDTO(post);
+        }
+        System.out.println("Post not found");
+        return null;
     }
 
     @Override

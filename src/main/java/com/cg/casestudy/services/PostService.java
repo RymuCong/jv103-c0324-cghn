@@ -12,7 +12,7 @@ public interface PostService {
 
     List<PostDTO> getAllPosts();
 
-    List<Post> getPostById(Long postId);
+    PostDTO findById(Long postId);
 
     List<PostDTO> getPostsByUser(User createdBy);
 
