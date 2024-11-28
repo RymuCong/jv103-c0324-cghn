@@ -1,9 +1,6 @@
 package com.cg.casestudy.utils;
 
-import com.cg.casestudy.dtos.CommentDTO;
-import com.cg.casestudy.dtos.PostDTO;
-import com.cg.casestudy.dtos.PostRequest;
-import com.cg.casestudy.dtos.UserInfoDTO;
+import com.cg.casestudy.dtos.*;
 import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.UserInfo;
@@ -71,5 +68,13 @@ public class CommonMapper {
         }
         commentDTO.setPostId(comment.getPost().getId());
         return commentDTO;
+    }
+
+    static public SearchUserResponse mapUserInfoToSearchUserResponse(UserInfo userInfo) {
+        SearchUserResponse searchUserResponse = new SearchUserResponse();
+        BeanUtils.copyProperties(userInfo, searchUserResponse);
+        searchUserResponse.setAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar().getUrl() : null);
+        searchUserResponse.setBackground(userInfo.getBackground() != null ? userInfo.getBackground().getUrl() : null);
+        return searchUserResponse;
     }
 }

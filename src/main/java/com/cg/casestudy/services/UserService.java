@@ -3,6 +3,8 @@ package com.cg.casestudy.services;
 import com.cg.casestudy.models.user.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 public interface UserService extends UserDetailsService {
 
     User findByEmail(String email);
@@ -10,5 +12,4 @@ public interface UserService extends UserDetailsService {
     User getCurrentUser();
 
     User save(User user);
-
 }

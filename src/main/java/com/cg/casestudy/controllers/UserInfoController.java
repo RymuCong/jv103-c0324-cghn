@@ -1,6 +1,7 @@
 package com.cg.casestudy.controllers;
 
 import com.cg.casestudy.dtos.PostRequest;
+import com.cg.casestudy.dtos.SearchUserResponse;
 import com.cg.casestudy.dtos.UserInfoDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -136,4 +138,15 @@ public class UserInfoController {
         }
         return "redirect:/user/profile";
     }
+
+    @GetMapping("/findfriend")
+    public String searchUser(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        User currentUser = userService.getCurrentUser();
+        List<SearchUserResponse> friends = userInfoService.searchUser(keyword);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
+        model.addAttribute("friends", friends);
+        return "your-friends";
+    }
+
 }

@@ -30,15 +30,5 @@ public class ImageServiceImpl implements ImageService {
     @Transactional
     public void delete(Image image) {
         imageRepository.delete(image);
-
-
-    @Transactional
-    public void save(Image image) {
-        imageRepository.save(image);
-    }
-
-    @Transactional
-    public void delete(Image image) {
-        imageRepository.delete(image);
     }
 }

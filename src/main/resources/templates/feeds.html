@@ -193,11 +193,11 @@
 
                 <!-- form search-->
                 <div class="head_search">
-                    <form th:action="@{/user/findfriend}" id="searchForm">
+                    <form th:action="@{/user/findfriend}" id="searchForm" method="get">
                         <div class="head_search_cont">
                             <i class="s_icon uil-search-alt"></i>
                             <label for="searchInput">
-                                <input value="" type="text" class="form-control"
+                                <input name="keyword" value="" type="text" class="form-control"
                                        placeholder="Search for Friends" autocomplete="off" id="searchInput">
                             </label>
                         </div>

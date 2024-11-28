@@ -3,6 +3,7 @@ package com.cg.casestudy.controllers;
 
 import com.cg.casestudy.dtos.PostDTO;
 import com.cg.casestudy.dtos.PostRequest;
+import com.cg.casestudy.dtos.SearchUserResponse;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
