@@ -2,13 +2,11 @@ package com.cg.casestudy.utils;
 
 import com.cg.casestudy.dtos.*;
 import com.cg.casestudy.models.common.Notification;
-import com.cg.casestudy.dtos.*;
 import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.UserInfo;
 import org.springframework.beans.BeanUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

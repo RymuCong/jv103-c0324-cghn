@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var socket = new SockJS('/ws/notification');
+    var socket = new SockJS('/ws');
     var stompClient = Stomp.over(socket);
 
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/user/topic/notification', function (payload) {
             var notification = JSON.parse(payload.body);
+            console.log("Hello man");
             showNotification(notification);
         });
     });
@@ -26,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </li>
         `;
-        var notificationList = document.querySelector('.dropdown-notifications-content ul');
+        // var notificationList = document.querySelector('.dropdown-notifications-content ul li');
+        var notificationList = document.querySelector('#new-notification');
         notificationList.insertAdjacentHTML('afterbegin', notificationHtml);
 
         // Increment notification count

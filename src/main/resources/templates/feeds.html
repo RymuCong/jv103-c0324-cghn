@@ -357,7 +357,7 @@
 
                             <!-- notiviation list -->
                             <ul>
-                                <li th:each="notification : ${notifications}">
+                                <li id="new-notification" th:each="notification : ${notifications}">
                                     <div>
                                            <span class="notification-avatar">
                                                <img th:src="${notification?.senderAvatar}" alt="">

@@ -47,7 +47,7 @@ public class NotificationServiceImpl implements NotificationService {
             notificationRepository.save(newNotification); // Save notification to database
             // Send notification to user
             NotificationResponse response = CommonMapper.mapNotificationToNotificationResponse(newNotification);
-            simpMessagingTemplate.convertAndSendToUser(String.valueOf(newNotification.getUser().getId()), "/topic/notification", response);
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(newNotification.getUser().getEmail()), "/topic/notification", response);
         }
     }
 
