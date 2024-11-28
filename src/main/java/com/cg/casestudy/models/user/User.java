@@ -1,6 +1,7 @@
 package com.cg.casestudy.models.user;
 
 import com.cg.casestudy.models.common.Image;
+import com.cg.casestudy.models.common.Notification;
 import com.cg.casestudy.models.post.Post;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

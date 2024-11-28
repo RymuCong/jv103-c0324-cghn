@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
     document.querySelectorAll('.add-comment').forEach(button => {
         button.addEventListener('click', function () {
             var postId = this.getAttribute('data-post-id');

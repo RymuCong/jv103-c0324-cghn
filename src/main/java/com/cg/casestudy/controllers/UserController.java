@@ -8,6 +8,7 @@ import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
+import com.cg.casestudy.services.NotificationService;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
@@ -40,6 +41,7 @@ public class UserController {
     private final UserInfoService userInfoService;
     private final PostService postService;
     private final RoleService roleService;
+    private final NotificationService notificationService;
     //inject PasswordEncoder để mã hóa mật khẩu
     private final PasswordEncoder passwordEncoder;
 
@@ -49,13 +51,15 @@ public class UserController {
                               UserInfoService userInfoService,
                               PostService postService,
                               PasswordEncoder passwordEncoder,
-                              RoleService roleService
+                              RoleService roleService,
+                              NotificationService notificationService
     ) {
         this.userService = userService;
         this.userInfoService = userInfoService;
         this.postService = postService;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
+        this.notificationService = notificationService;
     }
 
     //xóa khoảng trắng 2 đầu  trong tên, email, password
@@ -125,7 +129,7 @@ public class UserController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
         model.addAttribute("newPost", new PostRequest());
-
+        model.addAttribute("notifications", notificationService.getNotificationsByUserId(currentUser.getId()));
         return "feeds";
     }
 
