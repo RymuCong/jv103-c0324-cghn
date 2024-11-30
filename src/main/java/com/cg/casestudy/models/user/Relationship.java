@@ -27,4 +27,10 @@ public class Relationship {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user2_id", referencedColumnName = "user_id")
     private User userTwo;
+
+    @Column(name = "status", columnDefinition = "boolean default false")
+    private Boolean status;
+
 }
+
+

@@ -392,7 +392,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Jonathan Madano</strong>
@@ -404,7 +404,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Stella Johnson</strong>
@@ -416,7 +416,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Alex Dolgove</strong>
@@ -427,7 +427,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Adrian Mohani</strong>
@@ -438,7 +438,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Jonathan Madano</strong>
@@ -450,7 +450,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Stella Johnson</strong>
@@ -462,7 +462,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Alex Dolgove</strong>
@@ -473,7 +473,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
                                            </span>
                                                <div class="notification-text notification-msg-text">
                                                    <strong>Adrian Mohani</strong>
@@ -519,7 +519,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-primary">
                                                <i class="icon-feather-thumbs-up"></i></span>
@@ -533,7 +533,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-danger">
                                                <i class="icon-feather-star"></i></span>
@@ -547,7 +547,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-success">
                                                <i class="icon-feather-message-circle"></i></span>
@@ -561,7 +561,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-primary">
                                                <i class="icon-feather-thumbs-up"></i></span>
@@ -575,7 +575,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-warning">
                                                <i class="icon-feather-star"></i></span>
@@ -589,7 +589,7 @@
                                        <li>
                                            <a href="#">
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                               <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
                                            </span>
                                                <span class="notification-icon bg-gradient-success">
                                                <i class="icon-feather-message-circle"></i></span>
@@ -694,8 +694,8 @@
                                 </div>
                                 <div class="sl_find_frns_user_btns">
                 <span>
-                    <button type="button" class="btn button small primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            <button type="button" class="btn button small primary add-friend" th:attr="data-friend-id=${friend.id}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                             <circle cx="8.5" cy="7" r="4"></circle>
@@ -1705,6 +1705,9 @@
     ================================================== -->
     <script th:src="@{/js/uikit.js}"></script>
     <script th:src="@{/js/simplebar.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:src="@{/js/addfriend.js}"></script>
     
 
 </body>

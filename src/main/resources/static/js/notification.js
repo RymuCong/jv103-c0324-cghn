@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/user/topic/notification', function (payload) {
             var notification = JSON.parse(payload.body);
-            console.log("Hello man");
             showNotification(notification);
         });
     });

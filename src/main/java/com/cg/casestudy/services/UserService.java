@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
     User getCurrentUser();
 
     User save(User user);
+
+    User findById(Long friendId);
 }
