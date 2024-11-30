@@ -5,6 +5,7 @@ import com.cg.casestudy.repositories.RelationshipRepository;
 import com.cg.casestudy.services.RelationshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,13 +20,11 @@ public class RelationshipServiceImpl implements RelationshipService {
         this.relationshipRepository = relationshipRepository;
     }
 
+    @Transactional
     @Override
     public void addFriend(Relationship relationship) {
-        if (relationship.getId() == null) {
-            relationship.setId(getGenerationId());
-        }
         relationship.setStatus(false);
-        relationshipRepository.save(relationship);
+        relationshipRepository.saveAndFlush(relationship);
     }
 
     @Override

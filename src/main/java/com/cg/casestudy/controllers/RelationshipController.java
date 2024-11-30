@@ -12,6 +12,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+import java.security.Principal;
+
 @Controller
 public class RelationshipController {
 
@@ -26,12 +28,14 @@ public class RelationshipController {
         this.notificationService = notificationService;
     }
 
-    @MessageMapping("/friend.add")
+    @MessageMapping("/user.addFriend")
     @SendTo("/topic/friendRequest")
-    public void addFriend(@Payload String friendId) {
+    public void addFriend(@Payload String friendData, Principal principal) {
         Relationship relationship = new Relationship();
-        User userOne = userService.getCurrentUser();
-        User userTwo = userService.findById(Long.parseLong(friendId));
+        User userOne = userService.findByEmail(principal.getName());
+        System.err.println(friendData);
+        User userTwo = userService.findByUserInfoId(Long.parseLong(friendData));
+        System.err.println(userTwo);
         relationship.setUserOne(userOne);
         relationship.setUserTwo(userTwo);
         relationshipService.addFriend(relationship);

@@ -51,11 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.add-friend').forEach(button => {
         button.addEventListener('click', function () {
-            var userEmail = this.getAttribute('data-friend-id');
-            var isUser = {
-                userEmail: userEmail
-            };
-            stompClient.send("/app/friend.add", {}, JSON.stringify(isUser));
+            const friendId = this.getAttribute('data-friend-id');
+            stompClient.send("/app/user.addFriend", {}, friendId);
         });
     });
 });
