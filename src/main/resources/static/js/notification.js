@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         notificationList.insertAdjacentHTML('afterbegin', notificationHtml);
 
         // Increment notification count
-        var notificationCountElement = document.querySelector('.opts_icon span');
+        var notificationCountElement = document.querySelector('#notification-count');
         var notificationCount = parseInt(notificationCountElement.textContent);
         notificationCountElement.textContent = notificationCount + 1;
 
@@ -40,6 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
             notificationList.removeChild(notificationList.firstChild);
             notificationCountElement.textContent = notificationCount;
-        }, 5000);
+        }, 60000);
     }
 });

@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <span>${comment.timeDifference}</span>
                         </div>
                     </div>
+                    <a href="#" class="post-comment-opt"></a>
                 </div>
             `;
             postComments.insertAdjacentHTML('beforeend', commentHtml);

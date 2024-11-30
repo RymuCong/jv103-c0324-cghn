@@ -43,3 +43,4 @@ function previewImage(event, previewId = 'imagePreview') {
         reader.readAsDataURL(file);
     }
 }
+

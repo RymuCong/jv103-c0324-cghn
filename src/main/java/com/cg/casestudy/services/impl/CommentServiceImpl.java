@@ -1,12 +1,14 @@
 package com.cg.casestudy.services.impl;
 
 import com.cg.casestudy.dtos.CommentDTO;
+import com.cg.casestudy.dtos.NotificationRequest;
 import com.cg.casestudy.models.post.Comment;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.repositories.CommentRepository;
 import com.cg.casestudy.repositories.PostRepository;
 import com.cg.casestudy.repositories.UserRepository;
 import com.cg.casestudy.services.CommentService;
+import com.cg.casestudy.services.NotificationService;
 import com.cg.casestudy.utils.CommonMapper;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @Autowired
     public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository, UserRepository userRepository) {
@@ -54,6 +59,12 @@ public class CommentServiceImpl implements CommentService {
         comment.setCommentedBy(userRepository.findById(userId).orElse(null));
         comment.setCreatedAt(LocalDateTime.now());
         commentRepository.save(comment);
+        NotificationRequest request = NotificationRequest.builder()
+                                        .userId(post.getCreatedBy().getId())
+                                        .userSendId(userId)
+                                        .message("đã bình luận bài viết")
+                                        .build();
+        notificationService.sendNotification(request);
         return CommonMapper.mapCommentToCommentDTO(comment);
     }
 

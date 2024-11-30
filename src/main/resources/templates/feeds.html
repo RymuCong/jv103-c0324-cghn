@@ -335,7 +335,7 @@
 
                     <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
                     <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
-                        <img th:src="@{/images/icons/bell.svg}" alt=""> <span>0</span>
+                        <img th:src="@{/images/icons/bell.svg}" alt=""> <span id="notification-count">0</span>
                     </a>
 
 
@@ -714,14 +714,14 @@
 
                 </div>
 
-                <div th:each="post : ${posts}" class="post">
+                <div th:each="post, iterStat : ${posts}" th:if="${iterStat.index < 10}" class="post">
                     <div class="post-heading">
-                        <div class="post-avature">
+                        <div class="post-comment-avatar">
 <!--                            //Chưa xử lí hiển thị ảnh đại diện-->
-                            <img th:src="@{/images/avatars/avatar-6.jpg}" alt="">
+                            <img  th:src="${post.createdBy.userInfo?.avatar?.url}" alt="">
                         </div>
                         <div class="post-title">
-                            <h4 th:text="${post.createdBy.username}"></h4>
+                            <h4 th:text="${post.createdBy.userInfo?.name}"></h4>
                             <p th:text="${post.getTimeDifference() }"><i class="uil-users-alt"></i></p>
                         </div>
                         <div class="post-btn-action">
@@ -762,15 +762,15 @@
                             <div class="post-state-btns"> <i class="uil-share-alt"></i>
                                 <span> 0 </span>&nbspChia sẻ
                             </div>
-                            <div class="post-state-btns"> <i class="uil-bookmark"></i> 0 <span> Saved </span>
+                            <div class="post-state-btns"> <i class="uil-bookmark"></i> 0 <span> Lưu </span>
                             </div>
                         </div>
 
                     </div>
                     <!-- post comments -->
                     <div class="post-comments">
-                        <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
-                            <div class="post-comment-avatar">
+                        <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}" th:if="${iterStat.index < 2}">
+                            <div class="post-comment-avatar" >
                                 <img th:src="${comment.commentedByAvatar}" alt="">
                             </div>
                             <div class="post-comment-text">
@@ -785,10 +785,10 @@
                             <!--Chỗ sửa, xóa bình luận-->
                             <a href="#" class="post-comment-opt"></a>
                         </div>
-                        <div th:id="'post-' + ${post.id}" class="post-comments">
+                        <div th:id="'post-' + ${post.id}">
                             <!-- Comments will be inserted here -->
                         </div>
-                        <a class="view-more-comment" th:href="@{'user/post_details/' + ${post.id}}">Xem tất cả bình luận</a>
+                        <a class="view-more-comment" th:href="@{'/post_details/' + ${post.id}}" th:if="${post.comments.size() > 2}">Xem tất cả bình luận</a>
 
                         <div class="post-add-comment">
                             <div class="post-add-comment-avature">
@@ -804,57 +804,57 @@
                                         <span class="uil-comment-alt-upload"></span>
                                     </a>
                                 </div>
-<!--                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>-->
                             </div>
                         </div>
-<!--                        <div th:id="'comment-list-' + ${post.id}" class="post-comments">-->
-<!--                            &lt;!&ndash; Existing comments will be here &ndash;&gt;-->
-<!--                        </div>-->
                     </div>
                     </div>
 
-                    <div class="load-more">
-                <button class="btn button">Xem thêm bài viết</button>
+                <div id="more-posts">
+
+                </div>
+
+                <div id="load-more-posts" class="load-more">
             </div>
 
             </div>
+<!--            Right sidebar-->
             <div class="uk-width-expand">
 
-                <div class="sl_sidebar_sugs_title border-0"> Trending !
+                <div class="sl_sidebar_sugs_title border-0"> Xu hướng !
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #hello</span>
+                        <span class="htag_top"> #Fontbath</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #test</span>
+                        <span class="htag_top"> #HaNgan</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #template</span>
+                        <span class="htag_top"> #ThanhCong</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #social</span>
+                        <span class="htag_top"> #MangXaHoi</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #simplest</span>
+                        <span class="htag_top"> #ChaoXin</span>
                     </a>
                 </div>
                 <div class="list-group-item sl_htag">
                     <a href="#">
-                        <span class="htag_top"> #new</span>
+                        <span class="htag_top"> #Moi</span>
                     </a>
                 </div>
 
-                <div class="sl_sidebar_sugs_title mt-4">Pro Members
+                <div class="sl_sidebar_sugs_title mt-4">Thành viên nâng cấp
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <div class="uk-position-relative" uk-slider="finite: true; autoplay:true">
@@ -865,31 +865,31 @@
                             <li>
                                 <a class="user" href="#">
                                     <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
-                                    <span>Stella Johnson 1</span>
+                                    <span>Thành viên 1</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="user" href="#">
                                     <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
-                                    <span>Stella Johnson 2</span>
+                                    <span>Thành viên 2</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="user" href="#">
                                     <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
-                                    <span>Stella Johnson 3</span>
+                                    <span>Thành viên 3</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="user" href="#">
                                     <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
-                                    <span>Stella Johnson 4</span>
+                                    <span>Thành viên 4</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="user" href="#">
                                     <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
-                                    <span>Stella Johnson 5</span>
+                                    <span>Thành viên 5</span>
                                 </a>
                             </li>
                         </ul>
@@ -902,7 +902,7 @@
                     </div>
                 </div>
 
-                <div class="sl_sidebar_sugs_title">People you may know
+                <div class="sl_sidebar_sugs_title">Gợi ý kết bạn
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <div class="sl_sidebar_sugs">
@@ -958,7 +958,7 @@
                     </div>
                 </div>
 
-                <div class="sl_sidebar_sugs_title mt-4">Pages you may like
+                <div class="sl_sidebar_sugs_title mt-4">Trang bạn có thể thích
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <div class="sl_sidebar_sugs">
@@ -989,10 +989,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="sl_sidebar_sugs_title mt-4">Online Users 1
-                </div>
 
-                <div class="sl_sidebar_sugs_title mt-1"> Invite Your Friends
+                <div class="sl_sidebar_sugs_title mt-1"> Mời bạn bè
                     <i class="icon-feather-rotate-cw"></i>
                 </div>
                 <form action="#" class="invite-user-form">
@@ -1010,17 +1008,17 @@
                 <!-- Footer menus-->
                 <div class="footer-wrapper-sidebar mt-4">
                     <div class="footer-powered">
-                        <p> © 2020 Simplest.net</p>
+                        <p> © 2024 FontBath.net</p>
                     </div>
 
                     <hr>
 
                     <ul class="list-inline">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#"> Privecy</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Bài viết</a></li>
+                        <li><a href="#">Chính sách</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Nhà phát triển</a></li>
                         <li>
                             <div class="dropdown dropup sun_foot_drop_menu">
                                 <a href="#" class="dropdown-toggle">
@@ -1030,9 +1028,9 @@
                                      class="uk-dropdown uk-dropdown-bottom-right"
                                      style="left: 745px; top: 87px;">
                                     <ul class="uk-nav uk-dropdown-nav">
-                                        <li><a href="#"> View as guast </a></li>
-                                        <li><a href="#"> Bloc this person </a></li>
-                                        <li><a href="#"> Report abuse</a></li>
+                                        <li><a href="#"> Chế độ xem </a></li>
+                                        <li><a href="#"> Chặn người dùng </a></li>
+                                        <li><a href="#"> Báo cáo người dùng</a></li>
                                     </ul>
                                 </div>
                             </div>

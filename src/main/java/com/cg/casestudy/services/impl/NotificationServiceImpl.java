@@ -36,6 +36,7 @@ public class NotificationServiceImpl implements NotificationService {
         User user = userRepository.findById(notificationRequest.getUserId()).orElse(null);
         User userSend = userRepository.findById(notificationRequest.getUserSendId()).orElse(null);
         if (user != null && userSend != null) {
+            //force to load user info before the session is closed (fix lazy loading issue)
             Hibernate.initialize(user.getUserInfo());
             Hibernate.initialize(userSend.getUserInfo());
             Notification newNotification = Notification.builder()

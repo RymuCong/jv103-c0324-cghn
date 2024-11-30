@@ -30,669 +30,690 @@
 </head>
 
 <body>
- 
- 
-    <!-- Chat sidebar -->
-    <a class="chat-plus-btn" href="#offcanvas-flip" uk-toggle>
-        <i class="uil-filter text-white"></i>
-        <!--  Chat -->
-    </a>
-    <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true" style="display:none">
-        <div class="uk-offcanvas-bar px-3">
 
-            <a href="#" class="uk-position-right uk-position-small p-3 uk-offcanvas-close" uk-close></a>
-                        <div>
-                        
-                            <h2> Explore</h2>
-                        
-                            <ul class="nav nav-tabs sl_srch_tabs uk-tab" uk-switcher="connect: #component-nav; animation: uk-animation-fade">
-                                <li>
+
+<!-- Chat sidebar -->
+<a class="chat-plus-btn" href="#offcanvas-flip" uk-toggle>
+    <i class="uil-filter text-white"></i>
+    <!--  Chat -->
+</a>
+<div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true" style="display:none">
+    <div class="uk-offcanvas-bar px-3">
+
+        <a href="#" class="uk-position-right uk-position-small p-3 uk-offcanvas-close" uk-close></a>
+        <div>
+
+            <h2> Explore</h2>
+
+            <ul class="nav nav-tabs sl_srch_tabs uk-tab"
+                uk-switcher="connect: #component-nav; animation: uk-animation-fade">
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z">
+                            </path>
+                        </svg>
+                        Users </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z"></path>
+                        </svg>
+                        Pages </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z">
+                            </path>
+                        </svg>
+                        Groups </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M16.5,9L13.5,12L16.5,15H22V9M9,16.5V22H15V16.5L12,13.5M7.5,9H2V15H7.5L10.5,12M15,7.5V2H9V7.5L12,10.5L15,7.5Z">
+                            </path>
+                        </svg>
+                        Games </a>
+                </li>
+            </ul>
+
+            <form action="" class="sl_srch_form search-filter-form">
+                <div class="sl_form_fields">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                              d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path>
+                    </svg>
+                    <input type="text" name="query" id="query" placeholder="Keyword">
+                </div>
+
+                <span class="left-sidebar-title mt-4 uk-display-block">  Filter   </span>
+                <hr class="my-2">
+
+
+                <ul class="sl_srch_drp_mnu">
+
+                    <li>
+
+                        <div class="sl_srch_innr_filtr">
+                            <p>Age</p>
+                            <div class="pp_mat_input">
+                                <div class="round_check">
+                                    <input type="radio" name="filterbyage" id="filterbyage-0" value="yes">
+                                    <label class="radio-inline" for="filterbyage-0">Yes</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="filterbyage" id="filterbyage-1" value="no" checked="">
+                                    <label class="radio-inline" for="filterbyage-1">No</label>
+                                </div>
+                                <input type="text" id="amount" class="agefilter_hide age_number" readonly=""
+                                       style="display:none;">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sl_srch_innr_filtr">
+                            <p>Verified</p>
+                            <div class="pp_mat_input">
+                                <div class="round_check">
+                                    <input type="radio" name="verified" id="verified-0" value="all" checked="">
+                                    <label class="radio-inline" for="verified-0">All</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="verified" id="verified-1" value="on">
+                                    <label class="radio-inline" for="verified-1">Verified</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="verified" id="verified-2" value="off">
+                                    <label class="radio-inline" for="verified-2">Unverified</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sl_srch_innr_filtr">
+                            <p>Status</p>
+                            <div class="pp_mat_input">
+                                <div class="round_check">
+                                    <input type="radio" name="status" id="status-0" value="all" checked="">
+                                    <label class="radio-inline" for="status-0">All</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="status" id="status-1" value="on">
+                                    <label class="radio-inline" for="status-1">Online</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="status" id="status-2" value="off">
+                                    <label class="radio-inline" for="status-2">Offline</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sl_srch_innr_filtr">
+                            <p>Gender</p>
+                            <div class="pp_mat_input">
+                                <div class="round_check">
+                                    <input type="radio" name="gender" id="gender-0" value="all" checked="">
+                                    <label class="radio-inline" for="gender-0">All</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="gender" id="gender-female" value="female">
+                                    <label class="radio-inline" for="gender-female">Female</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="gender" id="gender-male" value="male">
+                                    <label class="radio-inline" for="gender-male">Male</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sl_srch_innr_filtr">
+                            <p>Profile Picture</p>
+                            <div class="pp_mat_input">
+                                <div class="round_check">
+                                    <input type="radio" name="image" id="image-0" value="all" checked="">
+                                    <label class="radio-inline" for="image-0">All</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="image" id="image-1" value="yes">
+                                    <label class="radio-inline" for="image-1">Yes</label>
+                                </div>
+                                <div class="round_check">
+                                    <input type="radio" name="image" id="image-2" value="no">
+                                    <label class="radio-inline" for="image-2">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button type="submit" class="button primary block mt-3">Search</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- sidebar -->
+    <div class="main_sidebar">
+        <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+        <!-- sidebar header -->
+        <div class="sidebar-header">
+            <!-- Logo-->
+            <div id="logo">
+                <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
+            </div>
+            <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+        </div>
+
+        <!-- sidebar Menu -->
+        <div class="sidebar">
+            <div class="sidebar_innr" data-simplebar>
+
+                <div class="sections">
+                    <ul>
+                        <li class="sl_side_post_fltr">
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#047cac" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"></path>
+                                </svg>
+                                Bài viết </a>
+                        </li>
+                        <li>
+                            <a href="albums.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#8bc34a"
+                                          d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6">
+                                    </path>
+                                </svg>
+                                Ảnh </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#f25e4e"
+                                          d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z">
+                                    </path>
+                                </svg>
+                                Sự kiện </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#03A9F4"
+                                          d="M16.5,9L13.5,12L16.5,15H22V9M9,16.5V22H15V16.5L12,13.5M7.5,9H2V15H7.5L10.5,12M15,7.5V2H9V7.5L12,10.5L15,7.5Z">
+                                    </path>
+                                </svg>
+                                Trò chơi </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/findfriend}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#b2c17c"
+                                          d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43C12.32,10.75 11.55,11.26 10.91,11.9L10,12A4,4 0 0,1 6,8A4,4 0 0,1 10,4M2,20V18C2,15.88 5.31,14.14 9.5,14C9.18,14.78 9,15.62 9,16.5C9,17.79 9.38,19 10,20H2Z">
+                                    </path>
+                                </svg>
+                                Tìm bạn bè </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#8BC34A"
+                                          d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z">
+                                    </path>
+                                </svg>
+                                Khám phá </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sections">
+                    <h3> Khám phá </h3>
+                    <ul>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#03A9F4"
+                                          d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z">
+                                    </path>
+                                </svg>
+                                Hội nhóm </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#f79f58" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z">
+                                    </path>
+                                </svg>
+                                Trang </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#7d8250"
+                                          d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z">
+                                    </path>
+                                </svg>
+                                Thương mại </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#4caf50"
+                                          d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z">
+                                    </path>
+                                </svg>
+                                Nghề nghiệp </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!--  Optional Footer -->
+                <div id="foot">
+
+                    <ul>
+                        <li><a th:href="@{/home}"> Về chúng tôi </a></li>
+                        <li><a th:href="@{/home}"> Cài đặt </a></li>
+                        <li><a th:href="@{/home}"> Chính sách bảo mật </a></li>
+                        <li><a th:href="@{/home}"> Điều khoản - Điều kiện </a></li>
+                    </ul>
+
+                    <div class="foot-content">
+                        <p>© 2024 <strong>FontBath</strong>. Mọi quyền lợi được bảo lưu. </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- contents -->
+    <div class="main_content">
+
+        <!-- header -->
+        <div id="main_header">
+            <header>
+                <div class="header-innr">
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger is-hidden"
+                         uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
+                        <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
+                                                    alt=""></a>
+                    </div>
+
+                    <!-- form search-->
+                    <div class="head_search">
+                        <form th:action="@{/user/findfriend}" id="searchForm" method="get">
+                            <div class="head_search_cont">
+                                <i class="s_icon uil-search-alt"></i>
+                                <label for="searchInput">
+                                    <input name="keyword" value="" type="text" class="form-control"
+                                           placeholder="Search for Friends" autocomplete="off" id="searchInput">
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- user icons -->
+                    <div class="head_user">
+
+                        <!-- Message  notificiation dropdown -->
+                        <a href="#" class="opts_icon" uk-tooltip="title: Messages ; pos: bottom ;offset:7">
+                            <img th:src="@{/images/icons/chat.svg}" alt=""> <span>4</span>
+                        </a>
+
+                        <!-- Message  notificiation dropdown -->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications display-hidden">
+
+                            <!-- notification contents -->
+                            <div class="dropdown-notifications-content" data-simplebar>
+
+                                <!-- notivication header -->
+                                <div class="dropdown-notifications-headline">
+                                    <h4>Messages</h4>
                                     <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z">
-                                            </path>
-                                        </svg> Users </a>
-                                </li>
-                                <li>
+                                        <i class="icon-feather-settings"
+                                           uk-tooltip="title: Message settings ; pos: left"></i>
+                                    </a>
+                                </div>
+
+                                <!-- notiviation list -->
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Jonathan Madano</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Stella Johnson</strong>
+                                                <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Alex Dolgove</strong>
+                                                <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Adrian Mohani</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Jonathan Madano</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Stella Johnson</strong>
+                                                <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Alex Dolgove</strong>
+                                                <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Adrian Mohani</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="dropdown-notifications-footer">
+                                <a href="#"> See all in Messages</a>
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
+                        <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
+                            <img th:src="@{/images/icons/bell.svg}" alt=""> <span>5</span>
+                        </a>
+
+
+                        <!-- Xử lí ajax để hiển thị thông báo -->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications display-hidden">
+
+                            <!-- notification contents -->
+                            <div class="dropdown-notifications-content" data-simplebar>
+
+                                <!-- notivication header -->
+                                <div class="dropdown-notifications-headline">
+                                    <h4>Notifications </h4>
                                     <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z"></path>
-                                        </svg> Pages </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z">
-                                            </path>
-                                        </svg> Groups </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M16.5,9L13.5,12L16.5,15H22V9M9,16.5V22H15V16.5L12,13.5M7.5,9H2V15H7.5L10.5,12M15,7.5V2H9V7.5L12,10.5L15,7.5Z">
-                                            </path>
-                                        </svg> Games </a>
+                                        <i class="icon-feather-settings"
+                                           uk-tooltip="title: Notifications settings ; pos: left"></i>
+                                    </a>
+                                </div>
+
+                                <!-- notiviation list -->
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-primary">
+                                               <i class="icon-feather-thumbs-up"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
+                                               <span class="text-primary">Learn Prototype Faster</span>
+                                               <br> <span class="time-ago"> 9 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-danger">
+                                               <i class="icon-feather-star"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Alex Dolgove</strong> Added New Review In Video
+                                               <span class="text-primary">Full Stack PHP Developer</span>
+                                               <br> <span class="time-ago"> 19 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-success">
+                                               <i class="icon-feather-message-circle"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Stella John</strong> Replay Your Comment in
+                                               <span class="text-primary">Adobe XD Tutorial</span>
+                                               <br> <span class="time-ago"> 12 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-primary">
+                                               <i class="icon-feather-thumbs-up"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
+                                               <span class="text-primary">Learn Prototype Faster</span>
+                                               <br> <span class="time-ago"> 9 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-warning">
+                                               <i class="icon-feather-star"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Alex Dolgove</strong> Added New Review In Video
+                                               <span class="text-primary">Full Stack PHP Developer</span>
+                                               <br> <span class="time-ago"> 19 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <span class="notification-icon bg-gradient-success">
+                                               <i class="icon-feather-message-circle"></i></span>
+                                            <span class="notification-text">
+                                               <strong>Stella John</strong> Replay Your Comment in
+                                               <span class="text-primary">Adobe XD Tutorial</span>
+                                               <br> <span class="time-ago"> 12 hours ago </span>
+                                           </span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- Chèn avatar -->
+                        <a class="opts_account" href="#"> <img
+                                th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh"></a>
+
+                        <!-- Biểu tượng avatar : xem profile, đăng xuất, chuyển sang trang admin(nếu là admin)-->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications rounded display-hidden">
+
+                            <!-- User Name / Avatar -->
+                            <!-- User Name / Avatar -->
+                            <a th:href="@{/user/profile}">
+
+                                <div class="dropdown-user-details">
+
+                                    <div class="dropdown-user-cover">
+                                        <!-- chèn ảnh bìa -->
+                                        <img th:src="${userInfo.background != null ? userInfo.background : ''}"
+                                             alt="Ảnh bìa">
+                                    </div>
+                                    <div class="dropdown-user-avatar">
+                                        <!-- chèn ảnh đại diện -->
+                                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}"
+                                             alt="Ảnh đại diện">
+                                    </div>
+                                    <!-- Tên người dùng -->
+                                    <div class="dropdown-user-name">
+                                        <span th:text="${userInfo.name}"></span>
+                                    </div>
+                                </div>
+
+                            </a>
+                            <!-- Tính năng của icon avatar -->
+                            <ul class="dropdown-user-menu">
+                                <li><a th:href="@{/home}"> <i class="fas fa-rocket"></i> Tải lại trang chủ </a></li>
+                                <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
+                                <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
+                                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{/admin/home}"> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
+                                <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                                 </li>
                             </ul>
-                        
-                            <form action=""  class="sl_srch_form search-filter-form">
-                                            <div class="sl_form_fields">
-                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg> 
-                                                <input type="text" name="query" id="query" placeholder="Keyword">
-                                            </div>
-                        
-                                            <span class="left-sidebar-title mt-4 uk-display-block">  Filter   </span>
-                                            <hr class="my-2">
-                        
-                                            
-                                                    <ul class="sl_srch_drp_mnu">
-                                                       
-                                                        <li>
-                                                             
-                                                        <div class="sl_srch_innr_filtr">
-                                                                <p>Age</p>
-                                                                <div class="pp_mat_input">
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="filterbyage" id="filterbyage-0" value="yes">
-                                                                        <label class="radio-inline" for="filterbyage-0">Yes</label> 
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="filterbyage" id="filterbyage-1" value="no" checked="">
-                                                                        <label class="radio-inline" for="filterbyage-1">No</label>
-                                                                    </div>
-                                                                    <input type="text" id="amount" class="agefilter_hide age_number" readonly="" style="display:none;">
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                                                                <div class="sl_srch_innr_filtr">
-                                                                <p>Verified</p>
-                                                                <div class="pp_mat_input">
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="verified" id="verified-0" value="all" checked="">
-                                                                        <label class="radio-inline" for="verified-0">All</label> 
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="verified" id="verified-1" value="on">
-                                                                        <label class="radio-inline" for="verified-1">Verified</label>
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="verified" id="verified-2" value="off">
-                                                                        <label class="radio-inline" for="verified-2">Unverified</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                                                                <div class="sl_srch_innr_filtr">
-                                                                <p>Status</p>
-                                                                <div class="pp_mat_input">
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="status" id="status-0" value="all" checked="">
-                                                                        <label class="radio-inline" for="status-0">All</label> 
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="status" id="status-1" value="on">
-                                                                        <label class="radio-inline" for="status-1">Online</label>
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="status" id="status-2" value="off">
-                                                                        <label class="radio-inline" for="status-2">Offline</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                                                                <div class="sl_srch_innr_filtr">
-                                                                <p>Gender</p>
-                                                                <div class="pp_mat_input">
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="gender" id="gender-0" value="all" checked="">
-                                                                        <label class="radio-inline" for="gender-0">All</label> 
-                                                                    </div>
-                                                                                                                                                                    <div class="round_check">
-                                                                            <input type="radio" name="gender" id="gender-female" value="female">
-                                                                            <label class="radio-inline" for="gender-female">Female</label> 
-                                                                        </div>
-                                                                                                                                                                    <div class="round_check">
-                                                                            <input type="radio" name="gender" id="gender-male" value="male">
-                                                                            <label class="radio-inline" for="gender-male">Male</label> 
-                                                                        </div>
-                                                                                                            </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                                                                <div class="sl_srch_innr_filtr">
-                                                                <p>Profile Picture</p>
-                                                                <div class="pp_mat_input">
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="image" id="image-0" value="all" checked="">
-                                                                        <label class="radio-inline" for="image-0">All</label> 
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="image" id="image-1" value="yes">
-                                                                        <label class="radio-inline" for="image-1">Yes</label>
-                                                                    </div>
-                                                                    <div class="round_check">
-                                                                        <input type="radio" name="image" id="image-2" value="no">
-                                                                        <label class="radio-inline" for="image-2">No</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                        
-                                            <button type="submit" class="button primary block mt-3">Search</button>
-                            </form>
+                            <hr class="m-0">
+                            <ul class="dropdown-user-menu">
+                                <li><a href="page-setting.html" class="bg-secondery"> <i class="uil-bolt"></i>
+                                    <div> Nâng cấp tài khoản
+                                        <span> Tài khoản nâng cấp mang lại nhiều trải nghiệm độc lạ </span>
+                                    </div>
+                                </a>
+                                </li>
+                            </ul>
+
                         </div>
-        
-        
+
+
+                    </div>
+
+                </div>
+            </header>
+
         </div>
-    </div>
-        
-       
-  
-        <!-- Wrapper -->
-    <div id="wrapper">
 
-        <!-- sidebar -->
-       <div class="main_sidebar">
-           <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
-       
-           <!-- sidebar header -->
-           <div class="sidebar-header">
-               <!-- Logo-->
-               <div id="logo">
-                   <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
-               </div>
-               <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
-           </div>
-       
-           <!-- sidebar Menu -->
-           <div class="sidebar">
-               <div class="sidebar_innr" data-simplebar>
+        <div class="main_content_inner">
 
-                   <div class="sections">
-                       <ul>
-                           <li class="sl_side_post_fltr">
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#047cac" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"></path>
-                                   </svg>
-                                   Bài viết  </a>
-                           </li>
-                           <li>
-                               <a href="albums.html">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#8bc34a"
-                                             d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6">
-                                       </path>
-                                   </svg> Ảnh </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#f25e4e"
-                                             d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z">
-                                       </path>
-                                   </svg> Sự kiện </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#03A9F4"
-                                             d="M16.5,9L13.5,12L16.5,15H22V9M9,16.5V22H15V16.5L12,13.5M7.5,9H2V15H7.5L10.5,12M15,7.5V2H9V7.5L12,10.5L15,7.5Z">
-                                       </path>
-                                   </svg> Trò chơi </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/user/findfriend}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#b2c17c"
-                                             d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43C12.32,10.75 11.55,11.26 10.91,11.9L10,12A4,4 0 0,1 6,8A4,4 0 0,1 10,4M2,20V18C2,15.88 5.31,14.14 9.5,14C9.18,14.78 9,15.62 9,16.5C9,17.79 9.38,19 10,20H2Z">
-                                       </path>
-                                   </svg> Tìm bạn bè </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#8BC34A"
-                                             d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z">
-                                       </path>
-                                   </svg> Khám phá </a>
-                           </li>
-                       </ul>
-                   </div>
-
-                   <div class="sections">
-                       <h3> Khám phá </h3>
-                       <ul>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#03A9F4"
-                                             d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z">
-                                       </path>
-                                   </svg> Hội nhóm </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#f79f58" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z">
-                                       </path>
-                                   </svg> Trang </a>
-                           </li>
-                           <li>
-                               <a th:href="@{/home}">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#7d8250"
-                                             d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z">
-                                       </path>
-                                   </svg> Thương mại </a>
-                           </li>
-                           <li>
-                               <a href="#">
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                       <path fill="#4caf50"
-                                             d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z">
-                                       </path>
-                                   </svg> Nghề nghiệp </a>
-                           </li>
-
-                       </ul>
-
-                   </div>
-
-                   <!--  Optional Footer -->
-                   <div id="foot">
-
-                       <ul>
-                           <li> <a th:href="@{/home}"> Về chúng tôi </a></li>
-                           <li> <a th:href="@{/home}"> Cài đặt </a></li>
-                           <li> <a th:href="@{/home}"> Chính sách bảo mật </a></li>
-                           <li> <a th:href="@{/home}"> Điều khoản - Điều kiện </a></li>
-                       </ul>
-
-                       <div class="foot-content">
-                           <p>© 2024 <strong>FontBath</strong>. Mọi quyền lợi được bảo lưu. </p>
-                       </div>
-
-                   </div>
-
-
-
-               </div>
-
-
-           </div>
-       
-       </div>
-
-       <!-- contents -->
-       <div class="main_content">
-
-       <!-- header -->
-           <div id="main_header">
-               <header>
-                   <div class="header-innr">
-
-                       <!-- Logo-->
-                       <div class="header-btn-traiger is-hidden" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
-                           <span></span></div>
-
-                       <!-- Logo-->
-                       <div id="logo">
-                           <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
-                           <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
-                                                       alt=""></a>
-                       </div>
-
-                       <!-- form search-->
-                       <div class="head_search">
-                           <form th:action="@{/user/findfriend}" id="searchForm" method="get">
-                               <div class="head_search_cont">
-                                   <i class="s_icon uil-search-alt"></i>
-                                   <label for="searchInput">
-                                       <input name="keyword" value="" type="text" class="form-control"
-                                              placeholder="Search for Friends" autocomplete="off" id="searchInput">
-                                   </label>
-                               </div>
-                           </form>
-                       </div>
-
-                       <!-- user icons -->
-                       <div class="head_user">
-
-                           <!-- Message  notificiation dropdown -->
-                           <a href="#" class="opts_icon" uk-tooltip="title: Messages ; pos: bottom ;offset:7">
-                               <img th:src="@{/images/icons/chat.svg}" alt=""> <span>4</span>
-                           </a>
-
-                           <!-- Message  notificiation dropdown -->
-                           <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
-                                class="dropdown-notifications display-hidden">
-
-                               <!-- notification contents -->
-                               <div class="dropdown-notifications-content" data-simplebar>
-
-                                   <!-- notivication header -->
-                                   <div class="dropdown-notifications-headline">
-                                       <h4>Messages</h4>
-                                       <a href="#">
-                                           <i class="icon-feather-settings"
-                                              uk-tooltip="title: Message settings ; pos: left"></i>
-                                       </a>
-                                   </div>
-
-                                   <!-- notiviation list -->
-                                   <ul>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Jonathan Madano</strong>
-                                                   <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span> </p>
-
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Stella Johnson</strong>
-                                                   <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
-                                                   </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Alex Dolgove</strong>
-                                                   <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span> </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar status-online">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Adrian Mohani</strong>
-                                                   <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span> </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Jonathan Madano</strong>
-                                                   <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span> </p>
-
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Stella Johnson</strong>
-                                                   <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
-                                                   </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Alex Dolgove</strong>
-                                                   <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span> </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                               <div class="notification-text notification-msg-text">
-                                                   <strong>Adrian Mohani</strong>
-                                                   <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span> </p>
-                                               </div>
-                                           </a>
-                                       </li>
-                                   </ul>
-
-                               </div>
-                               <div class="dropdown-notifications-footer">
-                                   <a href="#"> See all in Messages</a>
-                               </div>
-
-
-                           </div>
-
-
-                           <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
-                           <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
-                               <img th:src="@{/images/icons/bell.svg}" alt=""> <span>5</span>
-                           </a>
-
-
-                           <!-- Xử lí ajax để hiển thị thông báo -->
-                           <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
-                                class="dropdown-notifications display-hidden">
-
-                               <!-- notification contents -->
-                               <div class="dropdown-notifications-content" data-simplebar>
-
-                                   <!-- notivication header -->
-                                   <div class="dropdown-notifications-headline">
-                                       <h4>Notifications </h4>
-                                       <a href="#">
-                                           <i class="icon-feather-settings"
-                                              uk-tooltip="title: Notifications settings ; pos: left"></i>
-                                       </a>
-                                   </div>
-
-                                   <!-- notiviation list -->
-                                   <ul>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-danger">
-                                               <i class="icon-feather-star"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-warning">
-                                               <i class="icon-feather-star"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                               <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                               <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                           </a>
-                                       </li>
-                                   </ul>
-
-                               </div>
-
-
-                           </div>
-
-
-                           <!-- Chèn avatar -->
-                           <a class="opts_account" href="#"> <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh"></a>
-
-                           <!-- Biểu tượng avatar : xem profile, đăng xuất, chuyển sang trang admin(nếu là admin)-->
-                           <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
-                                class="dropdown-notifications rounded display-hidden">
-
-                               <!-- User Name / Avatar -->
-                               <!-- User Name / Avatar -->
-                               <a th:href="@{/user/profile}">
-
-                                   <div class="dropdown-user-details">
-
-                                       <div class="dropdown-user-cover">
-                                           <!-- chèn ảnh bìa -->
-                                           <img th:src="${userInfo.background != null ? userInfo.background : ''}" alt="Ảnh bìa">
-                                       </div>
-                                       <div class="dropdown-user-avatar">
-                                           <!-- chèn ảnh đại diện -->
-                                           <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh đại diện">
-                                       </div>
-                                       <!-- Tên người dùng -->
-                                       <div class="dropdown-user-name">
-                                           <span th:text="${userInfo.name}"></span>
-                                       </div>
-                                   </div>
-
-                               </a>
-                               <!-- Tính năng của icon avatar -->
-                               <ul class="dropdown-user-menu">
-                                   <li><a th:href="@{/home}"> <i class="fas fa-rocket"></i> Tải lại trang chủ </a> </li>
-                                   <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
-                                   <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
-                                   <li sec:authorize="hasRole('ROLE_ADMIN')">
-                                       <a th:href="@{/admin/home}"> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
-                                   <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
-                                   </li>
-                               </ul>
-                               <hr class="m-0">
-                               <ul class="dropdown-user-menu">
-                                   <li><a href="page-setting.html" class="bg-secondery"> <i class="uil-bolt"></i>
-                                       <div> Nâng cấp tài khoản <span> Tài khoản nâng cấp mang lại nhiều trải nghiệm độc lạ </span>
-                                       </div>
-                                   </a>
-                                   </li>
-                               </ul>
-
-                           </div>
-
-
-                       </div>
-
-                   </div>
-               </header>
-
-           </div>
-
-            <div class="main_content_inner">
- 
-                <div class="sl_filter_btn" uk-toggle="target: #offcanvas-flip">  <i class="uil-filter"></i>   Open Filter </div>
-                <ul id="component-nav" class="uk-switcher">
+            <div class="sl_filter_btn" uk-toggle="target: #offcanvas-flip"><i class="uil-filter"></i> Open Filter</div>
+            <ul id="component-nav" class="uk-switcher">
 
                 <li>
-                <h2> Find Friend</h2>
-                <div class="section-small pt-2">
-                    <!-- users   -->
-                    <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-small" uk-grid>
-                        <div th:if="${friends != null}" th:each="friend : ${friends}">
-                            <div class="sl_find_frns_user">
-                                <div class="sl_find_frns_user_cover">
-                                    <img th:src="@{${friend.background}}" alt="">
-                                </div>
-                                <div class="sl_find_frns_user_info">
-                                    <div class="sl_find_frns_user_avatar">
-                                        <a th:href="@{/user/profile/{id}(id=${friend.id})}">
-                                            <img th:src="@{${friend.avatar}}" alt="">
-                                        </a>
+                    <h2> Find Friend</h2>
+                    <div class="section-small pt-2">
+                        <!-- users   -->
+                        <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-small" uk-grid>
+                            <div th:if="${friends != null}" th:each="friend : ${friends}">
+                                <div class="sl_find_frns_user">
+                                    <div class="sl_find_frns_user_cover">
+                                        <img th:src="@{${friend.background}}" alt="">
                                     </div>
-                                    <h4>
-                                        <a th:href="@{/user/profile/{id}(id=${friend.id})}">
-                                            <span th:text="${friend.name}"></span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div class="sl_find_frns_user_btns">
+                                    <div class="sl_find_frns_user_info">
+                                        <div class="sl_find_frns_user_avatar">
+                                            <a th:href="@{/user/profile/{id}(id=${friend.id})}">
+                                                <img th:src="@{${friend.avatar}}" alt="">
+                                            </a>
+                                        </div>
+                                        <h4>
+                                            <a th:href="@{/user/profile/{id}(id=${friend.id})}">
+                                                <span th:text="${friend.name}"></span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div class="sl_find_frns_user_btns">
                 <span>
                     <button type="button" class="btn button small primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -705,7 +726,7 @@
                         <span> Add Friend</span>
                     </button>
                 </span>
-                                    <span>
+                                        <span>
                     <button type="button" class="btn button small light">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -715,997 +736,1025 @@
                         <span> Message</span>
                     </button>
                 </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="load-more">
+                            <button class="btn button">Load more users</button>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <h2> Browse Pages </h2>
+                    <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small" uk-grid>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-1.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html">Suranna Brand </a></h3>
+                                    <span>  Education </span>
+                                    <p> 5 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-6.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Reveal Store </a></h3>
+                                    <span> Marketplace </span>
+                                    <p> 14 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-7.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html">Suranna Brand </a></h3>
+                                    <span>  Education </span>
+                                    <p> 5 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html">Suranna Brand </a></h3>
+                                    <span>  Education </span>
+                                    <p> 5 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-lg-2.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Sky Accounting </a></h3>
+                                    <span>  Business </span>
+                                    <p> 13 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-lg-2.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Sky Accounting </a></h3>
+                                    <span>  Business </span>
+                                    <p> 13 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-lg-5.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Phase Designers </a></h3>
+                                    <span>  Shopping </span>
+                                    <p> 15 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-lg-3.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Reveal Store </a></h3>
+                                    <span> Marketplace </span>
+                                    <p> 14 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-1.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Phase Designers </a></h3>
+                                    <span>  Shopping </span>
+                                    <p> 15 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_page_list boosted_pages">
+
+                                <a href="group-feed.html">
+                                    <div class="sl_page_list_media">
+                                        <img th:src="@{/images/avatars/avatar-6.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <div class="sl_page_list_info">
+                                    <h3><a href="group-feed.html"> Reveal Store </a></h3>
+                                    <span> Marketplace </span>
+                                    <p> 14 people like this </p>
+                                    <div class="sl_page_list_info_btns">
+                                    <span>
+                                    <button type="button" class="button primary small block">
+                                        <span> like</span>
+                                    </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="load-more">
-                        <button class="btn button">Load more users</button>
+                        <button class="btn button">Load more Pages</button>
                     </div>
-                </div>
                 </li>
 
                 <li>
-                <h2> Browse Pages </h2>
-                <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small" uk-grid>
-                    <div>
+                    <h2> Browse Groups </h2>
+                    <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-small" uk-grid>
+                        <div>
 
-                        <div class="sl_page_list boosted_pages">
+                            <div class="sl_group_list">
 
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-1.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">Suranna Brand </a></h3>
-                                <span>  Education </span>
-                                <p> 5 people like this </p>
-                                <div class="sl_page_list_info_btns">
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-4.jpg}" alt="image">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html"> Mountain Riders</a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
                                     <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
                                     </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
                                 </div>
-                    
                             </div>
-                    
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-2.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html">Coffee Addicts </a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-1.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html"> Graphic Design</a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-3.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html">Property Rent And Sale </a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-1.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html"> Graphic Design</a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-3.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html">Property Rent And Sale </a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-4.jpg}" alt="image">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html"> Mountain Riders</a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <div class="sl_group_list">
+
+                                <!-- Group cover -->
+                                <a href="group-feed.html">
+                                    <div class="sl_group_list_media">
+                                        <img th:src="@{/images/group/group-cover-2.jpg}" alt="">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_group_list_info">
+                                    <h3><a href="group-feed.html">Coffee Addicts </a></h3>
+                                    <ul>
+                                        <li><span> 2 Members </span></li>
+                                        <li><span> 0 posts </span></li>
+                                    </ul>
+
+                                    <div class="sl_avatar-groups sl_hide_members">
+                                        <a href="group-feed.html">
+
+                                            <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
+                                                 alt="picture">
+                                            <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
+                                                 alt="picture">
+
+                                        </a><a href="group-feed.html">See all Members </a>
+
+                                    </div>
+
+                                    <div class="sl_group_list_info_btns">
+                                    <span>
+                                        <button type="button" class="button primary small block">
+                                            <span> Join</span>
+                                        </button>
+                                    </span>
+                                        <span>
+                                        <button type="button" class="button light small block">
+                                            <span>View</span>
+                                        </button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-6.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">  Reveal Store </a></h3>
-                                <span> Marketplace </span>
-                                <p> 14 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
+                    <div class="load-more">
+                        <button class="btn button">Load more Groups</button>
                     </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-7.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">Suranna Brand </a></h3>
-                                <span>  Education </span>
-                                <p> 5 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">Suranna Brand </a></h3>
-                                <span>  Education </span>
-                                <p> 5 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-lg-2.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html"> Sky Accounting </a></h3>
-                                <span>  Business </span>
-                                <p> 13 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>                        
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-lg-2.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html"> Sky Accounting </a></h3>
-                                <span>  Business </span>
-                                <p> 13 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-lg-5.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">  Phase Designers </a></h3>
-                                <span>  Shopping </span>
-                                <p> 15 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-lg-3.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">  Reveal Store </a></h3>
-                                <span> Marketplace </span>
-                                <p> 14 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-1.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">  Phase Designers </a></h3>
-                                <span>  Shopping </span>
-                                <p> 15 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="sl_page_list boosted_pages">
-
-                            <a href="group-feed.html">
-                                <div class="sl_page_list_media">
-                                    <img th:src="@{/images/avatars/avatar-6.jpg}" alt="Picture">
-                                </div>
-                            </a>
-                         
-                            <div class="sl_page_list_info">
-                                <h3> <a href="group-feed.html">  Reveal Store </a></h3>
-                                <span> Marketplace </span>
-                                <p> 14 people like this </p>
-                                <div class="sl_page_list_info_btns">
-                                    <span>
-                                    <button type="button" class="button primary small block">
-                                        <span> like</span>
-                                    </button>
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-
-                    </div>
-                </div>
-                <div class="load-more">
-                    <button class="btn button">Load more Pages</button>
-                </div>
                 </li>
 
                 <li>
-                <h2> Browse Groups  </h2>
-                <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-small" uk-grid>
-                    <div>
+                    <h2> Browse Games </h2>
+                    <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-grid-small" uk-grid>
+                        <div>
+                            <div class="sl_game_list">
 
-                        <div class="sl_group_list">
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-4.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-4.jpg}"  alt="image">
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Mobile Legends </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html"> Mountain Riders</a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
-
-                                </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-5.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-2.jpg}" alt="">
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Minecraft </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html">Coffee Addicts  </a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
-
-                                </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/3.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-1.jpg}" alt="">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html"> Graphic Design</a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> urban basketball </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
 
                                 </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/1.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-3.jpg}" alt="">
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3>8 Ball Pool</h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html">Property Rent And Sale </a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
-
-                                </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/2.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-1.jpg}" alt="">
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Big Shot Boxing </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html"> Graphic Design</a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
-
-                                </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/3.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-3.jpg}" alt="">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html">Property Rent And Sale </a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> urban basketball </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
 
                                 </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-2.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-4.jpg}"  alt="image">
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> ChooxTv </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html"> Mountain Riders</a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
-
-                                </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
-                    </div>
-                    <div>
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-3.jpg}" alt="Picture">
+                                    </div>
+                                </a>
 
-                        <div class="sl_group_list">
-
-                            <!-- Group cover -->
-                            <a href="group-feed.html">
-                                <div class="sl_group_list_media">
-                                    <img th:src="@{/images/group/group-cover-2.jpg}" alt="">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_group_list_info">
-                                <h3><a href="group-feed.html">Coffee Addicts  </a></h3>
-                                <ul>
-                                    <li> <span> 2 Members </span> </li>
-                                    <li> <span> 0 posts </span> </li>
-                                </ul>
-
-                                <div class="sl_avatar-groups sl_hide_members">
-                                    <a href="group-feed.html">
-
-                                        <img th:src="@{/images/avatars/avatar-1.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-2.jpg}" class="avatars"
-                                            alt="picture">
-                                        <img th:src="@{/images/avatars/avatar-3.jpg}" class="avatars"
-                                            alt="picture">
-
-                                    </a><a href="group-feed.html">See all Members </a>
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Larion TV </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
 
                                 </div>
-
-                                <div class="sl_group_list_info_btns">
-                                    <span>
-                                        <button type="button" class="button primary small block">
-                                            <span> Join</span>
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="button light small block">
-                                            <span>View</span>
-                                        </button>
-                                    </span>
-                                </div>
-
                             </div>
+
                         </div>
+                        <div>
+                            <div class="sl_game_list">
 
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-5.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Minecraft </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="sl_game_list">
+
+                                <!-- Game cover -->
+                                <a href="#">
+                                    <div class="sl_game_list_media">
+                                        <img th:src="@{/images/games/img-4.jpg}" alt="Picture">
+                                    </div>
+                                </a>
+
+                                <!-- Group  Content -->
+                                <div class="sl_game_list_info">
+                                    <h3> Mobile Legends </h3>
+                                    <span> 2 users playing</span>
+                                    <div class="sl_game_list_info_btns">
+                                        <div class="btn button light block small">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
+                                                </path>
+                                            </svg>
+                                            Play
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-
-                </div>
-                <div class="load-more">
-                    <button class="btn button">Load more Groups</button>
-                </div>
+                    <div class="load-more">
+                        <button class="btn button">Load more Games</button>
+                    </div>
                 </li>
 
-                <li>
-                <h2> Browse Games  </h2>
-                <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-grid-small" uk-grid>
-                    <div>
-                        <div class="sl_game_list">
+            </ul>
 
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-4.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3>  Mobile Legends </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-5.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> Minecraft </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/3.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> urban basketball </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/1.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3>8 Ball Pool</h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/2.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> Big Shot Boxing </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/3.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> urban basketball </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-2.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> ChooxTv </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-3.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> Larion TV </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-5.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> Minecraft </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="sl_game_list">
-
-                            <!-- Game cover -->
-                            <a href="#">
-                                <div class="sl_game_list_media">
-                                    <img th:src="@{/images/games/img-4.jpg}" alt="Picture">
-                                </div>
-                            </a>
-
-                            <!-- Group  Content -->
-                            <div class="sl_game_list_info">
-                                <h3> Mobile Legends </h3>
-                                <span> 2 users playing</span>
-                                <div class="sl_game_list_info_btns">
-                                    <div class="btn button light block small"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M9,2V7.5L12,10.5L15,7.5V2H9M2,9V15H7.5L10.5,12L7.5,9H2M16.5,9L13.5,12L16.5,15H22V9H16.5M12,13.5L9,16.5V22H15V16.5L12,13.5M11,18H13V20H11V18Z">
-                                            </path>
-                                        </svg> Play</div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="load-more">
-                    <button class="btn button">Load more Games</button>
-                </div>
-                </li>
-
-                </ul>
-
-                    
-            </div>
 
         </div>
 
-         
-
     </div>
 
-     
 
-     <!-- javaScripts
-    ================================================== -->
-    <script th:src="@{/js/uikit.js}"></script>
-    <script th:src="@{/js/simplebar.js}"></script>
-    
+</div>
+
+
+<!-- javaScripts
+================================================== -->
+<script th:src="@{/js/uikit.js}"></script>
+<script th:src="@{/js/simplebar.js}"></script>
+
 
 </body>
 

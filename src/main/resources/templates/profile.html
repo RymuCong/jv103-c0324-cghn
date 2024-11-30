@@ -707,15 +707,15 @@
                                     <span th:text="${post.comments.size()}"></span>&nbspBình luận
                                 </div>
                                 <div class="post-state-btns"> <i class="uil-share-alt"></i>
-                                    <span> 20 </span>&nbspChia sẻ
+                                    <span> 0 </span>&nbsp;Chia sẻ
                                 </div>
-                                <div class="post-state-btns"> <i class="uil-bookmark"></i> 13 <span> Saved </span>
+                                <div class="post-state-btns"> <i class="uil-bookmark"></i> 0 <span> &nbsp;Lưu </span>
                                 </div>
                             </div>
 
                             <!-- post comments xử lí hiển thị bằng ajax-->
                             <div class="post-comments" >
-                                <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
+                                <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}" th:if="${iterStat.index < 2}">
                                     <div class="post-comment-avatar">
                                         <img th:src="${comment.commentedByAvatar}" alt="">
                                     </div>
@@ -736,7 +736,7 @@
                                 <div th:id="'post-' + ${post.id}" class="post-comments">
                                     <!-- Comments will be inserted here -->
                                 </div>
-                                <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
+                                <a class="view-more-comment" th:href="@{'/post_details/' + ${post.id}}" th:if="${post.comments.size() > 2}">Xem tất cả bình luận</a>
 
                                 <div class="post-add-comment">
                                     <div class="post-add-comment-avature">

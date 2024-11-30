@@ -59,6 +59,12 @@ public class UserInfoController {
         return "profile";
     }
 
+    @GetMapping("/profile/{id}")
+    public String viewProfileAsGuest(Model model, @PathVariable("id") Long id){
+
+        return "profile";
+    }
+
     @PostMapping("/update_info")
     public String updateProfile(@Valid @ModelAttribute("userInfo") UserInfoDTO userInfoDTO,
                                 BindingResult bindingResult,

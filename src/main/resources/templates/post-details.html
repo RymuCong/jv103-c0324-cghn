@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trang chủ</title>
+    <link rel="icon" th:href="@{/images/favicon.png}">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/uikit.css}">
+    <link rel="stylesheet" th:href="@{/css/uikit.css}">
+    <style>
+        .sidebar-listed-user-avatar img {
+            width: 100%;
+            height: 100px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
+        }
+
+    </style>
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" th:href="@{/css/icons.css}">
+    <script src="https://kit.fontawesome.com/815e388c50.js" crossorigin="anonymous"></script>
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- left sidebar -->
+    <div class="main_sidebar">
+        <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+        <!-- sidebar header -->
+        <div class="sidebar-header">
+            <!-- Logo-->
+            <div id="logo">
+                <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
+            </div>
+            <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+        </div>
+
+        <!-- sidebar Menu -->
+        <div class="sidebar">
+            <div class="sidebar_innr" data-simplebar>
+
+                <div class="sections">
+                    <ul>
+                        <li class="sl_side_post_fltr">
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#047cac" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"></path>
+                                </svg>
+                                Bài viết </a>
+                        </li>
+                        <li>
+                            <a href="albums.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#8bc34a"
+                                          d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6">
+                                    </path>
+                                </svg>
+                                Ảnh </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#f25e4e"
+                                          d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z">
+                                    </path>
+                                </svg>
+                                Sự kiện </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#03A9F4"
+                                          d="M16.5,9L13.5,12L16.5,15H22V9M9,16.5V22H15V16.5L12,13.5M7.5,9H2V15H7.5L10.5,12M15,7.5V2H9V7.5L12,10.5L15,7.5Z">
+                                    </path>
+                                </svg>
+                                Trò chơi </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/findfriend}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#b2c17c"
+                                          d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43C12.32,10.75 11.55,11.26 10.91,11.9L10,12A4,4 0 0,1 6,8A4,4 0 0,1 10,4M2,20V18C2,15.88 5.31,14.14 9.5,14C9.18,14.78 9,15.62 9,16.5C9,17.79 9.38,19 10,20H2Z">
+                                    </path>
+                                </svg>
+                                Tìm bạn bè </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#8BC34A"
+                                          d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z">
+                                    </path>
+                                </svg>
+                                Khám phá </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sections">
+                    <h3> Khám phá </h3>
+                    <ul>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#03A9F4"
+                                          d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z">
+                                    </path>
+                                </svg>
+                                Hội nhóm </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#f79f58" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z">
+                                    </path>
+                                </svg>
+                                Trang </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/home}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#7d8250"
+                                          d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z">
+                                    </path>
+                                </svg>
+                                Thương mại </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#4caf50"
+                                          d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z">
+                                    </path>
+                                </svg>
+                                Nghề nghiệp </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!--  Optional Footer -->
+                <div id="foot">
+
+                    <ul>
+                        <li><a th:href="@{/home}"> Về chúng tôi </a></li>
+                        <li><a th:href="@{/home}"> Cài đặt </a></li>
+                        <li><a th:href="@{/home}"> Chính sách bảo mật </a></li>
+                        <li><a th:href="@{/home}"> Điều khoản - Điều kiện </a></li>
+                    </ul>
+
+                    <div class="foot-content">
+                        <p>© 2024 <strong>FontBath</strong>. Mọi quyền lợi được bảo lưu. </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- contents -->
+    <div class="main_content">
+
+        <!-- header -->
+        <div id="main_header">
+            <header>
+                <div class="header-innr">
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger is-hidden"
+                         uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" alt=""></a>
+                        <a th:href="@{/home}"> <img th:src="@{/images/logo-light.png}" class="logo-inverse"
+                                                    alt=""></a>
+                    </div>
+
+                    <!-- form search-->
+                    <div class="head_search">
+                        <form th:action="@{/user/findfriend}" id="searchForm">
+                            <div class="head_search_cont">
+                                <i class="s_icon uil-search-alt"></i>
+                                <label for="searchInput">
+                                    <input value="" type="text" class="form-control"
+                                           placeholder="Search for Friends" autocomplete="off" id="searchInput">
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- user icons -->
+                    <div class="head_user">
+
+                        <!-- Message  notificiation dropdown -->
+                        <a href="#" class="opts_icon" uk-tooltip="title: Messages ; pos: bottom ;offset:7">
+                            <img th:src="@{/images/icons/chat.svg}" alt=""> <span>4</span>
+                        </a>
+
+                        <!-- Message  notificiation dropdown -->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications display-hidden">
+
+                            <!-- notification contents -->
+                            <div class="dropdown-notifications-content" data-simplebar>
+
+                                <!-- notivication header -->
+                                <div class="dropdown-notifications-headline">
+                                    <h4>Messages</h4>
+                                    <a href="#">
+                                        <i class="icon-feather-settings"
+                                           uk-tooltip="title: Message settings ; pos: left"></i>
+                                    </a>
+                                </div>
+
+                                <!-- notiviation list -->
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Jonathan Madano</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Stella Johnson</strong>
+                                                <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Alex Dolgove</strong>
+                                                <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar status-online">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Adrian Mohani</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Jonathan Madano</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Stella Johnson</strong>
+                                                <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Alex Dolgove</strong>
+                                                <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                           <span class="notification-avatar">
+                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
+                                           </span>
+                                            <div class="notification-text notification-msg-text">
+                                                <strong>Adrian Mohani</strong>
+                                                <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="dropdown-notifications-footer">
+                                <a href="#"> See all in Messages</a>
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
+                        <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
+                            <img th:src="@{/images/icons/bell.svg}" alt=""> <span>0</span>
+                        </a>
+
+
+                        <!-- Xử lí ajax để hiển thị thông báo -->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications display-hidden">
+
+                            <!-- notification contents -->
+                            <div class="dropdown-notifications-content" data-simplebar>
+
+                                <!-- notivication header -->
+                                <div class="dropdown-notifications-headline">
+                                    <h4>Notifications </h4>
+                                    <a href="#">
+                                        <i class="icon-feather-settings"
+                                           uk-tooltip="title: Notifications settings ; pos: left"></i>
+                                    </a>
+                                </div>
+
+                                <!-- notiviation list -->
+                                <ul>
+                                    <li th:each="notification : ${notifications}">
+                                        <div>
+                                           <span class="notification-avatar">
+                                               <img th:src="${notification?.senderAvatar}" alt="">
+                                           </span>
+                                            <span class="notification-text">
+                                               <strong th:text="${notification.senderName}"></strong>
+                                               <span class="text-primary" th:text="${notification.message}"></span>
+                                               <br><span class="text-primary">của bạn</span>
+                                                <br><span class="time-ago"
+                                                          th:text="${notification.getTimeDifference()}"></span>
+                                        </span>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- Chèn avatar -->
+                        <a class="opts_account" href="#"> <img
+                                th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh"></a>
+
+                        <!-- Biểu tượng avatar : xem profile, đăng xuất, chuyển sang trang admin(nếu là admin)-->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                             class="dropdown-notifications rounded display-hidden">
+
+                            <!-- User Name / Avatar -->
+                            <!-- User Name / Avatar -->
+                            <a th:href="@{/user/profile}">
+
+                                <div class="dropdown-user-details">
+
+                                    <div class="dropdown-user-cover">
+                                        <!-- chèn ảnh bìa -->
+                                        <img th:src="${userInfo.background != null ? userInfo.background : ''}"
+                                             alt="Ảnh bìa">
+                                    </div>
+                                    <div class="dropdown-user-avatar">
+                                        <!-- chèn ảnh đại diện -->
+                                        <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}"
+                                             alt="Ảnh đại diện">
+                                    </div>
+                                    <!-- Tên người dùng -->
+                                    <div class="dropdown-user-name">
+                                        <span th:text="${userInfo.name}"></span>
+                                    </div>
+                                </div>
+
+                            </a>
+                            <!-- Tính năng của icon avatar -->
+                            <ul class="dropdown-user-menu">
+                                <li><a th:href="@{/home}"> <i class="fas fa-rocket"></i> Tải lại trang chủ </a></li>
+                                <li><a href="#"> <i class="fas fa-bullhorn"></i> Quảng cáo </a></li>
+                                <li><a href="#"> <i class="fas fa-user-edit"></i> Cài đặt chung</a></li>
+                                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{/admin/home}"> <i class="fas fa-user-cog"></i> Quản trị viên</a></li>
+                                <li><a th:href="@{/logout}"> <i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                                </li>
+                            </ul>
+                            <hr class="m-0">
+                            <ul class="dropdown-user-menu">
+                                <li><a href="page-setting.html" class="bg-secondery"> <i class="uil-bolt"></i>
+                                    <div> Nâng cấp tài khoản
+                                        <span> Tài khoản nâng cấp mang lại nhiều trải nghiệm độc lạ </span>
+                                    </div>
+                                </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </header>
+        </div>
+
+        <div class="main_content_inner">
+
+
+            <div uk-grid>
+
+                <div class="uk-width-2-3@m fead-area">
+
+                    <div class="post">
+                        <div class="post-heading">
+                            <div class="post-comment-avatar">
+                                <!--                            //Chưa xử lí hiển thị ảnh đại diện-->
+                                <img  th:src="${post.createdBy.userInfo?.avatar?.url}" alt="Hình ảnh">
+                            </div>
+                            <div class="post-title">
+                                <h4 th:text="${post.createdBy.userInfo?.name}"></h4>
+                                <p th:text="${post.getTimeDifference() }"><i class="uil-users-alt"></i></p>
+                            </div>
+                            <div class="post-btn-action">
+                                <span class="icon-more uil-ellipsis-h"></span>
+                                <div class="mt-0 p-2" uk-dropdown="pos: top-right;mode:hover ">
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="#"> <i class="uil-share-alt mr-1"></i> Chia sẻ</a> </li>
+                                        <li><a href="#"> <i class="uil-edit-alt mr-1"></i> Chỉnh sừa bài viết </a></li>
+                                        <li><a href="#"> <i class="uil-comment-slash mr-1"></i> Tắt bình luận
+                                        </a></li>
+                                        <li><a href="#" class="text-danger"> <i class="uil-trash-alt mr-1"></i>
+                                            Xóa bài viết </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-description">
+                            <p th:text="${post.title}" th:if="${post.title}"></p>
+                            <div class="fullsizeimg" th:if="${post.image}">
+                                <img th:src="${post.image}" alt="Hình ảnh">
+                            </div>
+
+                            <div class="post-state">
+                                <!--                            <div class="post-state-btns">-->
+                                <!--                                <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>-->
+                                <!--                                <span th:text="${post.likes.size()}"></span>&nbspThích-->
+                                <!--                            </div>-->
+                                <div class="post-state-btns">
+                                    <a class="like-button" th:attr="data-post-id=${post.id} ,data-is-liked=${post.isLikedByUser(currentUser)}">
+                                        <i class="uil-thumbs-up"
+                                           th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
+                                    </a>
+                                    <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
+                                </div>
+                                <div class="post-state-btns"> <i class="uil-comment"></i>
+                                    <span th:id="'comment-count-' + ${post.id}" th:text="${post.comments.size()}"></span>&nbspBình luận
+                                </div>
+                                <div class="post-state-btns"> <i class="uil-share-alt"></i>
+                                    <span> 0 </span>&nbspChia sẻ
+                                </div>
+                                <div class="post-state-btns"> <i class="uil-bookmark"></i> 0 <span> Saved </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- post comments -->
+                        <div class="post-comments">
+                            <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
+                                <div class="post-comment-avatar">
+                                    <img th:src="${comment.commentedByAvatar}" alt="">
+                                </div>
+                                <div class="post-comment-text">
+                                    <div class="post-comment-text-inner">
+                                        <h6 th:text="${comment.commentedByName}"></h6>
+                                        <p th:text="${comment.content}"></p>
+                                    </div>
+                                    <div class="uk-text-small">
+                                        <span th:text="${comment.getTimeDifference()}"></span>
+                                    </div>
+                                </div>
+                                <!--Chỗ sửa, xóa bình luận-->
+                                <a href="#" class="post-comment-opt"></a>
+                            </div>
+                            <div th:id="'post-' + ${post.id}">
+                                <!-- Comments will be inserted here -->
+                            </div>
+
+                            <div class="post-add-comment">
+                                <div class="post-add-comment-avature">
+                                    <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
+                                </div>
+                                <div class="post-add-comment-text-area">
+                                    <input type="text" th:id="'content-' + ${post.id}" placeholder="Bình luận về bài viết...">
+                                    <div class="icons">
+                                        <span class="uil-link-alt"></span>
+                                        <span class="uil-grin"></span>
+                                        <span class="uil-image"></span>
+                                        <a th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">
+                                            <span class="uil-comment-alt-upload"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="uk-width-expand">
+
+                    <div class="sl_sidebar_sugs_title border-0"> Xu hướng !
+                        <i class="icon-feather-rotate-cw"></i>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #Fontbath</span>
+                        </a>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #HaNgan</span>
+                        </a>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #ThanhCong</span>
+                        </a>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #MangXaHoi</span>
+                        </a>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #ChaoXin</span>
+                        </a>
+                    </div>
+                    <div class="list-group-item sl_htag">
+                        <a href="#">
+                            <span class="htag_top"> #Moi</span>
+                        </a>
+                    </div>
+
+                    <div class="sl_sidebar_sugs_title mt-4">Pro Members
+                        <i class="icon-feather-rotate-cw"></i>
+                    </div>
+                    <div class="uk-position-relative" uk-slider="finite: true; autoplay:true">
+
+                        <div class="uk-slider-container pb-3">
+
+                            <ul class="uk-slider-items uk-child-width-1-3@m uk-grid-small uk-grid sl_pro_users">
+                                <li>
+                                    <a class="user" href="#">
+                                        <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                                        <span>Thành viên 1</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="user" href="#">
+                                        <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                                        <span>Thành viên 2</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="user" href="#">
+                                        <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
+                                        <span>Thành viên 3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="user" href="#">
+                                        <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
+                                        <span>Thành viên 4</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="user" href="#">
+                                        <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                                        <span>Thành viên 5</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <a class="uk-position-center-left uk-hidden-hover slidenav-prev sl_pro_users_prev"
+                               href="#" uk-slider-item="previous"></a>
+                            <a class="uk-position-center-right-out uk-position-small uk-hidden-hover slidenav-next sl_pro_users_next"
+                               href="#" uk-slider-item="next"></a>
+
+                        </div>
+                    </div>
+
+                    <div class="sl_sidebar_sugs_title">Gợi ý kết bạn
+                        <i class="icon-feather-rotate-cw"></i>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Jonathan Madano </a>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Follow</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/avatars/avatar-6.jpg}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Monera Khalifa </a>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Accept</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Adrian Mohani </a>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Follow</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Stella Johnson </a>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Follow</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sl_sidebar_sugs_title mt-4">Trang bạn có thể thích
+                        <i class="icon-feather-rotate-cw"></i>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/brand/brand-avatar-3.png}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Suranna Brand </a>
+                            <span> Education</span>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Like </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sl_sidebar_sugs">
+                        <div class="sl_sidebar_sugs_avatar">
+                            <img th:src="@{/images/brand/brand-avatar-4.png}" alt="">
+                        </div>
+                        <div class="sl_sidebar_sugs_text">
+                            <a href="#" class="sl_user_link_name"> Uk Brands </a>
+                            <span> Shopping</span>
+                        </div>
+                        <div class="user-follow-button sl_sidebar_sugs_btns">
+                            <button type="button" class="button small">
+                                <span> Like </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sl_sidebar_sugs_title mt-1"> Mời bạn bè
+                        <i class="icon-feather-rotate-cw"></i>
+                    </div>
+                    <form action="#" class="invite-user-form">
+                        <div class="sl_form_fields invite-user-combine">
+                            <input type="text" name="email" placeholder="E-mail" class="form-control">
+                            <button class="button small" title="Send Invitation">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Footer menus-->
+                    <div class="footer-wrapper-sidebar mt-4">
+                        <div class="footer-powered">
+                            <p> © 2024 FontBath.net</p>
+                        </div>
+
+                        <hr>
+
+                        <ul class="list-inline">
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Bài viết</a></li>
+                            <li><a href="#">Chính sách</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Nhà phát triển</a></li>
+                            <li>
+                                <div class="dropdown dropup sun_foot_drop_menu">
+                                    <a href="#" class="dropdown-toggle">
+                                        More <span class="caret"></span>
+                                    </a>
+                                    <div uk-dropdown="pos: bottom-left ; mode:hover "
+                                         class="uk-dropdown uk-dropdown-bottom-right"
+                                         style="left: 745px; top: 87px;">
+                                        <ul class="uk-nav uk-dropdown-nav">
+                                            <li><a href="#"> Chế độ xem </a></li>
+                                            <li><a href="#"> Chặn người dùng </a></li>
+                                            <li><a href="#"> Báo cáo người dùng</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+    <!-- Chat sidebar -->
+    <a class="chat-plus-btn" href="#sidebar-chat" uk-toggle>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"></path>
+        </svg>
+        <!--  Chat -->
+    </a>
+    <div id="sidebar-chat" class="sidebar-chat px-3" uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar">
+
+            <div class="sidebar-chat-head mb-2">
+
+                <div class="btn-actions">
+                    <a href="#" uk-tooltip="title: Search ;offset:7"
+                       uk-toggle="target: .sidebar-chat-search; animation: uk-animation-slide-top-small"> <i
+                            class="icon-feather-search"></i> </a>
+                    <a href="#" uk-tooltip="title: settings ;offset:7"> <i class="icon-feather-settings"></i> </a>
+                    <a href="#"> <i class="uil-ellipsis-v"></i> </a>
+                    <a href="#" class="uk-hidden@s">
+                        <button class="uk-offcanvas-close uk-close" type="button"
+                                uk-close></button>
+                    </a>
+                </div>
+
+                <h2> Chats </h2>
+            </div>
+
+            <div class="sidebar-chat-search" hidden>
+                <input type="text" class="uk-input" placeholder="Search in Messages">
+                <span class="btn-close"
+                      uk-toggle="target: .sidebar-chat-search; animation: uk-animation-slide-top-small"> <i
+                        class="icon-feather-x"></i> </span>
+            </div>
+
+            <ul class="uk-child-width-expand sidebar-chat-tabs" uk-tab>
+                <li class="uk-active"><a href="#">Users</a></li>
+                <li><a href="#">Groups</a></li>
+            </ul>
+
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> James Lewis </h5>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> Erica Jones </h5>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-7.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Stella Johnson </h5>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Alex Dolgove </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> James Lewis </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> Erica Jones </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Stella Johnson </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Alex Dolgove </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> James Lewis </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
+                        <span class="online-dot"></span></div>
+                    <h5> Erica Jones </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-3.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Stella Johnson </h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="contact-list">
+                    <div class="contact-list-media"><img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                        <span class="offline-dot"></span></div>
+                    <h5> Alex Dolgove </h5>
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+
+
+    <div class="story-pop uk-animation-slide-bottom-small">
+        <div class="story-side uk-width-1-4@s">
+
+
+            <div class="uk-flex uk-flex-between uk-flex-middle mb-2">
+                <h2 class="mb-0" style="font-weight: 700">All Story</h2>
+                <a href="#" class="text-primary"> Setting</a>
+            </div>
+
+            <div class="story-side-innr" data-simplebar>
+                <h4 class="mb-1"> Your Story</h4>
+                <ul class="story-side-list">
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Stella Johnson </h5>
+                                <p> Share a photo or video</p>
+                            </div>
+                            <div class="add-story-btn">
+                                <i class="uil-plus"></i>
+                            </div>
+                        </a>
+
+                    </li>
+                </ul>
+
+                <div class="uk-flex uk-flex-between uk-flex-middle my-3">
+                    <h4 class="m-0"> Friends Story</h4>
+                    <a href="#" class="text-primary"> See all</a>
+                </div>
+                <ul class="story-side-list"
+                    uk-switcher="connect: #story-slider-switcher ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium">
+
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> James Lewis </h5>
+                                <p><span class="story-count"> 2 new </span> <span class="story-time-ago"> 4hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Stella Johnson </h5>
+                                <p><span class="story-count"> 3 new </span> <span class="story-time-ago"> 1hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-4.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Erica Jones </h5>
+                                <p><span class="story-count"> 2 new </span> <span class="story-time-ago"> 3hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-7.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Adrian Mohani </h5>
+                                <p><span class="story-count"> 1 new </span> <span class="story-time-ago"> 4hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Alex Dolgove </h5>
+                                <p><span class="story-count"> 3 new </span> <span class="story-time-ago"> 7hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-1.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Stella Johnson </h5>
+                                <p><span class="story-count"> 2 new </span> <span class="story-time-ago"> 8hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-2.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Erica Jones </h5>
+                                <p><span class="story-count"> 3 new </span> <span class="story-time-ago"> 10hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="story-user-media">
+                                <img th:src="@{/images/avatars/avatar-5.jpg}" alt="">
+                            </div>
+                            <div class="story-user-innr">
+                                <h5> Alex Dolgove </h5>
+                                <p><span class="story-count"> 3 new </span> <span class="story-time-ago"> 14hr ago
+                                        </span></p>
+                            </div>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="story-content">
+
+            <!-- close button-->
+            <span class="story-btn-close" uk-toggle="target: body ; cls: is-open"
+                  uk-tooltip="title:Close story ; pos: left "></span>
+
+            <div class="story-content-innr">
+
+                <ul id="story-slider-switcher" class="uk-switcher">
+
+                    <li>
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/post/img-1.jpg}" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-1.jpg}" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+
+
+                        </div>
+
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div class="story-slider-image">
+                                        <img th:src="@{/images/post/img-3.jpg}" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="story-slider-image">
+                                        <img th:src="@{/images/avatars/avatar-lg-3.jpg}" alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="story-slider-image">
+                                        <img th:src="@{/images/avatars/avatar-lg-2.jpg}" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <!-- slider navigation -->
+
+                        <a href="#" uk-switcher-item="previous"
+                           class="uk-position-center-left-out uk-position-medium slidenav-prev"></a>
+                        <a href="#" uk-switcher-item="next"
+                           class="uk-position-center-right-out uk-position-medium slidenav-next"></a>
+
+                        <div class="uk-position-relative uk-visible-toggle" uk-slider>
+                            <!-- navigation -->
+                            <ul class="uk-slider-nav uk-dotnav story-slider-nav"></ul>
+
+                            <!-- Story posted image -->
+                            <ul class="uk-slider-items uk-child-width-1-1 story-slider">
+                                <li>
+                                    <div
+                                            class="story-slider-image uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img th:src="@{/images/avatars/avatar-lg-4.jpg}" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- javaScripts
+================================================== -->
+<script th:src="@{/js/uikit.js}"></script>
+<script th:src="@{/js/simplebar.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/like.js}"></script>
+<script th:src="@{/js/notification.js}"></script>
+<script th:src="@{/js/view.js}"></script>
+
+
+</body>
+
+</html>

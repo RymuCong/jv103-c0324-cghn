@@ -7,6 +7,7 @@ import com.cg.casestudy.dtos.PostRequest;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.services.NotificationService;
 import com.cg.casestudy.services.PostService;
+import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -33,11 +34,15 @@ public class PostController {
 
     private final NotificationService notificationService;
 
+    private final UserInfoService userInfoService;
+
     @Autowired
-    public PostController(PostService postService, UserService userService, NotificationService notificationService) {
+    public PostController(PostService postService, UserService userService,
+                          NotificationService notificationService, UserInfoService userInfoService) {
         this.postService = postService;
         this.userService = userService;
         this.notificationService = notificationService;
+        this.userInfoService = userInfoService;
     }
 
     @PostMapping("/post")
@@ -74,13 +79,14 @@ public class PostController {
         return new LikeResponse(postIdResponse, likeCount);
     }
 
-    @GetMapping("user/post_details/{postId}")
+    @GetMapping("/post_details/{postId}")
     public String showPostDetails(@PathVariable("postId") Long postId, Model model) {
         PostDTO postDTO = postService.findById(postId);
         model.addAttribute("post", postDTO);
         User currentUser = userService.getCurrentUser();
-        model.addAttribute("userInfo", currentUser.getUserInfo());
+        model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("notifications", notificationService.getNotificationsByUserId(currentUser.getId()));
         return "post-details";
     }
 }
