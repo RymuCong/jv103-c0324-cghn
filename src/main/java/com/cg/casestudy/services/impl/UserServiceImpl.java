@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
-
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

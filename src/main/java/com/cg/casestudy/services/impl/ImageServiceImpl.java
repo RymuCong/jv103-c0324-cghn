@@ -21,10 +21,14 @@ public class ImageServiceImpl implements ImageService {
     public Image findImageByUrl(String url) {
         return imageRepository.findImageByUrl(url);
     }
-
-
+  
     @Transactional
     public void save(Image image) {
         imageRepository.save(image);
+    }
+
+    @Transactional
+    public void delete(Image image) {
+        imageRepository.delete(image);
     }
 }

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang cá nhân</title>
+    <title>Trang chủ</title>
     <link rel="icon" th:href="@{/images/favicon.png}">
 
     <!-- CSS
@@ -30,6 +30,9 @@
     <!-- Google font
     ================================================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -190,11 +193,11 @@
 
                 <!-- form search-->
                 <div class="head_search">
-                    <form th:action="@{/user/findfriend}" id="searchForm">
+                    <form th:action="@{/user/findfriend}" id="searchForm" method="get">
                         <div class="head_search_cont">
                             <i class="s_icon uil-search-alt"></i>
                             <label for="searchInput">
-                                <input value="" type="text" class="form-control"
+                                <input name="keyword" value="" type="text" class="form-control"
                                        placeholder="Search for Friends" autocomplete="off" id="searchInput">
                             </label>
                         </div>
@@ -332,7 +335,7 @@
 
                     <!-- notificiation icon //có thể thêm xử lí hiển thị số thông báo báo mới  -->
                     <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
-                        <img th:src="@{/images/icons/bell.svg}" alt=""> <span>5</span>
+                        <img th:src="@{/images/icons/bell.svg}" alt=""> <span id="notification-count">0</span>
                     </a>
 
 
@@ -354,89 +357,19 @@
 
                             <!-- notiviation list -->
                             <ul>
-                                <li>
-                                    <a href="#">
+                                <li id="new-notification" th:each="notification : ${notifications}">
+                                    <div>
                                            <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                                               <img th:src="${notification?.senderAvatar}" alt="">
                                            </span>
-                                        <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
                                         <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                        <span class="notification-icon bg-gradient-danger">
-                                               <i class="icon-feather-star"></i></span>
-                                        <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                        <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                        <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                           </span>
-                                        <span class="notification-icon bg-gradient-primary">
-                                               <i class="icon-feather-thumbs-up"></i></span>
-                                        <span class="notification-text">
-                                               <strong>Adrian Moh.</strong> Like Your Comment On Video
-                                               <span class="text-primary">Learn Prototype Faster</span>
-                                               <br> <span class="time-ago"> 9 hours ago </span>
-                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                           </span>
-                                        <span class="notification-icon bg-gradient-warning">
-                                               <i class="icon-feather-star"></i></span>
-                                        <span class="notification-text">
-                                               <strong>Alex Dolgove</strong> Added New Review In Video
-                                               <span class="text-primary">Full Stack PHP Developer</span>
-                                               <br> <span class="time-ago"> 19 hours ago </span>
-                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                           <span class="notification-avatar">
-                                               <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                           </span>
-                                        <span class="notification-icon bg-gradient-success">
-                                               <i class="icon-feather-message-circle"></i></span>
-                                        <span class="notification-text">
-                                               <strong>Stella John</strong> Replay Your Comment in
-                                               <span class="text-primary">Adobe XD Tutorial</span>
-                                               <br> <span class="time-ago"> 12 hours ago </span>
-                                           </span>
-                                    </a>
+                                               <strong th:text="${notification.senderName}"></strong>
+                                               <span class="text-primary" th:text="${notification.message}"></span>
+                                               <br><span class="text-primary">của bạn</span>
+                                                <br><span class="time-ago" th:text="${notification.getTimeDifference()}"></span>
+                                        </span>
+
+                                    </div>
                                 </li>
                             </ul>
 
@@ -687,7 +620,6 @@
                                         </svg>
                                         <span> Tải ảnh</span>
                                     </a>
-<!--                                    <input type="file" id="fileInput" style="display: none;" th:field="${newPost.file}" />-->
                                     <input type="file" id="fileInput" style="display: none;" name="file" onchange="previewImage(event)"/>
 
                                     <a href="#">
@@ -813,12 +745,19 @@
                         </div>
 
                         <div class="post-state">
+<!--                            <div class="post-state-btns">-->
+<!--                                <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>-->
+<!--                                <span th:text="${post.likes.size()}"></span>&nbspThích-->
+<!--                            </div>-->
                             <div class="post-state-btns">
-                                <i class="uil-thumbs-up" th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
-                                <span th:text="${post.likes.size()}"></span>&nbspThích
+                                <a class="like-button" th:attr="data-post-id=${post.id} ,data-is-liked=${post.isLikedByUser(currentUser)}">
+                                    <i class="uil-thumbs-up"
+                                       th:classappend="${post.isLikedByUser(currentUser) ? 'text-primary' : ''}"></i>
+                                </a>
+                                <span th:id="'like-count-' + ${post.id}" th:text="${post.likes.size()}"></span>&nbspThích
                             </div>
-                            <div class="post-state-btns"> <i class="uil-heart"></i>
-                                <span th:text="${post.comments.size()}"></span>&nbspBình luận
+                            <div class="post-state-btns"> <i class="uil-comment"></i>
+                                <span th:id="'comment-count-' + ${post.id}" th:text="${post.comments.size()}"></span>&nbspBình luận
                             </div>
                             <div class="post-state-btns"> <i class="uil-share-alt"></i>
                                 <span> 0 </span>&nbspChia sẻ
@@ -828,9 +767,8 @@
                         </div>
 
                     </div>
-
                     <!-- post comments -->
-                    <div class="post-comments" >
+                    <div class="post-comments">
                         <div class="post-comments-single" th:each="comment, iterStat : ${post.comments}">
                             <div class="post-comment-avatar">
                                 <img th:src="${comment.commentedByAvatar}" alt="">
@@ -845,33 +783,37 @@
                                 </div>
                             </div>
                             <!--Chỗ sửa, xóa bình luận-->
-                            <a href="#" class="post-comment-opt">
-
-                            </a>
+                            <a href="#" class="post-comment-opt"></a>
                         </div>
-
-
-                        <a href="#" class="view-more-comment"> Xem tất cả bình luận</a>
+                        <div th:id="'post-' + ${post.id}" class="post-comments">
+                            <!-- Comments will be inserted here -->
+                        </div>
+                        <a class="view-more-comment" th:href="@{'user/post_details/' + ${post.id}}">Xem tất cả bình luận</a>
 
                         <div class="post-add-comment">
                             <div class="post-add-comment-avature">
                                 <img th:src="${userInfo.avatar != null ? userInfo.avatar : ''}" alt="Ảnh">
                             </div>
-                            <!--Xu lí ajax-->
                             <div class="post-add-comment-text-area">
-                                <input type="text" placeholder="Bình luận về bài viết...">
+                                <input type="text" th:id="'content-' + ${post.id}" placeholder="Bình luận về bài viết...">
                                 <div class="icons">
                                     <span class="uil-link-alt"></span>
                                     <span class="uil-grin"></span>
                                     <span class="uil-image"></span>
+                                    <a th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">
+                                        <span class="uil-comment-alt-upload"></span>
+                                    </a>
                                 </div>
+<!--                                <button type="button" th:id="'add-comment-' + ${post.id}" class="btn btn-primary add-comment" th:attr="data-post-id=${post.id}">Comment</button>-->
                             </div>
                         </div>
-
+<!--                        <div th:id="'comment-list-' + ${post.id}" class="post-comments">-->
+<!--                            &lt;!&ndash; Existing comments will be here &ndash;&gt;-->
+<!--                        </div>-->
                     </div>
-            </div>
+                    </div>
 
-            <div class="load-more">
+                    <div class="load-more">
                 <button class="btn button">Xem thêm bài viết</button>
             </div>
 
@@ -1715,20 +1657,13 @@
 ================================================== -->
 <script th:src="@{/js/uikit.js}"></script>
 <script th:src="@{/js/simplebar.js}"></script>
-<script>
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('imagePreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/like.js}"></script>
+<script th:src="@{/js/notification.js}"></script>
+<script th:src="@{/js/view.js}"></script>
+
 
 </body>
 

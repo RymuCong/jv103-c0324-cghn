@@ -3,15 +3,18 @@ package com.cg.casestudy.controllers;
 
 import com.cg.casestudy.dtos.PostDTO;
 import com.cg.casestudy.dtos.PostRequest;
+import com.cg.casestudy.dtos.SearchUserResponse;
 import com.cg.casestudy.dtos.UserDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.post.Post;
 import com.cg.casestudy.models.user.User;
 import com.cg.casestudy.models.user.UserInfo;
+import com.cg.casestudy.services.NotificationService;
 import com.cg.casestudy.services.PostService;
 import com.cg.casestudy.services.UserInfoService;
 import com.cg.casestudy.services.UserService;
 import com.cg.casestudy.services.impl.RoleService;
+import com.cg.casestudy.utils.AppConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -39,28 +42,25 @@ public class UserController {
     private final UserInfoService userInfoService;
     private final PostService postService;
     private final RoleService roleService;
+    private final NotificationService notificationService;
     //inject PasswordEncoder để mã hóa mật khẩu
     private final PasswordEncoder passwordEncoder;
 
-
-    @Value("${userinfo.default.avatarUrl}")
-    private String defaultAvatarUrl;
-
-    @Value("${userinfo.default.backgroundUrl}")
-    private String defaultBackgroundUrl;
 
     @Autowired
     public UserController(UserService userService,
                               UserInfoService userInfoService,
                               PostService postService,
                               PasswordEncoder passwordEncoder,
-                              RoleService roleService
+                              RoleService roleService,
+                              NotificationService notificationService
     ) {
         this.userService = userService;
         this.userInfoService = userInfoService;
         this.postService = postService;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
+        this.notificationService = notificationService;
     }
 
     //xóa khoảng trắng 2 đầu  trong tên, email, password
@@ -101,8 +101,8 @@ public class UserController {
         UserInfo userInfo = new UserInfo();
         userInfo.setName(userDTO.getUsername());
         userInfo.setGender(true);
-        userInfo.setAvatar(Image.builder().url(defaultAvatarUrl).build());
-        userInfo.setBackground(Image.builder().url(defaultBackgroundUrl).build());
+        userInfo.setAvatar(Image.builder().url(AppConstants.defaultAvatar).build());
+        userInfo.setBackground(Image.builder().url(AppConstants.defaultBackground).build());
         userInfoService.save(userInfo);
 
         user.setUserInfo(userInfo);
@@ -130,7 +130,7 @@ public class UserController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("userInfo", userInfoService.getUserInfoByUser(currentUser));
         model.addAttribute("newPost", new PostRequest());
-
+        model.addAttribute("notifications", notificationService.getNotificationsByUserId(currentUser.getId()));
         return "feeds";
     }
 

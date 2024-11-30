@@ -1,5 +1,6 @@
 package com.cg.casestudy.services.impl;
 
+import com.cg.casestudy.dtos.SearchUserResponse;
 import com.cg.casestudy.dtos.UserInfoDTO;
 import com.cg.casestudy.models.common.Image;
 import com.cg.casestudy.models.user.User;
@@ -15,19 +16,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
     private final FirebaseService firebaseService;
     private final ImageService imageService;
+    private final UserService userService;
 
     @Autowired
     public UserInfoServiceImpl(UserInfoRepository userInfoRepository,
-                               FirebaseService firebaseService, ImageService imageService) {
+                               FirebaseService firebaseService, ImageService imageService, UserService userService) {
         this.userInfoRepository = userInfoRepository;
         this.firebaseService = firebaseService;
         this.imageService = imageService;
+        this.userService = userService;
     }
 
     @Override
@@ -86,5 +92,23 @@ public class UserInfoServiceImpl implements UserInfoService {
             currentUser.getImages().add(newAvatar);
             userInfoRepository.save(userInfo);
         }
+    }
+
+    @Override
+    public List<SearchUserResponse> searchUser(String keyword) {
+        List<UserInfo> userInfos = null;
+        if (keyword == null || keyword.isBlank())
+           userInfos = userInfoRepository.findAll();
+        else
+           userInfos = userInfoRepository.findByNameContains(keyword);
+        // check if list user info contains current user
+        userInfos.removeIf(userInfo -> userInfo.getUser().getId().equals(userService.getCurrentUser().getId()));
+
+        if (userInfos.isEmpty())  {
+            return List.of();
+        }
+        return userInfos.stream()
+                .map(CommonMapper::mapUserInfoToSearchUserResponse)
+                .collect(Collectors.toList());
     }
 }
